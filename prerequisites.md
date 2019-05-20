@@ -13,7 +13,7 @@ Before the CodeJam day, participants should ensure they have the following insta
 - Chrome (latest version) : [https://www.google.com/chrome/](https://www.google.com/chrome/)
 - ...
 
-## Services
+## Services
 
 Each attendee should have an SAP Cloud Platform trial account, with the following services enabled and configured as appropriate:
 
