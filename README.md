@@ -25,7 +25,7 @@ Here's an overview of the exercises in this CodeJam.
 
 ### Feedback
 
-At the end of this CodeJam, we would be really grateful if you could spend a minute providing us with your thoughts in this [feedback form](https://bit.ly/codejam-cap-nodejs-feedback). Thank you.
+At the end of this CodeJam, we would be really grateful if you could spend a minute providing us with your thoughts in this [feedback form](https://bit.ly/codejam-workflow-feedback). Thank you.
 
 
 ## Requirements
