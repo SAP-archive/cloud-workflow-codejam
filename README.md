@@ -23,6 +23,7 @@ If you finish an exercise early, please resist the temptation to continue with t
 Here's an overview of the exercises in this CodeJam.
 
 - [Exercise 01 - Setting up the SAP Cloud Platform services](exercises/01/)
+- [Exercise 02 - Creating an SAP Fiori launchpad site](exercises/02/)
 - ...
 
 ### Feedback
