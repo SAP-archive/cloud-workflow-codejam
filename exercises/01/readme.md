@@ -29,11 +29,15 @@ You should be presented with a list of services, grouped by category. Some servi
 
 _Note: You can search for the service manually or filter them using the "Developer Experience" category._
 
+:point_right: Make a note of the SAP Web IDE Full-Stack service URL, for example by bookmarking it, so you can get to the service easily later.
+
 ### 3. Find and enable the Portal service
 
 :point_right: Return to the services list in your cockpit and go back to locate the Portal service. Enable it if it's not already enabled, TODO
 
 _Note: You can search for the service manually or filter them using the "User Experience" category._
+
+:point_right: Make a note of the Portal service URL, for example by bookmarking it, so you can get to the service easily later.
 
 
 ### 4. Find and enable the Workflow service
