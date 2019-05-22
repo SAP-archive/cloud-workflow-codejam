@@ -4,6 +4,8 @@
 
 This repository contains the material for the CodeJam on SAP Cloud Platform (CP) Workflow. Prequisites and recommendations for this CodeJam are documented in the [prerequisites](prerequisites.md) file.
 
+In this CodeJam you'll create, deploy and extend a workflow definition, and use it in the context of an SAP Fiori launchpad site, using the standard My Inbox app. You'll also monitor the workflow instances, and initiate them from a 3rd party app.
+
 ### Material organization
 
 The material consists of a series of exercises that are to be done in order (each one building on the previous one). Each exercise is contained in a directory, with a main 'readme' file containing the core exercise instructions, with optional supporting files, such as screenshots and sample files.
@@ -20,7 +22,7 @@ If you finish an exercise early, please resist the temptation to continue with t
 
 Here's an overview of the exercises in this CodeJam.
 
-- [Exercise 01 - Firing up and checking your tools](exercises/01/)
+- [Exercise 01 - Setting up the SAP Cloud Platform services](exercises/01/)
 - ...
 
 ### Feedback
