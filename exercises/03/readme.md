@@ -1,4 +1,4 @@
-# Exercise 03 - Installing the SAP Cloud Connector in a container
+# Exercise 03 - Installing & configuring the SAP Cloud Connector
 
 The scenario upon which this CodeJam is based includes access to an on-prem SAP system, for which the SAP Cloud Connector is required.
 
@@ -73,7 +73,11 @@ centos              7                   9f38484d220f        2 months ago        
 debian              latest              a0bd3e1c8f9e        3 months ago        101MB
 ```
 
-:point_right: Instantiate a container as follows:
+### 3. Instantiate a container
+
+Now you have an image, it's time to instantiate a container from it. This will be a running instance of the image, with SAP Cloud Connector running inside it.
+
+:point_right: Instantiate the container as follows:
 
 ```bash
 docker run -p 8443:8443 --name myscc -d scc
@@ -88,11 +92,101 @@ Briefly, the parameters you pass here do the following:
 
 Because the container is started in the background, the output from this command is the ID that container.
 
+:point_right: Check that the container is running, with another Docker command, thus:
+
+```bash
+docker ps
+```
+
+You should see output that looks something like this:
+
+```
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+c8e4073f42a4        scc                 "/bin/sh -c '/opt/sa…"   About an hour ago   Up 9 seconds        0.0.0.0:8443->8443/tcp   myscc
+```
+
+### 4. Connect to perform initial setup of the SAP Cloud Connector
+
+In this step you will log on to the SAP Cloud Connector in your browser, and use the administration interface to perform some initial setup.
+
+:point_right: Open your browser and go to the SAP Cloud Connector administration UI at [https://localhost:8443](https://localhost:8443). Remember that this is only possible because, with the `-p 8443:8443` parameter earlier, you specified that port 8443 in the container (which is where SAP Cloud Connector is *actually* running and listening) should be exposed to your machine, the container's host (where Docker is running), also on port 8443.
+
+_Note: Your browser will likely warn you that the site is insecure, because the certificate it presents (via HTTPS) has not been signed by any authority it recognises. This is OK and you should proceed through the warning. It's possible to fix this by installing a signed certificate into the SAP Cloud Connector, but this is beyond the scope of this exercise._
+
+:point_right: At the "Cloud Connector Login" page, log in with the default username and password "Administrator" and "manage". You're then prompted to change this password which you should do, selecting the "Save" icon on the right hand side to proceed (leave other options as they are).
+
+Next, you're asked to specify an initial subaccount that you want the SAP Cloud Connector to connect to (you can connect it to multiple subaccounts but we will only specify this initial one in this exercise).
+
+:point_right: Specify the appropriate details for your subaccount. A trial subaccount in the Neo environment means you must choose the "Europe (Rot) - Trial" value for the "Region" parameter. Refer to the example below. When you're done, leave other parameters as they are and complete the initial setup with the "Save" icon on the right hand side.
+
+![subaccount details](subaccountdetails.png)
+
+_Note: Notice the difference between the trial subaccount name and username - the username is the same as the subaccount name without the "trial" suffix._
+
+At this point, your SAP Cloud Connector, running in a container on your machine, is now up and running with a secure tunnel established to your subaccount on the SAP Cloud Platform. You should see a status page that looks something like this:
+
+![connection status](connectionstatus.png)
+
+### 5. Make the SAP backend system available
+
+Now that the connection is established, you can define access to the on-prem backend SAP system that the SAP Cloud Connector will facilitate.
+
+_Note: Remember that (a) the secure tunnel is established *outbound* from the SAP Cloud Connector to the SAP Cloud Platform, not the other way round (i.e. connections cannot be initiated from outside your on-prem landscape) and (b) no on-prem system is accessible unless you specify that it is (a "whitelist" approach)._
+
+:point_right: Select the "Cloud To On-Premise" item in the navigation menu on the left hand side, and in the "Mapping Virtual To Internal System" section, create a new system mapping entry with the "+" icon. In the dialog that follows, you can specify the details of your backend SAP system, i.e. the ES5 system:
+
+| Setting                | Value to specify        |
+| -------------          | ----------------------- |
+| Back-end Type          | ABAP System             |
+| Protocol               | HTTPS                   |
+| Internal Host          | sapes5.sapdevcenter.com |
+| Internal Port          | 443                     |
+| Virtual Host           | virtuales5              |
+| Virtual Port           | 8000                    |
+| Principal Type         | None                    |
+| Host in Request Header | Use Virtual Host        |
+
+The dialog summary should look something like this:
+
+![system mapping summary](mappingsummary.png)
+
+:point_right: Select the "Finish" button to create the system mapping.
+
+### 6. Expose a set of resources in the backend system
+
+While you've established a mapping of a virtual host (that is visible at the SAP Cloud Platform level) to an internal (on-prem) host, there are still no resources available on that host that can be accessed. You must specify these explicitly, and you'll do that now in this step.
+
+:point_right: In the new "Resources of virtuales5:8000" section that is now visible, add a new resource entry with the "+" icon, specifying the following values and finishing with the "Save" button:
+
+| Setting                | Value to specify        |
+| -------------          | ----------------------- |
+| URL Path               | /sap/opu/odata          |
+| Active                 | (checked)               |
+| WebSocket Upgrade      | (leave unchecked)       |
+| Access Policy          | Path and all sub-paths  |
+
+This establishes access to OData services, specifically those at path `/sap/opu/odata`. Many standard OData services in an SAP system are available here, and the one we'll use later is too.
+
+_Note: For test purposes, you could also have specified simply `/` as the URL Path to make every HTTP-based resource in the ES5 system available._
+
+This is the sort of thing that you should see when you've completed this step:
+
+![access summary](accesssummary.png)
+
+### 7. Check the connection at the SAP Cloud Platform end
+
+Now the connection is established, you can check it in your SAP Cloud Platform trial subaccount.
+
+:point_right: Back in the "Neo Trial" section of the [SAP Cloud Platform Cockpit](https://account.hanatrial.ondemand.com/cockpit/), select the "Connectivity" item in the navigation menu, and within that, choose the "Cloud Connectors" item. You should see your SAP Cloud Connector connection information, plus the "virtuales5" host you exposed. It should look something like this:
+
+![connection established](connectionestablished.png)
+
 ## Summary
 
-You've now ...
+You've now got your own SAP Cloud Connector running, connected to your SAP Cloud Platform trial subaccount, and exposing OData services on a backend SAP system ready for consumption. Well done!
 
 ## Questions
 
-1. ...
+1. How else could you check that the SAP Cloud Connector was up and running and listening on port 8443?
 
+1. What other resource paths might you want to expose in a backend SAP system?
