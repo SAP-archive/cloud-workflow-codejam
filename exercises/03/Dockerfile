@@ -6,7 +6,7 @@ COPY sapdownloads /tmp/sapdownloads/
 WORKDIR /tmp/sapdownloads/
 
 RUN unzip sapcc*.zip && \
-    rpm -i sapjvm*.rpm && \
+	rpm -i sapjvm*.rpm && \
 	rpm -i com.sap.scc*.rpm
 
 RUN chsh -s /bin/bash sccadmin
