@@ -135,7 +135,7 @@ _Note: Remember that (a) the secure tunnel is established *outbound* from the SA
 
 :point_right: Select the "Cloud To On-Premise" item in the navigation menu on the left hand side, and in the "Mapping Virtual To Internal System" section, create a new system mapping entry with the "+" icon. In the dialog that follows, you can specify the details of your backend SAP system, i.e. the ES5 system:
 
-| Setting                | Value to specify        |
+| Setting                | Value                   |
 | -------------          | ----------------------- |
 | Back-end Type          | ABAP System             |
 | Protocol               | HTTPS                   |
@@ -158,7 +158,7 @@ While you've established a mapping of a virtual host (that is visible at the SAP
 
 :point_right: In the new "Resources of virtuales5:8000" section that is now visible, add a new resource entry with the "+" icon, specifying the following values and finishing with the "Save" button:
 
-| Setting                | Value to specify        |
+| Setting                | Value                   |
 | -------------          | ----------------------- |
 | URL Path               | /sap/opu/odata          |
 | Active                 | (checked)               |
