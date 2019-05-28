@@ -26,6 +26,7 @@ Here's an overview of the exercises in this CodeJam.
 - [Exercise 02 - Creating an SAP Fiori launchpad site](exercises/02/)
 - [Exercise 03 - Installing & configuring the SAP Cloud Connector](exercises/03)
 - [Exercise 04 - Establishing a destination in SAP Cloud Platform](exercises/04)
+- [Exercise 05 - Creating, deploying & instantiating a simple workflow](exercises/05)
 - ...
 
 ### Feedback
