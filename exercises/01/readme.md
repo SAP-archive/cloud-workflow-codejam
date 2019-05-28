@@ -4,7 +4,7 @@ In this exercise you'll set up and configure the SAP Cloud Platform services tha
 
 There are three services that are required:
 
-- Workflow: the engine and infrastructure that supports workflow in the SAP Cloud Platform
+- Workflow: the engine and infrastructure that supports workflow on the SAP Cloud Platform
 - Portal: for building and managing Fiori Launchpad (and other) sites
 - SAP Web IDE Full-Stack: for developing and deploying your workflow definitions
 

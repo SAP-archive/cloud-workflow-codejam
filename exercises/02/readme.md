@@ -46,7 +46,7 @@ Note that the URL for the launchpad site contains a `siteId` query parameter som
 https://flpportal-p2001351149trial.dispatcher.hanatrial.ondemand.com/sites?siteId=dec57e57-d4f2-4d25-a4b6-1170fed55d53
 ```
 
-This makes for a slightly less memorable URL, but it's possible to assign an alias for the site and that will be used instead.
+This makes for a slightly less memorable URL, but it's possible to assign an alias for the site and that can be used instead.
 
 :point_right: Go back to the site's Fiori Configuration Cockpit. If you closed the tab already, you can always reach it again via the site's menu (use the user icon to get to the menu), selecting "Manage Site" (the spanner icon).
 

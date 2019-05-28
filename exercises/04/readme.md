@@ -29,9 +29,9 @@ If you have an SAP Cloud Connector set up and connected as described in the prev
 | Name                   | shopinfo                |
 | Type                   | HTTP                    |
 | Description            | CodeJam Shop Info       |
-| Location ID            | (leave blank)           |
 | URL                    | `http://virtuales5:8000/sap/opu/odata/sap/EPM_REF_APPS_SHOP_SRV/` |
 | Proxy Type             | OnPremise               |
+| Location ID            | (leave blank)           |
 | Authentication         | BasicAuthentication     |
 | User                   | (your ES5 username)     |
 | Password               | (your ES5 password)     |
@@ -55,7 +55,7 @@ _Note: We're only "pretending" that the ES5 system is on-prem; it is, in fact, a
 | User                   | (your ES5 username)     |
 | Password               | (your ES5 password)     |
 
-:point_right: In _both_ cases, add the following property / value pair in the "Additional Properties" section using the "New Property" button, and then save the entire destination definition with the "Save" button:
+:point_right: In _both_ cases (whether you have an SAP Cloud Connector or not), add the following property / value pair in the "Additional Properties" section using the "New Property" button, and then save the entire destination definition with the "Save" button:
 
 | Property               | Value                   |
 | -------------          | ----------------------- |
@@ -63,9 +63,9 @@ _Note: We're only "pretending" that the ES5 system is on-prem; it is, in fact, a
 
 ### 2. Create and deploy a simple test app
 
-It is worth testing the new destination with a small bit of configuration that is normally used to define remote sources that are to be accessed by apps. You will do that in this step, by creating the simplest app definition using the SAP Web IDE Full-Stack, and deploying it to the SAP Cloud Platform, and then testing the destination via that configuration.
+It is worth testing the new destination with a small bit of configuration that is normally used to define remote sources that are to be accessed by HTML5 apps. You will do that in this step, by creating the simplest app definition using the SAP Web IDE Full-Stack, and deploying it to the SAP Cloud Platform, and then testing the destination via that configuration.
 
-:point_right: Go to the SAP Web IDE Full-Stack. If you don't have the URL bookmarked, go via the Services menu item in the SAP Cloud Platform Cockpit, select the SAP Web IDE Full-Stack service, and use the "Go to Service" link.
+:point_right: Go to the SAP Web IDE Full-Stack. If you don't have the URL bookmarked, go via the Services navigation menu item in the SAP Cloud Platform Cockpit, select the SAP Web IDE Full-Stack service, and use the "Go to Service" link.
 
 :point_right: Once in the SAP Web IDE Full-Stack, go to the Development perspective (via menu option View -> Development). There, use the context menu (i.e. right-click) on the "Workspace" folder to create a new folder:
 
@@ -73,13 +73,13 @@ It is worth testing the new destination with a small bit of configuration that i
 
 Call the new folder "destinationtest".
 
-:point_right: Using the context menu on this new folder ("Import -> File or Project"), take the [neo-app.json](neo-app.json) file from this repository and upload it, with the same name, to this new "destinationtest" folder, so that you end up with something that looks like this:
+:point_right: Take the [neo-app.json](neo-app.json) file from this repository (save the "Raw" version) and upload it, with the same name, to this new "destinationtest" folder, using the context menu "Import -> File or Project", so that you end up with something that looks like this:
 
 ![neo-app.json in the new folder](neoapp.png)
 
 Make sure the name of this file is `neo-app.json`.
 
-:point_right: Now deploy this "app" (there's nothing there except for this routing information) to SAP Cloud Platform, by using the context menu path "Deploy -> Deploy to SAP Cloud Platform" on the "destinationtest" folder. In the dialog that appears, leave everything as it is, and select the "Deploy" button:
+:point_right: Now deploy this "app" (there's nothing there except for this routing information, but it suffices for what we need) to SAP Cloud Platform, by using the context menu path "Deploy -> Deploy to SAP Cloud Platform" on the "destinationtest" folder. In the dialog that appears, leave everything as it is, and select the "Deploy" button:
 
 ![deployment dialog](deploymentdialog.png)
 
