@@ -79,6 +79,23 @@ You should now see your instance. There's plenty of information to examine.
 
 :point_right: Take a couple of minutes to explore the information.
 
+### 5. Create another workflow instance with different data
+
+Before finishing this exercise, it's worth going through the process of manually creating a workflow instance again, this time supplying different data.
+
+:point_right: Navigate back to the display of the workflow definition, and use the "Start New Instance" button again. This time, replace the entire test data (relating to the Hamlet book) with the following:
+
+```json
+{
+  "request": {
+    "Id": "HT-1001",
+    "Quantity": 5
+  }
+}
+```
+
+Examining the completed instance this time, you should see this data in the Workflow Context section.
+
 ## Summary
 
 You've now gone through the process of bringing a workflow definition from your development environment (the SAP Web IDE Full-Stack) to the Workflow service on the SAP Cloud Platform, and using the administration apps to create and examine instances of it. You'll find that the "Monitor Workflows - Workflow Instances" app is a very useful tool.
