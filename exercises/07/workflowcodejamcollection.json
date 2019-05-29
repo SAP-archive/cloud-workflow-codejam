@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "24c15a72-170c-4eb0-a4e9-690c2071099b",
+		"name": "Workflow CodeJam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new \"orderprocess\" workflow instance",
+			"item": [
+				{
+					"name": "Get CSRF Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4146d0d-5db9-4bad-87d6-44a50bda0093",
+								"exec": [
+									"postman.setEnvironmentVariable(\"xsrftoken\", postman.getResponseHeader(\"X-CSRF-Token\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CSRF-Token",
+								"value": "Fetch"
+							}
+						],
+						"url": {
+							"raw": "{{workflowapi}}/v1/xsrf-token",
+							"host": [
+								"{{workflowapi}}"
+							],
+							"path": [
+								"v1",
+								"xsrf-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new workflow instance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-CSRF-Token",
+								"value": "{{xsrftoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"definitionId\" : \"orderprocess\",\n\t\"context\": {\n\t\t\"request\": {\n\t\t\t\"Id\": \"HT-1003\",\n\t\t\t\"Quantity\": 25\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{workflowapi}}/v1/workflow-instances",
+							"host": [
+								"{{workflowapi}}"
+							],
+							"path": [
+								"v1",
+								"workflow-instances"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Create a new instance of the \"approveuser\" workflow.",
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "C0deJam!",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "p2001351149",
+						"type": "string"
+					},
+					{
+						"key": "saveHelperData",
+						"type": "any"
+					},
+					{
+						"key": "showPassword",
+						"value": false,
+						"type": "boolean"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1ea9cf90-d012-460e-bae4-f2fd298f040c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "15584ec1-5cec-441e-8f70-fe2e626e6667",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

@@ -28,6 +28,7 @@ Here's an overview of the exercises in this CodeJam.
 - [Exercise 04 - Establishing a destination in SAP Cloud Platform](exercises/04)
 - [Exercise 05 - Creating, deploying & instantiating a simple workflow](exercises/05)
 - [Exercise 06 - Exploring the API Hub and the Workflow API](exercises/06)
+- [Exercise 07 - Calling the Workflow API from Postman](exercises/07)
 - ...
 
 ### Feedback
