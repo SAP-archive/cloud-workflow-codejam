@@ -77,30 +77,6 @@
 				}
 			],
 			"description": "Create a new instance of the \"approveuser\" workflow.",
-			"auth": {
-				"type": "basic",
-				"basic": [
-					{
-						"key": "password",
-						"value": "C0deJam!",
-						"type": "string"
-					},
-					{
-						"key": "username",
-						"value": "p2001351149",
-						"type": "string"
-					},
-					{
-						"key": "saveHelperData",
-						"type": "any"
-					},
-					{
-						"key": "showPassword",
-						"value": false,
-						"type": "boolean"
-					}
-				]
-			},
 			"event": [
 				{
 					"listen": "prerequest",
