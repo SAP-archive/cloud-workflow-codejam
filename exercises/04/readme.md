@@ -101,9 +101,37 @@ https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com
 
 :point_right: Select this hyperlink; you should be presented with an "HTTP Status 404 - Not Found" error, as there's no default document at the root of the app. But you can still use the route mappings in the app's `neo-app.json` file - simply append `shopinfo` to the URL (first removing the `?hc_reset` query parameter) and you should be presented with some XML.
 
+The URL should look like this:
+
+```
+https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopinfo
+```
+
 That XML is the service document of the shop info OData service, coming all the way from the ES5 system, through the SAP Cloud Connector (if you've installed it and set it up), via the Connectivity service to your browser.
 
 Great!
+
+### 4. Explore the Products entityset
+
+You'll be using data from the Products entityset in the OData service you've just exposed, so use this step to explore the data in that entityset, so you're at least a little bit familiar with it.
+
+:point_right: Append `Products` to the end of the existing URL, so it looks like this:
+
+```
+https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopinfo/Products
+```
+
+Explore the data that is returned - you should see a list of products, with the sort of properties you'd expect from a product database, such as an Id, name, description, information about stock quantity, and so on.
+
+Note: If you prefer looking at JSON rather than XML, append the query parameter `$format=json` to the URL, so that it looks like this:
+
+```
+https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopinfo/Products?$format=json
+```
+
+_Note: It's at this point you might want to take advantage of the [recommendations](../../prerequisites.md#recommendations) to install formatters for JSON and XML in Chrome._
+
+Notice that there are products with Ids such as "HT-1001" and "HT-1002" representing computer hardware such as laptops.
 
 
 ## Summary
