@@ -97,7 +97,13 @@ In this step you'll add a form to be used in the User Task you created earlier i
 
 _Note: This form will be created as a file inside your workflow project directory structure, specifically within the `forms/` directory._
 
+At this point you're presented with a simple form designer, which will allow you to create a form with sections, read-only fields, input fields and decision buttons.
 
+:point_right: Create a series of sections and fields as shown in the screenshot below, taking care to specify the context path values exactly. For all fields except for the "Your comments" field, use the field properties on the right hand side to set the "Mode" to "Display-Only".
+
+![form fields](formfields.png)
+
+:point_right: Switch to the "Decisions" tab and ...
 
 
 
