@@ -39,7 +39,7 @@ _Note: The user assignment is case sensitive, so it's important that you specify
 
 _Note: Within the context of the trial account you are using (with only a single user - you - available), it makes sense to specify yourself as a recipient of the user task items.In other situations this could be a calculated value, or the "Group" property could be used instead._
 
-### 3. Create a new workflow instance and check the User Task
+### 3. Create a new workflow instance and check the User Task
 
 Even though you've only configured the minimum, you can still see the raw results of your work. You'll have to specify a couple more dummy values, but then you can save the workflow definition, redeploy it, create a new instance and have a look at what happens.
 
@@ -47,7 +47,7 @@ Even though you've only configured the minimum, you can still see the raw result
 
 _Note: This is the place where you'd normally specify details of a custom UI5 component that is to be used to represent the details of the user task in the My Inbox app. Building a custom UI5 component for this is beyond the scope of these CodeJam excercises, but we can take advantage of the settings required by providing dummy values for both the properties. The result will be the ability to deploy the modified workflow definition (because the validity of the component details is only an issue at runtime), and a half-empty but understandable user task entry in the My Inbox app, which will be fine for us for now._
 
-![user interface details](uidetails.png}
+![user interface details](uidetails.png)
 
 ## Summary
 
