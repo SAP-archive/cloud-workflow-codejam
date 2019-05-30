@@ -41,7 +41,7 @@ You should see something like this:
 
 :point_right: Notice the use of the `{{workflowapi}}` variable in the URL, and the fact also that currently there is "No Environment" set.
 
-:point_right: Use the "Manage Environments" button (the cog) in the top right to open up a dialog where you can add an environment - use the "Add" button and specify the following values in the "Add Environment" form that follows:
+:point_right: Use the "Manage Environments" button (the cog) in the top right to open up a dialog where you can add an environment, and then use the "Add" button and specify the following values in the "Add Environment" form that follows:
 
 | Property               | Value                   |
 | -------------          | ----------------------- |
@@ -49,6 +49,24 @@ You should see something like this:
 | Variable               | `workflowapi`           |
 | Initial Value          | \<the Workflow service API root\> |
 | Current Value          | (_this will take the value of what you specify for the "Initial Value" property_) |
+
+The "Workflow service API root" is the one that you looked at in Exercise 6 when you [configured an API environment](../06/readme.md#3-configure-an-api-environment), with both the "provideraccountname" and the "consumeraccountname" expanded. For example, this would be the following for the trial account "p2001351149trial":
+
+```
+https://bpmworkflowruntimewfs-p2001351149trial.hanatrial.ondemand.com/workflow-service/rest
+```
+
+_Note: Remember to use your own trial account name here!_
+
+:point_right: Ensure that the "Current Value" property also reflects what you entered into the "Initial Value" property and then complete the setup, ensuring everything is saved.
+
+### 3. Select the new environment for use
+
+Once you've finished adding this new environment, you should select it for use.
+
+:point_right: Select the new environment from the drop-down selection that you saw earlier (it was set to "No Environment" at that time). Then notice that the `{{workflowapi}}` variable in the URL has turned from red (indicating the variable wasn't defined) to a more orange color, and when you hover over it, the value is displayed:
+
+![value of workflowapi variable](workflowapivalue.png)
 
 
 
