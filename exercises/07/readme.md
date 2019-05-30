@@ -23,9 +23,35 @@ The two API calls you made in a previous exercise have been encapsulated into a 
 
 :point_right: In the dialog, specify the URL to this [workflowcodejamcollection.json](https://raw.githubusercontent.com/SAP/cloud-workflow-codejam/master/exercises/07/workflowcodejamcollection.json) resource, and use the "Import" button to complete the process.
 
+### 2. Create a new Postman environment
+
+Postman offers the facility to manage collections of settings that pertain to different contexts, for example you might have a couple of development contexts and system endpoints, and a production context. These are called "environments" in Postman and in this step you will create one to store the details of your specific SAP Cloud Platform trial account context.
+
+Within environments you can use variables, and the environment-specific values for these are substituted at runtime.
+
+:point_right: Examine how these variables are used, by looking at the first of the two requests in the collection you imported in the previous step. Expand the hierarchy of the "Workflow CodeJam" collection and select the first request:
+
+```
+GET - Get CSRF Token
+```
+
+You should see something like this:
+
+![first request detail](firstrequest.png)
+
+:point_right: Notice the use of the `{{workflowapi}}` variable in the URL, and the fact also that currently there is "No Environment" set.
+
+:point_right: Use the "Manage Environments" button (the cog) in the top right to open up a dialog where you can add an environment - use the "Add" button and specify the following values in the "Add Environment" form that follows:
+
+| Property               | Value                   |
+| -------------          | ----------------------- |
+| Environment Name       | My CodeJam Environment  |
+| Variable               | `workflowapi`           |
+| Initial Value          | \<the Workflow service API root\> |
+| Current Value          | (_this will take the value of what you specify for the "Initial Value" property_) |
 
 
-...
+
 
 ## Summary
 
