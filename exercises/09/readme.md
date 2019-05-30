@@ -49,11 +49,67 @@ _Note: This is the place where you'd normally specify details of a custom UI5 co
 
 ![user interface details](uidetails.png)
 
+:point_right: Save the workflow definition, and then deploy it again as you have done before (using the context menu on the `orderprocess.workflow` file).
+
+:point_right: Now create a new instance using the Collection Runner in Postman, as you have [done before in Exercise 08](../08#4-create-a-new-instance-of-the-workflow-definition).
+
+:point_right: Switch to your Fiori launchpad site, and you should now see that there is a task waiting for you in the My Inbox app:
+
+![task in My Inbox](taskinmyinbox.png)
+
+:point_right: Go ahead and select the My Inbox tile, to view the item. It should look something like this:
+
+![My Inbox item](myinboxitem.png)
+
+You should see that the user task is there, with the correct name ("Approval Decision"),  subject ("Request for ...") and description ("Please review this request ..."). But there is not much else, and no action buttons for you to select to mark your decision.
+
+_Note: The "Show Log" and "Claim" buttons are not decision related, they are generic features available in all user tasks._
+
+Because this is only a half-baked user task, you won't be able to complete it here, you'll have to do it as an administrator, in the "Monitor Workflow - Workflow Instances" app.
+
+:point_right: Switch to the "Monitor Workflow - Workflow Instances" app and find the instance of the "orderprocess" definition that relates to this user task. You should be able to find it quite easily, as it will still be in the status "Running":
+
+![running instance](runninginstance.png)
+
+:point_right: Select the "Execution Log" and have a look at what's been happening - you should be able to see the step by step progress of this workflow instance, from start, through the Service Task, to the User Task becoming available.
+
+:point_right: To keep things clean and tidy, it's worth removing this from the default filtered list of instances, so use the "Terminate" button to end the instance. It should disappear from the list.
+
+### 4. Add a Form to the User Task in the workflow definition
+
+You can build custom UI5 components to be used within the My Inbox app to display user task information and offer user interaction, or you can use a zero-code form builder facility within the SAP Web IDE workflow editor toolset to create a form that can surface and collect data, and offer decision buttons.
+
+For the majority of simple decision tasks, a form is likely to be a good choice as they're easy and fast to create and don't require programming knowledge.
+
+In this step you'll add a form to be used in the User Task you created earlier in this exercise.
+
+:point_right: Go back to editing the workflow definition in the SAP Web IDE Full-Stack, and select the User Task. In the "User Interface" tab of the "User Task Properties", switch from type "SAPUI5 Component" to "Form", and then select the "Create File" link to open up a dialog where you can specify the basic form information:
+
+![New Form dialog](newformdialog.png)
+
+:point_right: Specify the following property values before selecting the "Create" button:
+
+| Property     | Value             |
+| ------------ | ----------------- |
+| Name         | `RequestDecision` |
+| ID           | `requestdecision` |
+| Revision     | `1`               |
+
+_Note: This form will be created as a file inside your workflow project directory structure, specifically within the `forms/` directory._
+
+
+
+
+
+
 ## Summary
 
 You've now ...
 
 ## Questions
 
-1. ...
+1. When looking at the "Execution Log" details of the first instance you created with a User Task, there was an "Instance ID" link. What did that lead you to, and what does it represent?
+
+1. When you terminated the instance in Step 3, what status did it end up in?
+
 
