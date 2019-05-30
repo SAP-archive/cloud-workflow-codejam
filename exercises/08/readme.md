@@ -84,12 +84,13 @@ Now we have the Service Task in the workflow definition, let's try it out, using
       "RatingCount": 9,
       "SubCategoryId": "Notebooks",
       "SubCategoryName": "Notebooks",
-      "SupplierId": "100000003",
-      [...]
+      "SupplierId": "100000003"
     }
   }
 }
 ```
+
+_Note: Some of the properties have been omitted to keep the display concise._
 
 Notice that the context now contains extra data, in the `productInfo` property. This is what was retrieved in the Service Task.
 
@@ -103,8 +104,4 @@ You've now ...
 
 1. How does the product data from the OData service end up where it does in the workflow instance context?
 
-1. When we request an entity from an OData service in the browser, such as the [Chai product from the Northwind dataset](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)), we usually see it in an XML representation, and have to add a query parameter `$format=json` to the URL, like this:
-
-```
-[https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?format=json)
-```
+1. When we request an entity from an OData service in the browser, such as the [Chai product from the Northwind dataset](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)), we usually see it in an XML representation, and have to add a query parameter `$format=json` to the URL, like this: [https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?format=json). Why do you think we received a JSON representation when we didn't use this query parameter in the Service Task settings?
