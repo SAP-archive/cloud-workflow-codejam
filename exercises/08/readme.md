@@ -37,7 +37,13 @@ _Note: The "shopinfo" value is the name of the destination you created in [Exerc
 
 _Note: The "sap-client=002" query parameter is needed here despite the additional property setting in the destination definition as currently the Workflow service does not support that property._
 
+### 3. Deploy the workflow definition
 
+Now it's time to redeploy to the Workflow service, so that this addition of a Service Task is live.
+
+:point_right: Use the context menu on the `orderprocess.workflow` file and select "Deploy -> Deploy to SAP Cloud Platform Workflow". Check in the console to see the detailed message which includes which version the definition now has.
+
+_Note: To open the console in the SAP Web IDE Full-Stack, use menu path "View -> Console"._
 
 
 ## Summary
@@ -46,5 +52,5 @@ You've now ...
 
 ## Questions
 
-1. ...
+1. When you switched from HTTP Method POST to GET when setting the Service Task properties, the "Path to XSRF Token" property disappeared. Why was that?
 
