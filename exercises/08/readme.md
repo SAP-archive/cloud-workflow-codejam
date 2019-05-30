@@ -96,7 +96,7 @@ Notice that the context now contains extra data, in the `productInfo` property. 
 
 ## Summary
 
-You've now ...
+You now have a workflow definition that includes a task that fetches data from a remote service, in particular, the service available in the on-prem ABAP stack SAP system that you made available via the SAP Cloud Connector.
 
 ## Questions
 
@@ -104,4 +104,4 @@ You've now ...
 
 1. How does the product data from the OData service end up where it does in the workflow instance context?
 
-1. When we request an entity from an OData service in the browser, such as the [Chai product from the Northwind dataset](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)), we usually see it in an XML representation, and have to add a query parameter `$format=json` to the URL, like this: [https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?format=json). Why do you think we received a JSON representation when we didn't use this query parameter in the Service Task settings?
+1. When we request an entity from an OData service in the browser, such as the [Chai product from the Northwind dataset](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)), we usually see it in an XML representation, and have to add a query parameter `$format=json` to the URL, like this: [https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json). Why do you think we received a JSON representation when we didn't use this query parameter in the Service Task settings?
