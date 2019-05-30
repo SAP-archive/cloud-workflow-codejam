@@ -1,4 +1,4 @@
-# Exercise 08 - Adding a Service Task to the Workflow definition
+# Exercise 08 - Adding a Service Task to the workflow definition
 
 In this exercise you'll go back to the workflow definition you created in a previous exercise and add a Service Task to it to retrieve product information for the product ID specified when workflow instances are created.
 
@@ -8,7 +8,7 @@ After completing these steps you'll have a workflow definition with a service ta
 
 ### 1. Open up the workflow definition in the SAP Web IDE Full-Stack
 
-:point_right: Open up the SAP Web IDE Full-Stack that you enabled and used in [Exercise 05](../05). Once the IDE has started up, open the `orderprocess.workflow` workflow definition that should show your simple definition with only a start event and an end event.
+:point_right: Open up the SAP Web IDE Full-Stack that you enabled and used in [Exercise 05](../05). Once the IDE has started up, open the `orderprocess.workflow` workflow definition that should currently sport only a start event and an end event.
 
 ### 2. Add a Service Task
 
