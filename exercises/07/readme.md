@@ -46,7 +46,7 @@ You should see something like this:
 | Initial Value          | \<the Workflow service API root\> |
 | Current Value          | (_this will take the value of what you specify for the "Initial Value" property_) |
 
-The "Workflow service API root" is the one that you looked at in Exercise 6 when you [configured an API environment](../06/readme.md#3-configure-an-api-environment), with both the "provideraccountname" and the "consumeraccountname" expanded. For example, this would be the following for the trial account "p2001351149trial":
+The "Workflow service API root" is the one that you looked at in Exercise 06 when you [configured an API environment](../06/readme.md#3-configure-an-api-environment), with both the "provideraccountname" and the "consumeraccountname" expanded. For example, this would be the following for the trial account "p2001351149trial":
 
 ```
 https://bpmworkflowruntimewfs-p2001351149trial.hanatrial.ondemand.com/workflow-service/rest
@@ -81,7 +81,7 @@ The "Workflow CodeJam" collection of two requests you imported earlier in this e
 
 In this step you'll take a look at the details of each of the two requests, to understand how they work together.
 
-:point_right: First, in the "GET CSRF Token" request, look at the "Headers" tab. You should see that the header "X-CSRF-Token" is supplied, with the value "Fetch", just like you used in Exercise 6.
+:point_right: First, in the "GET CSRF Token" request, look at the "Headers" tab. You should see that the header "X-CSRF-Token" is supplied, with the value "Fetch", just like you used in Exercise 06.
 
 :point_right: Now, look in the "Tests" tab and you should see some JavaScript that looks like this:
 
@@ -93,7 +93,7 @@ Test scripts are run after a request is executed - here, the value of the token 
 
 :point_right: Now select the second request "Create new workflow instance", and look in the "Headers" tab. You'll see the "Content-Type" header supplied, but also the "X-CSRF-Token" header where the value is set to `{{xsrftoken}}`. When the request is run, the current value of that variable - set when the "Get CSRF Token" request is executed - will be substituted.
 
-:point_right: Look at the "Body" tab and you should see something that looks familiar - a request body similar to the one you specified in Exercise 6 when you [created a new workflow instance](../06/readme.md#5-create-a-new-workflow-instance-via-the-api):
+:point_right: Look at the "Body" tab and you should see something that looks familiar - a request body similar to the one you specified in Exercise 06 when you [created a new workflow instance](../06/readme.md#5-create-a-new-workflow-instance-via-the-api):
 
 ```json
 {
@@ -123,7 +123,7 @@ Now it's time to put the requests to use.
 
 :point_right: Now select the second request "Create new workflow instance". Before running it, take a peek at the "Headers" tab in the request detail, and confirm that the `{{xsrftoken}}` variable is indeed orange now rather than red, and that hovering over it shows the token value.
 
-:point_right: Run the second request with the "Send" button and examine the response. This time of course you should see something in the response body - similar to what you saw in the response body in Exercise 6 when you created a new workflow instance. Note too that the HTTP status code is, as expected, 201.
+:point_right: Run the second request with the "Send" button and examine the response. This time of course you should see something in the response body - similar to what you saw in the response body in Exercise 06 when you created a new workflow instance. Note too that the HTTP status code is, as expected, 201.
 
 ![instance created](instancecreated.png)
 
