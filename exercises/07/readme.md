@@ -77,8 +77,6 @@ The "Workflow CodeJam" collection of two requests you imported earlier in this e
 
 ![auth details](authdetails.png)
 
-_Note: If you're wondering how the individual requests can use these authentication details, just have a look inside the "Authorization" tab of the "GET CSRF Token" request and notice that the type is set to "Inherit auth from parent", with the note "This request is using an authorization helper from collection Workflow CodeJam"._
-
 ### 5. Examine the rest of the requests' detail
 
 In this step you'll take a look at the details of each of the two requests, to understand how they work together.
@@ -157,5 +155,8 @@ You've now got a Postman environment set up, with a simple collection of two req
 
 ## Questions
 
-1. ...
+1. What other HTTP client tools might you have in mind to use instead of (or in addition to) Postman?
 
+1. Do you really need to fetch a CSRF token each and every time?
+
+1. How do you think the authentication details at the collection level flow down to be used in the individual requests?
