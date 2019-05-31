@@ -91,15 +91,41 @@ In this step you'll complete the instance you've just created by leaving a comme
 
 ![user task info in the workflow context](usertaskinfo.png)
 
+You can see that information about the User Task is clearly available, including the decision taken - in this example it was a "rejection".
 
+### 4. Prepare a message appropriate to send to the requester
 
+Armed with the decision information, you can now prepare a message, to be stored in the workflow context, to be eventually sent on to the requester. A Mail Task might be the best way to achieve this, but we won't cover it here.
+
+:point_right: Go back to the SAP Web IDE Full-Stack and into the file editor for the `preparemessage.js` file. Below the line you already have, add the following:
+
+```javascript
+var taskinfo = $.usertasks.usertask1.last;
+$.context.message = taskinfo.subject
+  + " was "
+  + (taskinfo.decision === "approve" ? "approved" : "rejected")
+  + ". The stock quantity at the time was "
+  + $.context.productInfo.d.StockQuantity
+  + ".";
+```
+
+:point_right: Save the file, and redeploy the workflow definition.
+
+Now we're ready for one last instantiation of this workflow definition.
+
+:point_right: Create a new instance with Postman and complete the User Task that appears in the "My Inbox" app. Add a comment and approve or reject as you see fit.
+
+:point_right: Using the "Workflow Monitor - Workflow Instances", find the completed instance and examine the context - you should find a "message" property in there that is appropriate to your decision and to the stock of the product requested. Here's an example of one such message:
+
+**"Request for Notebook Basic 19 was rejected. The stock quantity at the time was 150."**
 
 
 ## Summary
 
-You've now ...
+In addition to Service Tasks and User Tasks, you're now familiar with Script Tasks and the information that's available to you during execution of such tasks.
 
 ## Questions
 
 1. When looking at the comments in context, they were saved in a property with this path: `/response/comments`. Do you remember where this path came from, where it was specified?
 
+1. In the JavaScript you added to the User Task, what is the significance of the `usertask1` reference?
