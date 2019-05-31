@@ -33,6 +33,14 @@ Here's an overview of the exercises in this CodeJam.
 - [Exercise 09 - Adding a User Task to the workflow definition](exercises/09)
 - [Exercise 10 - Accessing contextual information in a Script Task](exercises/10)
 
+### Further experimentation
+
+If you want to further your learning based on what you've built in these exercises, we suggest you extend the workflow definition you've created to add more features. For example, you could set up a Mail Task with appropriate configuration to send a message.
+
+You could also look at branching in the flow, based on decisions, using the Exclusive or Parallel Gateways.
+
+Events are also powerful features that you could investigate. For example, try controlling the flow of your workflow instances via remote API calls by making use of Intermediate Messages, that pause execution until an incoming message is received (via an API call).
+
 ### Feedback
 
 At the end of this CodeJam, we would be really grateful if you could spend a minute providing us with your thoughts in this [feedback form](https://bit.ly/codejam-workflow-feedback). Thank you.
