@@ -103,14 +103,27 @@ At this point you're presented with a simple form designer, which will allow you
 
 ![form fields](formfields.png)
 
-:point_right: Switch to the "Decisions" tab and ...
+:point_right: Switch to the "Decisions" tab and add two decision rows as shown:
 
+After this is done and saved, the form must be deployed separately to the SAP Cloud Platform. It makes sense to be able to manage the lifecycle of forms and workflow definitions separately.
 
+:point_right: On the form file `RequestDecision.form`, use the context menu "Deploy -> Deploy to SAP Cloud Platform Workflow".
 
+### 5. Try the form out
+
+It's time to try out the form that you've just created.
+
+:point_right: As you did [earlier](#3-create-a-new-workflow-instance-and-check-the-user-task), create a new workflow instance using the Collection Runner in Postman.
+
+:point_right: Next, go to the My Inbox app in your Fiori launchpad site, and there should be a user task waiting for you. This time, unlike the previous user task, you can see the detail, because of the form. This is what it should look like:
+
+![user task displayed with form](usertaskform.png)
+
+Notice the read-only and editable fields, and also the buttons at the bottom representing the decisions you defined. Feel free to enter a comment and approve or reject the task, causing it to move to the completed status and be removed from view.
 
 ## Summary
 
-You've now ...
+You now have a user task in your simple workflow definition, and have used a form to present information to the user to allow them to make a decision and also (via the comment field) add some data to the context.
 
 ## Questions
 
@@ -118,4 +131,4 @@ You've now ...
 
 1. When you terminated the instance in Step 3, what status did it end up in?
 
-
+1. Where are the comments and decision (approval or rejection) stored when the task is completed?
