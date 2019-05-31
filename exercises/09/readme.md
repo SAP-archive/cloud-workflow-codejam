@@ -119,7 +119,9 @@ It's time to try out the form that you've just created.
 
 ![user task displayed with form](usertaskform.png)
 
-Notice the read-only and editable fields, and also the buttons at the bottom representing the decisions you defined. Feel free to enter a comment and approve or reject the task, causing it to move to the completed status and be removed from view.
+Notice the read-only and editable fields, and also the buttons at the bottom representing the decisions you defined.
+
+:point_right: Enter a comment in the input box provided, and approve or reject the task, causing it to move to the completed status and be removed from view.
 
 ## Summary
 

@@ -31,7 +31,7 @@ Here's an overview of the exercises in this CodeJam.
 - [Exercise 07 - Calling the Workflow API from Postman](exercises/07)
 - [Exercise 08 - Adding a Service Task to the workflow definition](exercises/08)
 - [Exercise 09 - Adding a User Task to the workflow definition](exercises/09)
-- ...
+- [Exercise 10 - Accessing contextual information in a Script Task](exercise/10)
 
 ### Feedback
 
