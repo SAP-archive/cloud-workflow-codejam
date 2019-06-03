@@ -4,6 +4,8 @@
 
 This repository contains the material for the CodeJam on SAP Cloud Platform Workflow. Prequisites and recommendations for this CodeJam are documented in the [prerequisites](prerequisites.md) file.
 
+### CodeJam overview
+
 This SAP Cloud Platform Workflow CodeJam brings together a number of SAP Cloud Platform topics, centred around the SAP Cloud Platform Workflow service, but also covers setting up the SAP Cloud Connector to establish connectivity to an on-prem environment, using the SAP Cloud Platform Portal service to create an SAP Fiori launchpad site, exploring the SAP API Business Hub and using the Workflow API directly. From the Workflow service perspective you'll create, deploy and extend a workflow definition, interact with tasks in the standard My Inbox app and monitor & inspect workflow instances, initiating them from the monitor itself and from a 3rd party application.
 
 ### Material organization
