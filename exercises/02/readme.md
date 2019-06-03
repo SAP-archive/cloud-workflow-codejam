@@ -28,7 +28,7 @@ The site should appear, and while it will look fairly empty, it's clear that it'
 
 ### 3. Add the workflow app icons
 
-:point_right: Use the user icon in the top left to get to the menu (known as the "Me Area"), and use the "App Finder" to select and pin all four of the apps to the default "My Home" group:
+:point_right: Use the user icon at the top to get to the menu and use the "App Finder" to select and pin all four of the apps to the default "My Home" group:
 
 ![pin apps to "My Home" group](pinapps.png)
 
