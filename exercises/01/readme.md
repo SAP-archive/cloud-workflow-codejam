@@ -39,6 +39,11 @@ _Note: You can search for the service manually or filter them using the "User Ex
 
 :point_right: Make a note of the Portal service URL, for example by bookmarking it, so you can get to the service easily later.
 
+In order to be able to edit workflow definitions in the SAP Web IDE Full-Stack, you need to make sure the "Workflow Editor" extension is enabled.
+
+:point_right: Switch to the "Preferences" perspective and select the "Extensions" item in "Workspace Preferences". Search for the "Workflow Editor" extension and make sure it's enabled (if you have to enable it, you'll have to use the "Save" button and restart the Web IDE).
+
+![Workflow Editor extension](workfloweditorextension.png)
 
 ### 4. Find and enable the Workflow service
 
