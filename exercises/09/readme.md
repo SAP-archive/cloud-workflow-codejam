@@ -20,11 +20,11 @@ _Note: You can make use of the "Arrange Vertically" and "Arrange Horizontally" b
 
 The User Task requires certain settings. First though, let's change the name of the User Task, as well as the Service Task, so they are more meaningful in the editor.
 
-:point_right: Select the User Task and in the "General" tab of the "User Task Properties" on the right hand side, specify the value "Approval Descision". Then select the Service Task and make a similar change, changing the current value of "ServiceTask1" to "Retrieve Product Info". Don't forget to save.
+:point_right: Select the User Task and in the "General" tab of the "User Task Properties" on the right hand side, specify the value "Approval Decision". Then select the Service Task and make a similar change, changing the current value of "ServiceTask1" to "Retrieve Product Info". Don't forget to save.
 
 Now it's time to specify the settings.
 
-:point_right: In the "Details" tab of the "User Task Properties", specify the following values:
+:point_right: In the "Details" tab of the "User Task Properties", specify the following values, not forgetting to save:
 
 | Property     | Value          |
 | ------------ | -------------- |
@@ -41,9 +41,9 @@ _Note: Within the context of the trial account you are using (with only a single
 
 ### 3. Create a new workflow instance and check the User Task
 
-Even though you've only configured the minimum, you can still see the raw results of your work. You'll have to specify a couple more dummy values, but then you can save the workflow definition, redeploy it, create a new instance and have a look at what happens.
+Even though you've only configured the minimum, you can still see the raw results of your work. You'll have to specify dummy values for a couple more properties, but then you can save the workflow definition, redeploy it, create a new instance and have a look at what happens.
 
-:point_right: In the "User Interface" tab of the "User Task Properties", the properties "HTML5 App Name" and "SAPUI5 Component" are required, relating to the default "Type" that is pre-selected ("SAPUI5 Component"). Specify the dummy value "x" for each of them.
+:point_right: In the "User Interface" tab of the "User Task Properties", the properties "HTML5 App Name" and "SAPUI5 Component" are required. These relate to the default "Type" that is pre-selected ("SAPUI5 Component"). Specify the dummy value "x" for each of them.
 
 _Note: This is the place where you'd normally specify details of a custom UI5 component that is to be used to represent the details of the user task in the My Inbox app. Building a custom UI5 component for this is beyond the scope of these CodeJam excercises, but we can take advantage of the settings required by providing dummy values for both the properties. The result will be the ability to deploy the modified workflow definition (because the validity of the component details is only an issue at runtime), and a half-empty but understandable user task entry in the My Inbox app, which will be fine for us for now._
 
@@ -77,7 +77,7 @@ Because this is only a half-baked user task, you won't be able to complete it he
 
 ### 4. Add a Form to the User Task in the workflow definition
 
-You can build custom UI5 components to be used within the My Inbox app to display user task information and offer user interaction, or you can use a zero-code form builder facility within the SAP Web IDE workflow editor toolset to create a form that can surface and collect data, and offer decision buttons.
+You can build custom UI5 components to be used within the My Inbox app to display user task information and offer user interaction, or you can use a zero-code form builder facility within the SAP Web IDE workflow editor to create a form that can display and collect data, and offer decision buttons.
 
 For the majority of simple decision tasks, a form is likely to be a good choice as they're easy and fast to create and don't require programming knowledge.
 
@@ -103,11 +103,17 @@ At this point you're presented with a simple form designer, which will allow you
 
 ![form fields](formfields.png)
 
+:point_right: In the properties for the "Your comments" field, specify a "Medium" height (to produce a text area for input when the field is rendered).
+
 :point_right: Switch to the "Decisions" tab and add two decision rows as shown:
+
+![form decisions](formdecisions.png)
 
 After this is done and saved, the form must be deployed separately to the SAP Cloud Platform. It makes sense to be able to manage the lifecycle of forms and workflow definitions separately.
 
-:point_right: On the form file `RequestDecision.form`, use the context menu "Deploy -> Deploy to SAP Cloud Platform Workflow".
+:point_right: After saving the form, use the context menu "Deploy -> Deploy to SAP Cloud Platform Workflow" on the form file `RequestDecision.form`.
+
+:point_right: Because you've made a change to the workflow definition too (specifying a form rather than an SAPUI5 Component for the User Interface), save the definition and redeploy that to the SAP Cloud Platform Workflow too.
 
 ### 5. Try the form out
 

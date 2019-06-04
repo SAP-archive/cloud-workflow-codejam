@@ -20,19 +20,21 @@ In the [last step of the previous exercise](../09#5-try-the-form-out) you entere
 
 The answer to this question is "no", because it's not there. It's [available in other contextual information that's accessible from Script Tasks](https://help.sap.com/viewer/e157c391253b4ecd93647bf232d18a83/Cloud/en-US/1a25295cfee142dda232ed14a33c8665.html), and via the [Java Unified Expression Language](https://help.sap.com/viewer/e157c391253b4ecd93647bf232d18a83/Cloud/en-US/9f91b1c0fac3414d9cba1015dea381f1.html) that can be used in various parts of workflow definitions, such as expressions for branching based on conditions.
 
+In the following steps we'll use a Script Task to access this information.
+
 ### 2. Add a Script Task to the workflow definition
 
-:point_right: Add a Script Task to the workflow definition via the "Tasks" menu in the graphical workflow editor in the SAP Web IDE Full-Stack, as shown. Place the task as the third item in the flow, to be executed after the "Approval Decision" task:
+:point_right: Add a Script Task to the workflow definition via the "Tasks" menu in the graphical workflow editor in the SAP Web IDE Full-Stack, as shown. Place the task as the third task item in the flow, to be executed after the "Approval Decision" task:
 
 ![add Script Task](addscripttask.png)
 
 _Note: Don't forget that you can use the arrangement buttons to tidy up the definition diagram like you did in [Exercise 09](../09#2-add-a-user-task-to-the-definition)._
 
-The main purpose of this Script Task is to prepare a message that can eventually be sent to the requestor (the sending of the message will be left as an activity to be completed after the CodeJam). So name this Script Task appropriately:
+The main purpose of this Script Task is to prepare a message that can eventually be sent to the requestor (the sending of the message will be left as an activity to be completed after the CodeJam). So name this Script Task appropriately.
 
 :point_right: Set the "Name" property in the "Script Task Properties" to "Prepare message".
 
-Script Tasks allow for the execution of logic written in JavaScript; contextual information about the instance in which the execution takes place, as well as metadata about the workflow instance itself, is available through special variables. The JavaScript is contained in files that are associated with the workflow definition.
+Script Tasks allow for the execution of logic written in JavaScript and contextual information about the instance in which the execution takes place, as well as metadata about the workflow instance itself, is available through special variables. The JavaScript is contained in files that are associated with the workflow definition.
 
 :point_right: Use the "Create File" link to create a new JavaScript file called `preparemessage.js` - notice where within the workflow project the file is stored.
 
@@ -79,7 +81,7 @@ $.context.product = product;
 $.context.usertaskinfo = $.usertasks.usertask1.last;
 ```
 
-:point_right: Redeploy the workflow definition, and create a new instance using Postman as you've done before.
+:point_right: Save and redeploy the workflow definition, and create a new instance using Postman as you've done before.
 
 ### 3. Process the User Task and check the context
 
@@ -91,7 +93,7 @@ In this step you'll complete the instance you've just created by leaving a comme
 
 ![user task info in the workflow context](usertaskinfo.png)
 
-You can see that information about the User Task is clearly available, including the decision taken - in this example it was a "rejection".
+In the `usertaskinfo` property you can see that information about the User Task is clearly available, including the decision taken - in this example it was a "rejection".
 
 ### 4. Prepare a message appropriate to send to the requester
 
