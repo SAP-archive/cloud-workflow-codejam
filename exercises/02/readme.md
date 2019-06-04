@@ -76,5 +76,3 @@ You've now set up an SAP Fiori launchpad site, and can invoke the workflow relat
 
 1. We've seen the phrases "workflow definition" and "workflow instance" a few times now. Do you know what they mean and what they signify?
 
-1. The App Finder is available as standard in the "Me Area". Did you notice, while editing the site's Settings, how you could have the App Finder placed in the Shell Header instead?
-
