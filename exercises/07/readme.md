@@ -21,7 +21,7 @@ The two API calls you made in a previous exercise have been encapsulated into a 
 
 ![import collection](import-collection.png)
 
-:point_right: In the dialog, specify the URL to this [workflowcodejamcollection.json](https://raw.githubusercontent.com/SAP/cloud-workflow-codejam/master/exercises/07/workflowcodejamcollection.json) resource, and use the "Import" button to complete the process.
+:point_right: In the dialog, specify the URL to this [workflowcodejamcollection.json](https://raw.githubusercontent.com/SAP-samples/cloud-workflow-codejam/master/exercises/07/workflowcodejamcollection.json) resource, and use the "Import" button to complete the process.
 
 ### 2. Create a new Postman environment
 
