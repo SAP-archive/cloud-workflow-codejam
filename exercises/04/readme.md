@@ -8,7 +8,7 @@ Once a destination is established, it can be used by apps and services running o
 
 In this case, for the business scenario upon which this CodeJam is based, the destination will be to a specific OData service providing information relating to an online shop.
 
-_Note: If you were unable to install Docker (as described in this CodeJam's [prerequisites](../../prerequisites.md), you can still continue with this exercise - just follow the special "Without SAP Cloud Connector" instructions where appropriate. You can of course continue with subsequent exercises, as the destination effectively abstracts the actual connection details meaning you can treat it as a logical endpoint after it's been set up._
+_Note: If you were unable to install Docker (as described in this CodeJam's [prerequisites](../../prerequisites.md)), you can still continue with this exercise - just follow the special "Without SAP Cloud Connector" instructions where appropriate. You can of course continue with subsequent exercises, as the destination effectively abstracts the actual connection details meaning you can treat it as a logical endpoint after it has been set up._
 
 ## Steps
 
@@ -67,11 +67,9 @@ It is worth testing the new destination with a small bit of configuration that i
 
 :point_right: Go to the SAP Web IDE Full-Stack. If you don't have the URL bookmarked, go via the Services navigation menu item in the SAP Cloud Platform Cockpit, select the SAP Web IDE Full-Stack service, and use the "Go to Service" link.
 
-:point_right: Once in the SAP Web IDE Full-Stack, go to the Development perspective (via menu option View -> Development). There, use the context menu (i.e. right-click) on the "Workspace" folder to create a new folder:
+:point_right: Once in the SAP Web IDE Full-Stack, go to the Development perspective (via menu option View -> Development). There, use the context menu (i.e. right-click) on the "Workspace" folder to create a new folder called "destinationtest":
 
 ![creating a new folder](newfolder.png)
-
-Call the new folder "destinationtest".
 
 :point_right: Take the [neo-app.json](neo-app.json) file from this repository (save the "Raw" version) and upload it, with the same name, to this new "destinationtest" folder, using the context menu "Import -> File or Project", so that you end up with something that looks like this:
 
@@ -145,3 +143,5 @@ You're now all set to be able to successfully consume the OData service at the e
 1. What do you think the "Location ID" property is used for? How might we use it here, if we wanted to specify a value?
 
 1. What is going on with the "Required Destinations" mappings in the "destinationtest" app? What do you think it means?
+
+1. Do you know where the app artifacts are actually stored? In other words, to where in the SAP Cloud Platform has, for example, the `neo-app.json` file actually been deployed?

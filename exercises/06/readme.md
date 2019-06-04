@@ -1,10 +1,10 @@
 # Exercise 06 - Exploring the API Hub and the Workflow API
 
-In this exercise you'll take a look at the details of the Workflow service API in the SAP API Business Hub, and use the API to create an instance of your `orderprocess` definition.
+In this exercise you'll take a look at the details of the Workflow service API in the SAP API Business Hub, and use the API to create an instance of your `orderprocess` definition, instead of doing it via the "Monitor Workflows" app.
 
 ## Steps
 
-After completing these steps you'll have set up an environment in the SAP API Business Hub that reflects the details of your personal trial account, and tried out a couple of API calls to start off a workflow via the API.
+After completing these steps you'll have set up an environment in the SAP API Business Hub that reflects the details of your trial account, and tried out a couple of API calls to start off a workflow via the API.
 
 ### 1. Log on to SAP API Business Hub
 
@@ -29,13 +29,13 @@ It describes the different aspects that the API covers, such as:
 
 and so on.
 
-For each aspect there are a number of verb/noun combinations, in the form of HTTP methods (representing the verbs) and URL paths (representing the nouns). This noun/verb approach suggests that the Workflow API exhibits some qualities of the Representational State Transfer (REST) architectural style.
+For each aspect there are a number of verb/noun combinations, in the form of HTTP methods (representing the verbs) and URL paths (representing the nouns). This verb/noun approach suggests that the Workflow API exhibits some qualities of the Representational State Transfer (REST) architectural style.
 
 :point_right: Explore each of the aspects, in particular "Workflow Instances" and "XSRF Handling". Try to identify which verb/noun combination in the "Workflow Instances" aspect would be appropriate to create a new instance of a workflow definition.
 
 ### 3. Configure an API Environment
 
-In the API Hub you can not only explore but try out APIs. For this, there's a sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your setup. In this step you'll do just that, setting up an API environment that reflects your SAP Cloud Platform trial account and the Workflow service you have enabled there.
+In the API Hub you can not only explore but try out APIs. For this, there's a sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your trial account setup. In this step you'll do just that, defining an API environment that reflects your SAP Cloud Platform trial account and the Workflow service you have enabled there.
 
 :point_right: At the top of the Workflow API details, select the "Configure Environments" link to get to a dialog where you can create a new environment. You should see something like this:
 

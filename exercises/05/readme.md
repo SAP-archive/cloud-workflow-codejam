@@ -37,11 +37,11 @@ You should end up with a very simple workflow definition, that looks like this:
 
 ![simple workflow definition](simpleworkflowdefinition.png)
 
-Observe that the workflow definition editor is graphical, and the file that represents the definition is within a `workflows/` directory within the project.
+Observe that the workflow definition editor is graphical (it's the one you [enabled in Exercise 01](../01#2-find-and-enable-the-sap-web-ide-full-stack-service)), and the file that represents the definition is within a `workflows/` directory within the project.
 
 ### 2. Deploy the definition to the cloud
 
-While this workflow definition doesn't do very much, we can still carry out an initial exploration with the apps we set up in a previous exercise. So in this step we'll deploy the definition to SAP Cloud Platform to be able to do that.
+While this workflow definition doesn't do very much, we can still carry out an initial exploration with the apps we set up in [Exercise 02](../02). So in this step we'll deploy the definition to SAP Cloud Platform to be able to do that.
 
 :point_right: Locate the definition file `orderprocess.workflow` and use the context menu "Deploy -> Deploy to SAP Cloud Platform Workflow". You should see a message confirming that the deployment was successful.
 
