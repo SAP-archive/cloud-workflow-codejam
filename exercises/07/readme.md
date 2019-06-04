@@ -35,7 +35,7 @@ You should see something like this:
 
 ![first request detail](firstrequest.png)
 
-:point_right: Notice the use of the `{{workflowapi}}` variable in the URL, and the fact also that currently there is "No Environment" set.
+:point_right: Notice the use of the `{{workflowapi}}` variable in the URL, and the fact also that currently, indicated in the top right of the Postman UI, there is "No Environment" set.
 
 :point_right: Use the "Manage Environments" button (the cog) in the top right to open up a dialog where you can add an environment, and then use the "Add" button and specify the following values in the "Add Environment" form that follows:
 
@@ -46,7 +46,7 @@ You should see something like this:
 | Initial Value          | \<the Workflow service API root\> |
 | Current Value          | (_this will take the value of what you specify for the "Initial Value" property_) |
 
-The "Workflow service API root" is the one that you looked at in Exercise 06 when you [configured an API environment](../06/readme.md#3-configure-an-api-environment), with both the "provideraccountname" and the "consumeraccountname" expanded. For example, this would be the following for the trial account "p2001351149trial":
+The "Workflow service API root" is the one that you looked at in Exercise 06 when you [configured an API environment](../06/readme.md#3-configure-an-api-environment), with both the "provideraccountname" and the "consumeraccountname" substituted with real values. For example, this would be the following for the trial account "p2001351149trial":
 
 ```
 https://bpmworkflowruntimewfs-p2001351149trial.hanatrial.ondemand.com/workflow-service/rest
@@ -60,7 +60,7 @@ _Note: Remember to use your own trial account name here!_
 
 Once you've finished adding this new environment, you should select it for use.
 
-:point_right: Select the new environment from the drop-down selection that you saw earlier (it was set to "No Environment" at that time). Then notice that the `{{workflowapi}}` variable in the URL has turned from red, indicating the variable wasn't defined, to a more orange color, and when you hover over it the value is displayed:
+:point_right: Select the new environment from the drop-down selection that you saw earlier (it was set to "No Environment" at that time). Then notice that the `{{workflowapi}}` variable in the URL has turned from red, indicating the variable wasn't defined, to a slightly more orange color, and when you hover over it the value is displayed:
 
 ![value of workflowapi variable](workflowapivalue.png)
 
@@ -145,7 +145,7 @@ You can also use a Postman feature to run requests sequentially in a semi-automa
 
 As a final step in this exercise, you should check the newly created instances in your Fiori launchpad.
 
-:point_right: Open up your Fiori launchpad and select the "Monitor Workflows - Workflow Instances" app. Make sure that the filter in the master list includes the status "Completed". You should see the instances you have created via Postman - you can identify them by the fact that product ID "HT-1003" (rather than "HT-1002" or "HT-1001") has been requested.
+:point_right: Open up your Fiori launchpad and select the "Monitor Workflows - Workflow Instances" app. Make sure that the filter in the master list includes the status "Completed". You should see the instances you have created via Postman - you can identify them by the fact that product with ID "HT-1003" (rather than "HT-1002" or "HT-1001") has been requested.
 
 Nice work!
 
