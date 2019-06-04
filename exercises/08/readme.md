@@ -20,7 +20,7 @@ It should look like this once you've added it:
 
 ![Service Task added](servicetaskadded.png)
 
-You may notice a warning triangle decorating the Service Task in your workflow - this signifies that there is some configuration missing.
+You may notice a warning triangle decorating the Service Task in your workflow - this signifies that there is some configuration still needed.
 
 :point_right: While the Service Task is selected, go to the "Details" tab of the "Service Task Properties" on the right hand side, and specify the following values:
 
@@ -36,6 +36,8 @@ You may notice a warning triangle decorating the Service Task in your workflow -
 _Note: The "shopinfo" value is the name of the destination you created in [Exercise 04](../04)._
 
 _Note: The "sap-client=002" query parameter is needed here despite the additional property setting in the destination definition as currently the Workflow service does not support that property._
+
+:point_right: Save the changes.
 
 ### 3. Deploy the workflow definition
 
