@@ -34,7 +34,17 @@ _Note: the screenshots here are for illustration purposes - the version numbers 
 
 :point_right: Finally in this step, create a new file in the `container-scc/` directory called `Dockerfile` (noting the capitalization and lack of extension).
 
-Into this file, copy the contents of the [`Dockerfile`](Dockerfile) in this repository.
+:point_right: Into this file, copy the contents of the [`Dockerfile`](Dockerfile) in this repository.
+
+Here's a quick illustration of what you should have, from a directory and file point of view (again, the version numbers may differ):
+
+```
+.
+├── Dockerfile
+└── sapdownloads
+    ├── sapcc-2.12.0.1-linux-x64.zip
+    └── sapjvm-8.1.053-linux-x64.rpm
+```
 
 ### 2. Build the Docker image
 
@@ -115,7 +125,7 @@ In this step you will log on to the SAP Cloud Connector in your browser, and use
 
 :point_right: Open your browser and go to the SAP Cloud Connector administration UI at [https://localhost:8443](https://localhost:8443). Remember that this is only possible because, with the `-p 8443:8443` parameter earlier, you specified that port 8443 in the container (which is where SAP Cloud Connector is *actually* running and listening) should be exposed to your machine, the container's host (where Docker is running), also on port 8443.
 
-_Note: Your browser will likely warn you that the site is insecure, because the certificate it presents (via HTTPS) has not been signed by any authority it recognises. This is OK for what we want to achieve in this CodeJam, and you should proceed through the warning. It's possible to fix this by installing a signed certificate into the SAP Cloud Connector, but this is beyond the scope of this exercise._
+_Note: Your browser will likely warn you that the site is insecure, because the certificate that the site presents (via HTTPS) has not been signed by any authority it recognises. This is OK for what we want to achieve in this CodeJam, and you should proceed through any warning. It's possible to fix this by installing a signed certificate into the SAP Cloud Connector, but this is beyond the scope of this exercise._
 
 :point_right: At the "Cloud Connector Login" page, log in with the default username and password "Administrator" and "manage". You're then prompted to change this password which you should do, selecting the "Save" icon on the right hand side to proceed (leave other options as they are).
 
