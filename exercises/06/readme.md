@@ -35,7 +35,7 @@ For each aspect there are a number of verb/noun combinations, in the form of HTT
 
 ### 3. Configure an API Environment
 
-In the API Hub you can not only explore but try out APIs. For this, there's a sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your trial account setup. In this step you'll do just that, defining an API environment that reflects your SAP Cloud Platform trial account and the Workflow service you have enabled there.
+In the API Hub you can not only explore but also try out APIs. For this, there's a generic sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your trial account setup. In this step you'll do just that, defining an API environment that reflects your SAP Cloud Platform trial account and the Workflow service you have enabled there.
 
 :point_right: At the top of the Workflow API details, select the "Configure Environments" link to get to a dialog where you can create a new environment. You should see something like this:
 
@@ -50,10 +50,10 @@ You should be defaulted to the "Create New Environment" mode.
 | Starting URL   | ` https://bpmworkflowruntime{provideraccountname}-{consumeraccountname}.hanatrial.ondemand.com/workflow-service/rest` |
 | Display Name for Environments | MyCodeJamEnv |
 | provideraccountname           | wfs          |
-| consumeraccountname           | <your trial account, e.g. p2001351149trial> |
+| consumeraccountname           | \<your trial account, e.g. p2001351149trial\> |
 | Authentication Type           | Basic Authentication |
-| Username                      | <your trial account username, e.g. p2001351149 > |
-| Password                      | <your trial account password> |
+| Username                      | \<your trial account username, e.g. p2001351149\> |
+| Password                      | \<your trial account password\> |
 | Apply this environment to all APIs in this package that are not yet configured | _checked_ |
 | Save this environment for future sessions | _selected_ |
 
@@ -156,6 +156,8 @@ A payload is sent with this call, and you specify it in the "body" parameter her
   }
 }
 ```
+
+_Note: It should be fairly evident what this is - it's the payload that is to be supplied to the workflow instance (very much like what we specified in the previous exercise), along with the workflow definition identifier._
 
 :point_right: Use the "Execute" button to send the request.
 
