@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains the material for the CodeJam on SAP Cloud Platform Workflow. Prequisites and recommendations for this CodeJam are documented in the [prerequisites](prerequisites.md) file.
+This repository contains the material for the CodeJam on SAP Cloud Platform Workflow. Prerequisites and recommendations for this CodeJam are documented in the [prerequisites](prerequisites.md) file.
 
 ### CodeJam overview
 

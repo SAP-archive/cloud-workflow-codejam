@@ -27,7 +27,7 @@ You should be presented with a list of services, grouped by category. Some servi
 
 :point_right: Locate the SAP Web IDE Full-Stack service and enable it if it's not already enabled. Once enabled, follow the "Go to Service" link in the "Take Action" section of the service's main page to open the SAP Web IDE Full-Stack in a new browser tab.
 
-_Note: You can search for the service manually or filter them using the "Developer Experience" category._
+_Note: You can search for the service manually or use the filter with the "Developer Experience" category._
 
 :point_right: Make a note of the SAP Web IDE Full-Stack service URL, for example by bookmarking it, so you can get to the service easily later.
 
@@ -41,15 +41,15 @@ In order to be able to edit workflow definitions in the SAP Web IDE Full-Stack, 
 
 :point_right: Return to the services list in your cockpit and go back to locate the Portal service. Enable it if it's not already enabled.
 
-_Note: You can search for the service manually or filter them using the "User Experience" category._
+_Note: You can search for the service manually or use the filter with the "User Experience" category._
 
-:point_right: Make a note of the Portal service URL, for example by bookmarking it, so you can get to the service easily later.
+:point_right: Make a note of the Portal service URL, for example by bookmarking it, so you can get to the service easily later. The URL you need is the one that the "Go to Service" link takes you to.
 
 ### 4. Find and enable the Workflow service
 
 :point_right: Return to the services list in your cockpit and go back to locate the Workflow service. Enable it if it's not already enabled.
 
-_Note: You can search for the service manually or filter them using the "Orchestration" category. Alternatively, with all of these services, you can use the quick switcher as shown._
+_Note: You can search for the service manually or use the filter with the "Orchestration" category. Alternatively, with all of these services, you can use the quick switcher as shown._
 
 ![using the quick switcher](quickswitcher.png)
 
