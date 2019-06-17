@@ -49,7 +49,7 @@ You should see a message like this (the version number may be different):
 
 ```
 (Deployment) Deployment for Workflow with name = orderprocess and id = orderprocess is successful.
-Latest Version for the same workflow is = 3
+Latest Version for the same workflow is = 2
 ```
 
 _Note: To open the console in the SAP Web IDE Full-Stack, use menu path "View -> Console"._
@@ -106,4 +106,4 @@ You now have a workflow definition that includes a task that fetches data from a
 
 1. How does the product data from the OData service end up where it does in the workflow instance context?
 
-1. When we request an entity from an OData service in the browser, such as the [Chai product from the Northwind dataset](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)), we usually see it in an XML representation, and have to add a query parameter `$format=json` to the URL, like this: [https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json). Why do you think we received a JSON representation when we didn't use this query parameter in the Service Task settings?
+1. When we request an entity from an OData service in the browser, such as the [Chai product from the Northwind dataset](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)), we usually see it in an XML representation, and have to add a query parameter `$format=json` to the URL, like this: [https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json](https://services.odata.org/V3/Northwind/Northwind.svc/Products(1)?$format=json). Why do you think we received a JSON representation even when we didn't use this query parameter in the Service Task settings?
