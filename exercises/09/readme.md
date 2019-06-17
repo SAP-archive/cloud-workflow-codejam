@@ -22,7 +22,7 @@ The User Task requires certain settings. First though, let's change the name of 
 
 :point_right: Select the User Task and in the "General" tab of the "User Task Properties" on the right hand side, specify the value "Approval Decision". Then select the Service Task and make a similar change, changing the current value of "ServiceTask1" to "Retrieve Product Info". Don't forget to save.
 
-Now it's time to specify the settings.
+Now it's time to specify the User Task settings.
 
 :point_right: In the "Details" tab of the "User Task Properties", specify the following values, not forgetting to save:
 
@@ -37,7 +37,7 @@ Now it's time to specify the settings.
 
 _Note: The user assignment is case sensitive, so it's important that you specify your username with a capital letter at the beginning, for example `P2001351149` not `p2001351149`._
 
-_Note: Within the context of the trial account you are using (with only a single user - you - available), it makes sense to specify yourself as a recipient of the user task items.In other situations this could be a calculated value, or the "Group" property could be used instead._
+_Note: Within the context of the trial account you are using (with only a single user - you - available), it makes sense to specify yourself as a recipient of the user task items. In other situations this could be a calculated value, or the "Group" property could be used instead._
 
 ### 3. Create a new workflow instance and check the User Task
 
@@ -65,7 +65,7 @@ You should see that the user task is there, with the correct name ("Approval Dec
 
 _Note: The "Show Log" and "Claim" buttons are not decision related, they are generic features available in all user tasks._
 
-Because this is only a half-baked user task, you won't be able to complete it here, you'll have to do it as an administrator, in the "Monitor Workflow - Workflow Instances" app.
+Because this is only a half-baked user task, you won't be able to complete it here, you'll have to terminate the instance as an administrator, in the "Monitor Workflow - Workflow Instances" app.
 
 :point_right: Switch to the "Monitor Workflow - Workflow Instances" app and find the instance of the "orderprocess" definition that relates to this user task. You should be able to find it quite easily, as it will still be in the status "Running":
 
