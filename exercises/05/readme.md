@@ -41,7 +41,7 @@ Observe that the workflow definition editor is graphical (it's the one you [enab
 
 ### 2. Deploy the definition to the cloud
 
-While this workflow definition doesn't do very much, we can still carry out an initial exploration with the apps we set up in [Exercise 02](../02). So in this step we'll deploy the definition to SAP Cloud Platform to be able to do that.
+While this workflow definition doesn't do very much, we can still carry out an initial exploration with the apps we made available in the Fiori launchpad in [Exercise 02](../02). So in this step we'll deploy the definition to SAP Cloud Platform to be able to do that.
 
 :point_right: Locate the definition file `orderprocess.workflow` and use the context menu "Deploy -> Deploy to SAP Cloud Platform Workflow". You should see a message confirming that the deployment was successful.
 
@@ -65,7 +65,7 @@ Here you can start a new instance, which is what you should do now. Built in to 
 
 :point_right: Switch to looking at the workflow instance you created, by using the "Show Instances" button.
 
-You should see a filtered display in the master list ... but it's likely that you won't find your newly created instance. This is because the default filter is to show instances with the following status values:
+You should see a filtered display in the master list ... but it's likely that you won't see your newly created instance. This is because the default filter is to show instances with the following status values:
 
 - Erroneous
 - Running
@@ -98,7 +98,7 @@ Examining the completed instance this time, you should see this data in the Work
 
 ## Summary
 
-You've now gone through the process of bringing a workflow definition from your development environment (the SAP Web IDE Full-Stack) to the Workflow service on the SAP Cloud Platform, and using the administration apps to create and examine instances of it. You'll find that the "Monitor Workflows - Workflow Instances" app is a very useful tool.
+You've now gone through the process of bringing a workflow definition from your development environment (the SAP Web IDE Full-Stack) to the Workflow service on the SAP Cloud Platform, and using the administration apps to create and examine instances of it. You'll find that the "Monitor Workflows" app is a very useful tool.
 
 ## Questions
 
