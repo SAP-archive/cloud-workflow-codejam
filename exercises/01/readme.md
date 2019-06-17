@@ -41,7 +41,7 @@ In order to be able to edit workflow definitions in the SAP Web IDE Full-Stack, 
 
 :point_right: Return to the services list in your cockpit and go back to locate the Portal service. Enable it if it's not already enabled.
 
-_Note: You can search for the service manually or filter them using the "User Experience" category._
+_Note: You can search for the service manually or use the filter with the "User Experience" category._
 
 :point_right: Make a note of the Portal service URL, for example by bookmarking it, so you can get to the service easily later.
 
@@ -49,7 +49,7 @@ _Note: You can search for the service manually or filter them using the "User Ex
 
 :point_right: Return to the services list in your cockpit and go back to locate the Workflow service. Enable it if it's not already enabled.
 
-_Note: You can search for the service manually or filter them using the "Orchestration" category. Alternatively, with all of these services, you can use the quick switcher as shown._
+_Note: You can search for the service manually or use the filter with the "Orchestration" category. Alternatively, with all of these services, you can use the quick switcher as shown._
 
 ![using the quick switcher](quickswitcher.png)
 
