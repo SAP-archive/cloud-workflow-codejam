@@ -2,7 +2,7 @@
 
 In this exercise you'll create a Fiori launchpad site with the My Inbox app, using the Portal service, where you can build websites from templates. One of the templates is for Fiori launchpads.
 
-This Fiori launchpad site will then be the place where you monitor and interact with your workflow definitions and instances in subsquent exercises.
+This Fiori launchpad site will then be the place where you monitor and interact with your workflow definitions and instances in subsequent exercises.
 
 ## Steps
 
@@ -14,7 +14,7 @@ After completing these steps you'll have a Fiori launchpad with a number of tile
 
 ![Creating a new site](createnewsite.png)
 
-Once you go into the site's configuration area, known as the "Fiori Configuration Cockpit", you should see that there are already four apps pre-configured and available. Note the icon next to each app, denoting that it's been shared from another SAP Cloud Platform subaccount (one providing general Workflow services).
+Once you go into the site's configuration area, known as the "Fiori Configuration Cockpit", you should see that there are already four apps pre-configured and available (look in the "Apps" item within "Content Management" in the navigation menu). Note the icon next to each app, denoting that it's been shared from another SAP Cloud Platform subaccount (one providing general Workflow services).
 
 ![Workflow related apps available](workflowapps.png)
 
@@ -26,9 +26,11 @@ The site should appear, and while it will look fairly empty, it's clear that it'
 
 ![empty Fiori launchpad site](emptylaunchpad.png)
 
+_Note: What you see, as we transition to the Fiori 3 design, may look slightly different to what's shown in these screenshots._
+
 ### 3. Add the workflow app icons
 
-:point_right: Use the user icon at the top to get to the menu and use the "App Finder" to select and pin all four of the apps to the default "My Home" group:
+:point_right: Using the icons at the top, locate the "App Finder" and select and pin all four of the apps to the default "My Home" group:
 
 ![pin apps to "My Home" group](pinapps.png)
 
@@ -36,7 +38,7 @@ When you return from the menu, you should see those apps available via the appro
 
 ![app tiles](apptiles.png)
 
-Feel free to explore these apps and try them out. There will be no data yet - no inbox items, no workflow definitions and no workflow instances. That will change in the coming exercises!
+Feel free to explore these apps and try them out. Unless you've looked at the Workflow service before today, there will be no data yet - no inbox items, no workflow definitions and no workflow instances. That will change in the coming exercises!
 
 ### 4. Specify an alias for the site
 
