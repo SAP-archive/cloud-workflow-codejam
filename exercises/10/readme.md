@@ -32,7 +32,7 @@ _Note: Don't forget that you can use the arrangement buttons to tidy up the defi
 
 The main purpose of this Script Task is to prepare a message that can eventually be sent to the requestor (the sending of the message will be left as an activity to be completed after the CodeJam). So name this Script Task appropriately.
 
-:point_right: Set the "Name" property in the "Script Task Properties" to "Prepare message".
+:point_right: Set the "Name" property in the "Script Task Properties" to "Prepare Message".
 
 Script Tasks allow for the execution of logic written in JavaScript and contextual information about the instance in which the execution takes place, as well as metadata about the workflow instance itself, is available through special variables. The JavaScript is contained in files that are associated with the workflow definition.
 
@@ -82,6 +82,8 @@ $.context.usertaskinfo = $.usertasks.usertask1.last;
 ```
 
 :point_right: Save and redeploy the workflow definition, and create a new instance using Postman as you've done before.
+
+_Note: Script Tasks are represented via separate JavaScript files but these are not separately deployable - they are a fundamental part of the workflow definition._
 
 ### 3. Process the User Task and check the context
 
