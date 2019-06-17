@@ -4,7 +4,7 @@ In this exercise you'll define a destination within the context of the "Connecti
 
 A destination is a collection of parameters that points to a remote service or resource, which might be available on the general Internet or behind a firewall in an on-prem environment. In the latter case an SAP Cloud Connector installed and configured in that on-prem environment enables requests to flow, and that is what we've set up in the previous exercise.
 
-Once a destination is established, it can be used by apps and services running on the SAP Cloud Platform, which has a very capable reverse proxy mechanism at the heart of the Connectivity service.
+Once a destination is established, it can be used by apps and services related to that subaccount on the SAP Cloud Platform, which has a very capable [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) mechanism at the heart of the Connectivity service.
 
 In this case, for the business scenario upon which this CodeJam is based, the destination will be to a specific OData service providing information relating to an online shop.
 
@@ -20,7 +20,7 @@ After completing these steps you'll have created a destination pointing to a spe
 
 :point_right: Select the "New Destination" option, and in the configuration specify values for the appropriate parameters. Some values will depend on whether you have successfully completed the previous exercise and set up the SAP Cloud Connector or not, so the entire value set is presented twice, covering both scenarios. Use the values for your scenario.
 
-**Using SAP Cloud Connector**
+**With SAP Cloud Connector**
 
 If you have an SAP Cloud Connector set up and connected as described in the previous exercise, specify the following properties:
 
@@ -67,7 +67,7 @@ It is worth testing the new destination with a small bit of configuration that i
 
 :point_right: Go to the SAP Web IDE Full-Stack. If you don't have the URL bookmarked, go via the Services navigation menu item in the SAP Cloud Platform Cockpit, select the SAP Web IDE Full-Stack service, and use the "Go to Service" link.
 
-:point_right: Once in the SAP Web IDE Full-Stack, go to the Development perspective (via menu option View -> Development). There, use the context menu (i.e. right-click) on the "Workspace" folder to create a new folder called "destinationtest":
+:point_right: Once in the SAP Web IDE Full-Stack, go to the Development perspective (via menu option Tools -> Development). There, use the context menu (i.e. right-click) on the "Workspace" folder to create a new folder called "destinationtest":
 
 ![creating a new folder](newfolder.png)
 
@@ -129,12 +129,12 @@ https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopi
 
 _Note: It's at this point you might want to take advantage of the [recommendations](../../prerequisites.md#recommendations) to install formatters for JSON and XML in Chrome._
 
-Notice that there are products with IDs such as "HT-1001" and "HT-1002" representing computer hardware such as laptops.
+Notice that there are products with IDs such as "HT-1001" and "HT-1002" representing computer hardware items such as laptops.
 
 
 ## Summary
 
-You've now created a destination in the SAP Cloud Platform, and have successfully tested it, surfacing information from the remote ES5 system via a simple route mapping definition as part of a skeleton app. (You won't need this app any more, so you can delete it if you want to).
+You've now created a destination for use with the Connectivity service in the SAP Cloud Platform, and have successfully tested it, surfacing information from the remote ES5 system via a simple route mapping definition as part of a skeleton app. (You won't need this app any more, so you can delete it if you want to).
 
 You're now all set to be able to successfully consume the OData service at the endpoint you've defined in the destination from other services, in particular, the Workflow service.
 
