@@ -10,7 +10,7 @@ The setup will be done in a container, to isolate SAP Cloud Connector and the so
 
 _Note: The following instructions are based in part on the [nzamani/sap-cloud-connector-docker](https://github.com/nzamani/sap-cloud-connector-docker) repository on GitHub. If you want to find out more, check out the blog post "[Installing SAP Cloud Connector into Docker and connecting it to SAP Cloud Platform](https://blogs.sap.com/2018/05/22/installing-sap-cloud-connector-into-docker-and-connecting-it-to-sap-cloud-platform/)" by [Nabi Zamani](https://people.sap.com/pars.man#overview)._
 
-_Note: Before proceeding with this exercise, please ensure there are no processes on your machine already listening on port 8443._
+_Note: This exercise assumes you don't already have any processes listening for HTTP requests on port 8443 of your machine._
 
 ## Steps
 
@@ -125,7 +125,7 @@ In this step you will log on to the SAP Cloud Connector in your browser, and use
 
 :point_right: Open your browser and go to the SAP Cloud Connector administration UI at [https://localhost:8443](https://localhost:8443). Remember that this is only possible because, with the `-p 8443:8443` parameter earlier, you specified that port 8443 in the container (which is where SAP Cloud Connector is *actually* running and listening) should be exposed to your machine, the container's host (where Docker is running), also on port 8443.
 
-_Note: Your browser will likely warn you that the site is insecure, because the certificate that the site presents (via HTTPS) has not been signed by any authority it recognises. This is OK for what we want to achieve in this CodeJam, and you should proceed through any warning. It's possible to fix this by installing a signed certificate into the SAP Cloud Connector, but this is beyond the scope of this exercise._
+_Note: Your browser will likely warn you that the site is insecure, because the certificate that the site presents (via HTTPS) has not been signed by any authority it recognizes. This is OK for what we want to achieve in this CodeJam, and you should proceed through any warning. It's possible to fix this by installing a signed certificate into the SAP Cloud Connector, but this is beyond the scope of this exercise._
 
 :point_right: At the "Cloud Connector Login" page, log in with the default username and password "Administrator" and "manage". You're then prompted to change this password which you should do, selecting the "Save" icon on the right hand side to proceed (leave other options as they are).
 
