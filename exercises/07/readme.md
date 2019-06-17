@@ -77,7 +77,7 @@ The "Workflow CodeJam" collection of two requests you imported earlier in this e
 
 ![auth details](authdetails.png)
 
-### 5. Examine the rest of the requests' detail
+### 5. Examine the rest of the requests' details
 
 In this step you'll take a look at the details of each of the two requests, to understand how they work together.
 
