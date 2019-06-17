@@ -27,7 +27,7 @@ You should be presented with a list of services, grouped by category. Some servi
 
 :point_right: Locate the SAP Web IDE Full-Stack service and enable it if it's not already enabled. Once enabled, follow the "Go to Service" link in the "Take Action" section of the service's main page to open the SAP Web IDE Full-Stack in a new browser tab.
 
-_Note: You can search for the service manually or filter them using the "Developer Experience" category._
+_Note: You can search for the service manually or use the filter with the "Developer Experience" category._
 
 :point_right: Make a note of the SAP Web IDE Full-Stack service URL, for example by bookmarking it, so you can get to the service easily later.
 
