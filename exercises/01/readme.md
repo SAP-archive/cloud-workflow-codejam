@@ -43,7 +43,7 @@ In order to be able to edit workflow definitions in the SAP Web IDE Full-Stack, 
 
 _Note: You can search for the service manually or use the filter with the "User Experience" category._
 
-:point_right: Make a note of the Portal service URL, for example by bookmarking it, so you can get to the service easily later.
+:point_right: Make a note of the Portal service URL, for example by bookmarking it, so you can get to the service easily later. The URL you need is the one that the "Go to Service" link takes you to.
 
 ### 4. Find and enable the Workflow service
 
