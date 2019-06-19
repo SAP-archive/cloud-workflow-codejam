@@ -71,7 +71,7 @@ It is worth testing the new destination with a small bit of configuration that i
 
 ![creating a new folder](newfolder.png)
 
-:point_right: Take the [neo-app.json](neo-app.json) file from this repository (save the "Raw" version) and upload it, with the same name, to this new "destinationtest" folder, using the context menu "Import -> File or Project", so that you end up with something that looks like this:
+:point_right: Take the content of the [neo-app.json](neo-app.json) file from this repository (save the "Raw" version) and upload it, with the same name, to this new "destinationtest" folder, using the context menu "Import -> File or Project", so that you end up with something that looks like this:
 
 ![neo-app.json in the new folder](neoapp.png)
 
