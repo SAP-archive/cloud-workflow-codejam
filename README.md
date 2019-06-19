@@ -43,6 +43,8 @@ You could also look at branching in the flow, based on decisions, using the Excl
 
 Events are also powerful features that you could investigate. For example, try controlling the flow of your workflow instances via remote API calls by making use of Intermediate Messages, that pause execution until an incoming message is received (via an API call).
 
+For more in-depth coverage of some of the topics in this CodeJam, you may find the blog post series [Discovering SCP Workflow](https://qmacro.org/2018/01/16/discovering-scp-workflow/) worth a look. 
+
 ### Feedback
 
 At the end of this CodeJam, we would be really grateful if you could spend a minute providing us with your thoughts in this [feedback form](https://bit.ly/codejam-workflow-feedback). Thank you.
