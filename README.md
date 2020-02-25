@@ -24,7 +24,7 @@ If you finish an exercise early, please resist the temptation to continue with t
 
 Here's an overview of the exercises in this CodeJam.
 
-- [Exercise 01 - Setting up the SAP Cloud Platform services](exercises/01/)
+- [Exercise 01 - Setting up for Workflow on Cloud Foundry](exercises/01/)
 - [Exercise 02 - Creating an SAP Fiori launchpad site](exercises/02/)
 - [Exercise 03 - Installing & configuring the SAP Cloud Connector](exercises/03)
 - [Exercise 04 - Establishing a destination in SAP Cloud Platform](exercises/04)
@@ -43,7 +43,7 @@ You could also look at branching in the flow, based on decisions, using the Excl
 
 Events are also powerful features that you could investigate. For example, try controlling the flow of your workflow instances via remote API calls by making use of Intermediate Messages, that pause execution until an incoming message is received (via an API call).
 
-For more in-depth coverage of some of the topics in this CodeJam, you may find the blog post series [Discovering SCP Workflow](https://qmacro.org/2018/01/16/discovering-scp-workflow/) worth a look. 
+For more in-depth coverage of some of the topics in this CodeJam, you may find the blog post series [Discovering SCP Workflow](https://qmacro.org/2018/01/16/discovering-scp-workflow/) worth a look.
 
 ### Feedback
 
