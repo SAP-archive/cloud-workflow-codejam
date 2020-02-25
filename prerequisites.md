@@ -25,6 +25,8 @@ Each attendee must have the following already set up and enabled:
 
 - an SAP Cloud Platform trial account. If you need to create a new account, go to [https://account.hanatrial.ondemand.com/#/home/welcome](https://account.hanatrial.ondemand.com), select the "Register" button and follow the instructions.
 
+- within your SAP Cloud Platform trial account, the Cloud Foundry trial should be set up, with an organization and space ready to work in (if you follow the setup instructions on a new trial account, you'll be led through this process automatically).
+
 - an account on the SAP NetWeaver Gateway Demo system "ES5". [Sign up here](https://register.sapdevcenter.com/SUPSignForms/) and then ensure your account is active and the username and password are correct, by checking you can access HTTP-based services such as the [EPM_REF_APPS_SHOP_SRV](https://sapes5.sapdevcenter.com/sap/opu/odata/sap/EPM_REF_APPS_SHOP_SRV/?sap-client=002) OData service. If you need more help, you can follow the "[Create an Account on the Gateway Demo System](https://developers.sap.com/tutorials/gateway-demo-signup.html)" tutorial.
 
 
