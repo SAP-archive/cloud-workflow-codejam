@@ -1,4 +1,4 @@
-# Exercise 02 - Creating an initial platform project
+# Exercise 02 - Deploying the Workflow tools
 
 In this exercise you'll create an initial project from a sample application within the SAP Web IDE. The definitions in this project, once deployed to your Cloud Foundry (CF) environment, will cause the creation of the other platform related services mentioned at the start of the [previous exercise](../01/), and provide you with a Fiori launchpad (FLP) site running via the Portal service.
 
