@@ -134,3 +134,30 @@ The `workflowtilesFLP` directory is a Node.js app that will cause a deployment o
 ![Launchpad Editor](launchpadeditor.png)
 
 
+### 4. Build the MTA archive ready for deployment
+
+While the project contents are interesting academically, they aren't going to do you much good sitting there in the IDE. So now it's time to compile them into an archive which can be deployed to your CF space. For this, you will invoke a "build" command.
+
+> The previous incarnation of the software that performed the build was a Java-based program, which is now deprecated, superseded by a Node.js based alternative called [mbt](https://www.npmjs.com/package/mbt) - the Multi-Target Application Build Tool. Both tools are still available from the context menu in the SAP Web IDE; the deprecated tool is marked as such and will disappear in time.
+
+:point_right: Use the context menu on the project node in the Files explorer of the SAP Web IDE (i.e. the `sample.workflowtiles.mta.trial` name) and select "Build -> Build with Cloud MTA Build Tool (recommended)". This will start the build process which you can monitor in the console (use the main menu option "View -> Console" to see this, or toggle the console icon in the far right column of the IDE).
+
+Towards the end of the process you'll see log records in the console that look like this:
+
+```
+(Executor) [2020-02-26 13:35:27]  INFO generating the MTA archive...
+(Executor) [2020-02-26 13:35:27]  INFO the MTA archive generated at: /projects/sample.workflowtiles.mta.trial/mta_archives/sample.workflowtiles.mta.trial_0.0.1.mtar
+(Executor) [2020-02-26 13:35:27]  INFO cleaning temporary files...
+(Executor)   adding: mta_archives/sample.workflowtiles.mta.trial_0.0.1.mtar (deflated 0%)
+(mtaBuildTask) Build of "sample.workflowtiles.mta.trial" completed.
+```
+
+You can see that an archive has been generated in a new `mta_archives/` directory. This is what is to be deployed in the next step.
+
+### 5. Deploy the MTA archive to Cloud Foundry
+
+At this stage you're ready to deploy the project contents, in the form of the archive that has just been built, to your CF environment.
+
+:point_right: Use the context menu on the archive file `sample.workflowtiles.mta.trial_0.0.1.mtar` and select "Deploy -> Deploy to SAP Cloud Platform" to start the deployment. If required, enter the CF environment details that denote your CF organization and space.
+
+
