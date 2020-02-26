@@ -38,7 +38,6 @@ The MTA Editor presents the contents of the file in three sections - "Modules", 
 | ------ | -------- |
 | `workflowtilesApprouter (approuter.node.js) ` | `workflowtiles_html5_repo_runtime (html5-apps-repo)`, `portal_resources_workflowtiles (portal)`, `uaa_workflowtiles (xsuaa)`, `workflow_workflowtiles (workflow)` |
 | `workflowtilesFLP (com.sap.portal.content) ` | `portal_resources_workflowtiles (portal)`, `uaa_workflowtiles (xsuaa)`, `workflow_workflowtiles (workflow)` |
-- `workflowtilesFLP`
 
 :point_right: Switch between the "Modules" and "Resources" sections to understand these relationships.
 
