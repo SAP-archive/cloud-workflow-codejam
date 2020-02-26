@@ -158,6 +158,47 @@ You can see that an archive has been generated in a new `mta_archives/` director
 
 At this stage you're ready to deploy the project contents, in the form of the archive that has just been built, to your CF environment.
 
-:point_right: Use the context menu on the archive file `sample.workflowtiles.mta.trial_0.0.1.mtar` and select "Deploy -> Deploy to SAP Cloud Platform" to start the deployment. If required, enter the CF environment details that denote your CF organization and space.
+:point_right: Use the context menu on the archive file `sample.workflowtiles.mta.trial_0.0.1.mtar` and select "Deploy -> Deploy to SAP Cloud Platform" to start the deployment. At the prompt, enter or confirm the CF environment details that denote your CF organization and space.
+
+After a few minutes the deployment will complete, and you should see a log message in the console like this, towards the end:
+
+```
+Application "workflowtilesApprouter" started and available at "p2001351149trial-dev-workflowtilesapprouter.cfapps.eu10.hana.ondemand.com"
+```
+
+This is the URL of the `workflowApprouter` module that has been deployed, and will be specific to your SAP Cloud Platform trial user ID. You can use this URL to get to the FLP site, but instead, let's take another route.
+
+
+### 6. Find the FLP site URL and get to the Workflow tiles
+
+In the final step in this exercise, you should get to the Workflow tiles in the Fiori launchpad that's been created in the Portal service, an instance of which has been created during the course of the deployment.
+
+:point_right: Back in the SAP Cloud Platform Cockpit, go to the "Spaces" view in your trial subaccount (you visited this view in [the previous exercise](../01/)) and notice that the quota has now changed again:
+
+![quota changed](quotachanged.png)
+
+This reflects the applications and service instances that now exist due to the deployment.
+
+:point_right: Select the "dev" space and you should be brought initially to the list of applications. There you should see the `workflowtilesApprouter` and `workflowtilesFLP` applications you saw referenced in the `mta.yaml` file earlier.
+
+> The `workflowtilesFLP` application will most likely be in the "Stopped" state, reflecting the completion of the "deployer" service execution.
+
+:point_right: Now select the "Service Instances" menu item, whereupon you will be shown not only the `workflow` service instance that you created explicitly, in the previous exercise, but also instances of the `portal`, `xsuaa` and `html5-apps-repo` services. Notice how there are entries in the "Referencing Applications" column, reflecting the links between the modules and the resources described in the `mta.yaml` file:
+
+![service instances](serviceinstances.png)
+
+:point_right: From here, select one of the `workflowtilesApprouter` links in the "Referencing Applications" column to quickly jump to the details of that application; it will take you initially to the "Service Bindings" section:
+
+![service bindings for workflowtilesApprouter](servicebindings.png)
+
+:point_right: From there select the "Overview" menu item to see general information about the `workflowtilesApprouter` application, which includes the "Application Routes" section. There's a single route URL shown for this application, and yes, you guessed it, it's the one shown in the deployment log earlier:
+
+![application overview](applicationoverview.png)
+
+Select the route URL and, after the standard authentication challenge screen, which you must complete using your SAP Cloud Platform trial email address and password, you'll see what you've been waiting for this whole time - a lovely Fiori launchpad site with the "My Inbox" and "Monitor Workflows" tiles:
+
+![FLP site](flpsite.png)
+
+Well done!
 
 
