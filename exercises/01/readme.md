@@ -45,6 +45,6 @@ Note the "Environment" shown in the subaccount detail shows "Cloud Foundry".
 
 While you're looking at the list of spaces here, notice the menu item "Security" on the left. Expand it to see "Administrators", "Role Collections" and "Trust Configuration" within it. You'll be using these menu items later to set up roles for yourself, so familiarize yourself with where they in the breadcrumb trail at the top:
 
-**Home [Europe (Rot) - Cloud Foundry - Trial] / <your trial global account> / <your trial subaccount>**
+**Home [Europe (Rot) - Cloud Foundry - Trial] / \<your trial global account\> / \<your trial subaccount\>**
 
 
