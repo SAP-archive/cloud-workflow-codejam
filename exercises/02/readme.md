@@ -123,7 +123,7 @@ As a result of the modifications, each instance of `workflow_workflowtiles` shou
 
 Expanding the entirety of the project structure will reveal something like this:
 
-[project contents](projectcontents.png)
+![project contents](projectcontents.png)
 
 It's worth taking a few moments to [stare](https://langram.org/2017/02/19/the-beauty-of-recursion-and-list-machinery/#initialrecognition) at some of the content in this project, to understand some details of what we're about to deploy.
 
