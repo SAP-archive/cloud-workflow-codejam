@@ -23,7 +23,7 @@ Finally, you'll be playing different roles throughout this CodeJam, using your S
 
 After completing the steps in this exercise you'll have appropriate authorizations set up and assigned to your user, an IDE setup and configured to work with Workflow artifacts, and an instance of the main Workflow service set up explicitly. Instances of the other services mentioned earlier will be set up implicitly in the next exercise.
 
-1. Log on to the SAP Cloud Platform Cockpit and look around
+### 1. Log on to the SAP Cloud Platform Cockpit and look around
 
 You'll be managing and using services via the SAP Cloud Platform Cockpit in this CodeJam, so it's worth spending a couple of minutes making yourself familiar with it.
 
@@ -50,7 +50,7 @@ While you're looking at the list of spaces here, notice the menu item "Security"
 This trail leads you to the CF specific view of your subaccount.
 
 
-2. Set up a Workflow service instance in your CF space
+### 2. Set up a Workflow service instance in your CF space
 
 At this point you're ready to create an instance of the Workflow service.
 
@@ -72,7 +72,7 @@ At this point you're ready to create an instance of the Workflow service.
 The instance name `workflow` is important as you'll refer to it later.
 
 
-3. Create a role and assign it to yourself
+### 3. Create a role and assign it to yourself
 
 Now you have a Workflow service instance in your space, it's time to assign workflow roles to yourself.
 
@@ -105,7 +105,7 @@ At this stage you have a new role collection; now you need to assign it to yours
 At this stage you're all set with the main Workflow service and have access to use it.
 
 
-4. Set up the SAP Web IDE
+### 4. Set up the SAP Web IDE
 
 Now it's time to set up the IDE you'll be using, which in this case is the SAP Web IDE. You'll configure it to use a special "Workflow Editor" extension, and also specify your CF details to connect to.
 
