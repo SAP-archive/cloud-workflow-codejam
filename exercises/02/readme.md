@@ -199,6 +199,18 @@ Select the route URL and, after the standard authentication challenge screen, wh
 
 ![FLP site](flpsite.png)
 
-Well done!
+
+## Summary
+
+Not only do you have an instance of the main workflow service now, but also access to your own FLP site with the "My Inbox" app for managing workflow related task items, and a pair of apps for managing workflow definitions and instances. But you also have some insight into how MTAs work and what the relationship is between modules and resources defined in MTA descriptor files.
+
+Good work!
 
 
+## Questions
+
+1. Why is the `workflowtilesFLP` app not listed in the "Referencing Applications" column for the instance of the `html5-apps-repo` service?
+
+1. What do you think the difference between a "workflow instance" and a "workflow definition" is?
+
+1. Can you find out what the ID of the "Monitor Workflow" app is, that is accessed through the two "Monitor Workflow" tiles?

@@ -124,4 +124,13 @@ What you end up with should look something like this:
 :point_right: Now choose the "Extensions" entry within the "Workspace Preferences" and search for the "Workflow Editor" extension. Make sure it's switched to "ON" and hit "Save" at the bottom again. You may need to allow the IDE to restart at this point.
 
 
-At this point you're all set up to embark upon your Workflow service journey.
+## Summary
+
+At this point you're all set up to embark upon your Workflow service journey, with an instance of the main Workflow service available to you, and an IDE that can help you build and manage workflow definitions and make deployments to your CF environment on SAP Cloud Platform.
+
+
+## Questions
+
+1. What are the relationships between SAP Cloud Platform subaccounts, Cloud Foundry organizations and spaces?
+
+1. What other IDEs might you have been able to use for this exercise?
