@@ -46,7 +46,7 @@ The `workflowtilesApprouter` module is the "handle" of a standard application wh
 
 Both modules require the `workflow_workflowtiles` resource which is basically an instance of the Workflow service.
 
-:point_right: Switch from the "MTA Editor" to the "Code Editor" to see the raw YAML, and search for the string "workflow_workflowtiles". You should find three occurrences, marked here with arrows:
+:point_right: Switch from the "MTA Editor" to the "Code Editor" to see the raw YAML, and search for the string `workflow_workflowtiles`. You should find three occurrences, marked here with arrows:
 
 ```yaml
 ID: sample.workflowtiles.mta.trial
@@ -101,15 +101,15 @@ resources:                                                   |
     type: org.cloudfoundry.managed-service
 ```
 
-The first two references are in the modules' "requires" sections, referring to the third reference, which is the name of the item in the resources section.
+The first two references are in the modules' `requires` sections, referring to the third reference, which is the name of the item in the `resources` section.
 
 As you've already created an instance of the Workflow service, with the name "workflow", you must modify the references.
 
-:point_right: First, change each of the three occurrences of "workflow_workflowtiles" to "workflow".
+:point_right: First, change each of the three occurrences of `workflow_workflowtiles` to `workflow`.
 
-:point_right: Now, modify the "type" of the "workflow" resource; the instance already exists, so the type should be `org.cloudfoundry.existing-service` rather than `org.cloudfoundry.managed-service`. Make this modification - it should be on the very last line that you see here in this YAML.
+:point_right: Now, modify the "type" of the `workflow` resource; the instance already exists, so the type should be `org.cloudfoundry.existing-service` rather than `org.cloudfoundry.managed-service`. Make this modification - it should be on the very last line that you see here in this YAML.
 
-As a result of the modifications, each instance of "workflow_workflowtiles" should have been changed, and the last section of the YAML should now look like this:
+As a result of the modifications, each instance of `workflow_workflowtiles` should have been changed, and the last section of the YAML should now look like this:
 
 ```yaml
   - name: workflow
