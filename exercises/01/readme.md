@@ -133,4 +133,4 @@ At this point you're all set up to embark upon your Workflow service journey, wi
 
 1. What are the relationships between SAP Cloud Platform subaccounts, Cloud Foundry organizations and spaces?
 
-1. What other IDEs might you have been able to use for this exercise?
+1. While you've set up the SAP Web IDE, what other options might you have for this CodeJam?
