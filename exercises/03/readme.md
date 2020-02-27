@@ -131,11 +131,21 @@ _Note: Your browser will likely warn you that the site is insecure, because the 
 
 Next, you're asked to specify an initial subaccount that you want the SAP Cloud Connector to connect to (you can connect it to multiple subaccounts but we will only specify this initial one in this exercise).
 
-:point_right: Specify the appropriate details for your subaccount. A trial subaccount in the Neo environment means you must choose the "Europe (Rot) - Trial" value for the "Region" parameter. Refer to the example below. When you're done, leave other parameters as they are and complete the initial setup with the "Save" icon on the right hand side.
+:point_right: Specify the appropriate details for your trial subaccount, as follows:
+
+- "Region": select the entry that reflects the Cloud Foundry API endpoint URL that is related to the organization connected to your trial subaccount. In other words, you can search by entering `cf.eu10` in the selection search box to find and select "Europe (Frankfurt) - AWS" which corresponds to `cf.eu10.hana.ondemand.com`
+
+- "Subaccount": this should be the ID of your trial subaccount, as shown in the screenshot
+
+  ![subaccount ID](subaccountid.png)
+
+- "Display Name": specify anything you want here; we recommend you use the Subdomain name of the subaccount
+
+- "Login E-Mail" and "Password": these credentials are the ones related to your trial account
+
+- Leave other parameters as they are, and then complete the initial setup with the "Save" button on the right hand side
 
 ![subaccount details](subaccountdetails.png)
-
-_Note: Notice the difference between the trial subaccount name and username - the username is the same as the subaccount name without the "trial" suffix._
 
 At this point, your SAP Cloud Connector, running in a container on your machine, is now up and running with a secure tunnel established to your subaccount on the SAP Cloud Platform. You should see a status page in the SAP Cloud Connector administration UI that looks something like this:
 
