@@ -49,6 +49,8 @@ While you're looking at the list of spaces here, notice the menu item "Security"
 
 This trail leads you to the CF specific view of your subaccount.
 
+> It's a good idea to bookmark this page so you can get back to it easily.
+
 
 ### 2. Set up a Workflow service instance in your CF space
 
