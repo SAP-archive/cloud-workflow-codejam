@@ -16,9 +16,11 @@ After completing these steps you'll have created a destination pointing to a spe
 
 ### 1. Create a new destination definition
 
-:point_right: In the SAP Cloud Platform Cockpit, select the "Connectivity" menu item, and within that the "Destinations" item. It's likely you'll see a few destinations there already - these will have been created as you enabled services in previous exercises.
+:point_right: Go to your "CF Trial Subaccount Home" page, and select the "Destinations" menu item within the "Connectivity" item.
 
 :point_right: Select the "New Destination" option, and in the configuration specify values for the appropriate parameters. Some values will depend on whether you have successfully completed the previous exercise and set up the SAP Cloud Connector or not, so the entire value set is presented twice, covering both scenarios. Use the values for your scenario.
+
+> If you find that you've forgotten your credentials for the ES5 system, you can visit the [ES5 account administration](https://register.sapdevcenter.com/SUPSignForms/?server=sapes5) page to get your password reset.
 
 **With SAP Cloud Connector**
 
@@ -41,7 +43,7 @@ If you have an SAP Cloud Connector set up and connected as described in the prev
 
 If you were unable to set up an SAP Cloud Connector in the previous exercise, you should set up the destination to point directly to ES5.
 
-_Note: We're only "pretending" that the ES5 system is on-prem; it is, in fact, available directly on the public Internet._
+_Note: Remember, we're only "pretending" that the ES5 system is on-prem; it is, in fact, available directly on the public Internet._
 
 | Property               | Value                   |
 | -------------          | ----------------------- |
@@ -54,6 +56,9 @@ _Note: We're only "pretending" that the ES5 system is on-prem; it is, in fact, a
 | Authentication         | BasicAuthentication     |
 | User                   | (your ES5 username)     |
 | Password               | (your ES5 password)     |
+
+
+**In Both Cases (Important!)**
 
 :point_right: In _both_ cases (whether you have an SAP Cloud Connector or not), add the following property / value pair in the "Additional Properties" section using the "New Property" button, and then save the entire destination definition with the "Save" button:
 
