@@ -43,7 +43,7 @@ The MTA Editor presents the contents of the file in three sections - "Modules", 
 
 The `workflowtilesApprouter` module is the "handle" of a standard application which presents a Portal site. The `workflowtilesFLP` module, when deployed, will cause application and tile definitions to be defined in the FLP site.
 
-Both modules require the `workflow_workflowtiles` resource which is basically an instance of the Workflow service.
+Both modules require a resource called `workflow_workflowtiles` which is basically an instance of the Workflow service.
 
 :point_right: Switch from the "MTA Editor" to the "Code Editor" to see the raw YAML, and search for the string `workflow_workflowtiles`. You should find three occurrences, marked here with arrows:
 
@@ -64,7 +64,7 @@ modules:
       - name: workflowtiles_html5_repo_runtime
       - name: portal_resources_workflowtiles
       - name: uaa_workflowtiles
-      - name: workflow_workflowtiles              -----------+
+      - name: workflow_workflowtiles         -- refers to ---+
   - name: workflowtilesFLP                                   |
     type: com.sap.portal.content                             |
     path: workflowtilesFLP                                   |
@@ -75,7 +75,7 @@ modules:
     requires:                                                |
       - name: portal_resources_workflowtiles                 |
       - name: uaa_workflowtiles                              |
-      - name: workflow_workflowtiles              -----------+
+      - name: workflow_workflowtiles         -- refers to ---+
 resources:                                                   |
   - name: workflowtiles_html5_repo_runtime                   |
     parameters:                                              |
@@ -93,7 +93,7 @@ resources:                                                   |
       service-plan: application                              |
       service: xsuaa                                         |
     type: org.cloudfoundry.managed-service                   |
-  - name: workflow_workflowtiles                 <-----------+
+  - name: workflow_workflowtiles             <---------------+
     parameters:
       service-plan: lite
       service: workflow
@@ -102,7 +102,7 @@ resources:                                                   |
 
 The first two references are in the modules' `requires` sections, referring to the third reference, which is the name of the item in the `resources` section.
 
-As you've already created an instance of the Workflow service, with the name "workflow", you must modify the references.
+As you've already created an instance of the Workflow service in the previous exercise, with the name "workflow", you must modify the references.
 
 :point_right: First, change each of the three occurrences of `workflow_workflowtiles` to `workflow`.
 
@@ -129,14 +129,14 @@ It's worth taking a few moments to [stare](https://langram.org/2017/02/19/the-be
 
 The `workflowtilesApprouter` directory contains definitions which will bring about an application in your CF space that allows you to reach the FLP site with the Workflow related tiles. Notice the reference to `/cp.portal` as the starting resource in the `xs-app.json` configuration file.
 
-The `workflowtilesFLP` directory is a Node.js app that will cause a deployment of artifacts to the portal FLP site. The `package.json` file describes the dependency on a portal "deployer" service that is invoked, and the `portal-site/` directory, in particular via the `CommonDataModel.json` file, contains details of what those artifacts are. Indeed, the SAP Web IDE has a built-in "Launchpad Editor" that will be invoked when you select the file for editing:
+The `workflowtilesFLP` directory is a Node.js app that will cause a deployment of artifacts to the portal FLP site. The `package.json` file describes the dependency on a portal "deployer" service that is invoked. The `portal-site/` directory, in particular via the `CommonDataModel.json` file, contains details of what those artifacts are. Indeed, the SAP Web IDE has a built-in "Launchpad Editor" that will be invoked when you select the file for editing:
 
 ![Launchpad Editor](launchpadeditor.png)
 
 
 ### 4. Build the MTA archive ready for deployment
 
-While the project contents are interesting academically, they aren't going to do you much good sitting there in the IDE. So now it's time to compile them into an archive which can be deployed to your CF space. For this, you will invoke a "build" command.
+While the project contents are fascinating, they aren't going to do you much good just sitting there in the IDE. So now it's time to compile them into an archive which can be deployed to your CF space. For this, you will invoke a "build" command.
 
 > The previous incarnation of the software that performed the build was a Java-based program, which is now deprecated, superseded by a Node.js based alternative called [mbt](https://www.npmjs.com/package/mbt) - the Multi-Target Application Build Tool. Both tools are still available from the context menu in the SAP Web IDE; the deprecated tool is marked as such and will disappear in time.
 
@@ -163,10 +163,11 @@ At this stage you're ready to deploy the project contents, in the form of the ar
 After a few minutes the deployment will complete, and you should see a log message in the console like this, towards the end:
 
 ```
-Application "workflowtilesApprouter" started and available at "p2001351149trial-dev-workflowtilesapprouter.cfapps.eu10.hana.ondemand.com"
+Application "workflowtilesApprouter" started
+and available at "p2001351149trial-dev-workflowtilesapprouter.cfapps.eu10.hana.ondemand.com"
 ```
 
-This is the URL of the `workflowApprouter` module that has been deployed, and will be specific to your SAP Cloud Platform trial user ID. You can use this URL to get to the FLP site, but instead, let's take another route.
+This is the URL of the `workflowApprouter` module that has been deployed, and will be specific to your SAP Cloud Platform trial user ID. You can use this URL to get to the FLP site, but instead, let's take another, slightly harder but more interesting route.
 
 
 ### 6. Find the FLP site URL and get to the Workflow tiles
@@ -183,7 +184,7 @@ This reflects the applications and service instances that now exist due to the d
 
 > The `workflowtilesFLP` application will most likely be in the "Stopped" state, reflecting the completion of the "deployer" service execution.
 
-:point_right: Now select the "Service Instances" menu item, whereupon you will be shown not only the `workflow` service instance that you created explicitly, in the previous exercise, but also instances of the `portal`, `xsuaa` and `html5-apps-repo` services. Notice how there are entries in the "Referencing Applications" column, reflecting the links between the modules and the resources described in the `mta.yaml` file:
+:point_right: Now select the "Service Instances" menu item, whereupon you will be shown not only the `workflow` service instance that you created explicitly in the previous exercise, but also instances of the `portal`, `xsuaa` and `html5-apps-repo` services. Notice how there are entries in the "Referencing Applications" column, reflecting the links between the modules (applications) and the resources (service instances) described in the `mta.yaml` file:
 
 ![service instances](serviceinstances.png)
 
