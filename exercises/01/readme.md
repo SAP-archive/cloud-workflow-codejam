@@ -39,6 +39,8 @@ Note the "Environment" shown in the subaccount detail shows "Cloud Foundry".
 
 ![subaccount overview](subaccountoverview.png)
 
+:point_right: We'll be coming back to this page a number of times over the course of this CodeJam, so it's a good idea to give this page a name we can refer to, and also to bookmark it. Let's call it "CF Trial Subaccount Home". Bookmark it now, with this name.
+
 :point_right: In the menu on the left hand side, select "Spaces" to see the list of spaces in the CF organization - this should show your "dev" space as a tile, including the quota assigned to it and how much of that quota has been used. A newly provisioned CF organization and space should have adequate resources available for what we want to achieve in this CodeJam today:
 
 ![space detail](spacedetail.png)
@@ -49,14 +51,16 @@ While you're looking at the list of spaces here, notice the menu item "Security"
 
 This trail leads you to the CF specific view of your subaccount.
 
-> It's a good idea to bookmark this page so you can get back to it easily.
-
 
 ### 2. Set up a Workflow service instance in your CF space
 
 At this point you're ready to create an instance of the Workflow service.
 
-:point_right: Select your "dev" (or equivalent) space from the "Spaces" page shown in the previous screenshot, to bring yourself to the level of that space, where you can deploy applications and create and manage instances of services, amongst other things. Expand the "Services" menu item on the left and select the "Service Marketplace" to see the services available to you. You should see an entry for each of the services listed at the start of this exercise:
+:point_right: Select your "dev" (or equivalent) space from the "Spaces" page shown in the previous screenshot, to bring yourself to the level of that space, where you can deploy applications and create and manage instances of services, amongst other things.
+
+:point_right: This is also a place we'll be coming back to over the course of this CodeJam, so let's also give this page a name and bookmark it. Let's call this page "CF Dev Space Home". Bookmark this one too, with this name.
+
+Expand the "Services" menu item on the left and select the "Service Marketplace" to see the services available to you. You should see an entry for each of the services listed at the start of this exercise:
 
 ![service marketplace](servicemarketplace.png)
 

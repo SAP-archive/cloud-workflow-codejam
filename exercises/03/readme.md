@@ -135,7 +135,7 @@ Next, you're asked to specify an initial subaccount that you want the SAP Cloud 
 
 - "Region": select the entry that reflects the Cloud Foundry API endpoint URL that is related to the organization connected to your trial subaccount. In other words, you can search by entering `cf.eu10` in the selection search box to find and select "Europe (Frankfurt) - AWS" which corresponds to `cf.eu10.hana.ondemand.com`
 
-- "Subaccount": this should be the ID of your trial subaccount, as shown in the screenshot
+- "Subaccount": this should be the ID of your trial subaccount, from your "CF Trial Subaccount Home" page, as shown in this screenshot
 
   ![subaccount ID](subaccountid.png)
 
@@ -201,7 +201,7 @@ This is the sort of thing that you should see when you've completed this step:
 
 Now the connection is established, you can check it in your SAP Cloud Platform trial subaccount.
 
-:point_right: Back in the "Neo Trial" section of the [SAP Cloud Platform Cockpit](https://account.hanatrial.ondemand.com/cockpit/), select the "Connectivity" item in the navigation menu, and within that, choose the "Cloud Connectors" item. You should see your SAP Cloud Connector connection information, plus the "virtuales5" host you exposed. It should look something like this:
+:point_right: Back on your "CF Trial Subaccount Home" page in the SAP Cloud Platform Cockpit, select the "Connectivity" item in the navigation menu, and within that, choose the "Cloud Connectors" item. You should see your SAP Cloud Connector connection information, plus the "virtuales5" host you exposed. It should look something like this:
 
 ![connection established](connectionestablished.png)
 

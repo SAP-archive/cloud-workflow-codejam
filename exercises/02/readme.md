@@ -180,7 +180,7 @@ In the final step in this exercise, you should get to the Workflow tiles in the 
 
 This reflects the applications and service instances that now exist due to the deployment.
 
-:point_right: Select the "dev" space and you should be brought initially to the list of applications. There you should see the `workflowtilesApprouter` and `workflowtilesFLP` applications you saw referenced in the `mta.yaml` file earlier.
+:point_right: Select the "dev" space and you should be brought initially to the list of applications (your "CF Dev Space Home"). There you should see the `workflowtilesApprouter` and `workflowtilesFLP` applications you saw referenced in the `mta.yaml` file earlier.
 
 > The `workflowtilesFLP` application will most likely be in the "Stopped" state, reflecting the completion of the "deployer" service execution.
 
