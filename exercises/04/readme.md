@@ -95,7 +95,7 @@ This simple app is basically the SAP [application router](https://blogs.sap.com/
 | xs-app.json   | The approuter configuration, in the form of a single route that uses the `shopinfo` destination |
 | .npmrc        | Some local Node.js package manager (npm) configuration to define which registry to use for `@sap`-namespaced packages |
 
-The three files `package.json`, `xs-app.json` and `.npmrc` have been bundled together into the archive file `app.zip` (also in the same `dest-test-app` directory). There's also an `xs-security.json` file which is a descriptor file for the `xsuaa` service upon which the app relies.
+The three files `package.json`, `xs-app.json` and `.npmrc` have been bundled together into the archive file `app.zip` (also in the same `dest-test-app` directory). There's also an `xs-security.json` file which describes how the `xsuaa` service should be configured, a service upon which the app relies.
 
 :point_right: Download the [`app.zip`](dest-test-app/app.zip) and [`manifest.yml`](dest-test-app/manifest.yml) files. Download the `xsuaa` service parameter file [`xs-security.json`](dest-test-app/xs-security.json) file too.
 
