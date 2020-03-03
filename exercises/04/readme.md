@@ -97,7 +97,7 @@ This simple app is basically the SAP [application router](https://blogs.sap.com/
 
 The three files `package.json`, `xs-app.json` and `.npmrc` have been bundled together into the archive file `app.zip` (also in the same `dest-test-app` directory). There's also an `xs-security.json` file which is a descriptor file for the `xsuaa` service upon which the app relies.
 
-:point_right: Download the `[app.zip](dest-test-app/app.zip)` and `[manifest.yml](dest-test-app/manifest.yml)` files. Download the `xsuaa` service parameter file `[xs-security.json](dest-test-app/xs-security.json)` file too.
+:point_right: Download the [`app.zip`](dest-test-app/app.zip) and [`manifest.yml`](dest-test-app/manifest.yml) files. Download the `xsuaa` service parameter file [`xs-security.json`](dest-test-app/xs-security.json) file too.
 
 In fact, the successful operation of the app relies on not one but three services, which you'll set up manually first, before deploying the app:
 
@@ -118,7 +118,7 @@ In fact, the successful operation of the app relies on not one but three service
 | Assign Application  | (none) | (none) | (none) |
 | Confirm             | Specify `codejam-xsuaa` as the instance name | Specify `codejam-connectivity` as the instance name | Specify `codejam-destination` as the instance name |
 
-> It's important that you use the instance names specified here, as they are referenced by name in the app's `[manifest.yml](dest-test-app/manifest.yml)` file.
+> It's important that you use the instance names specified here, as they are referenced by name in the app's [`manifest.yml`](dest-test-app/manifest.yml) file.
 
 After doing this, you should have three service instances alongside your already existing workflow service instance; checking the "Service Instances" in your "CF Dev Space Home", you should see something like this:
 
