@@ -135,7 +135,7 @@ In a few moments, your app should be shown in the list as in the green "Started"
 
 ![app route with random URL](approuteurl.png)
 
-After authenticating with your trial user email address and password, you'll be presented with the resource you saw at the start of this exercise. But this time, you're accessing it through the SAP Cloud Platform, via the Connectivity service and a destination definition, instead of directly. Moreover, if you've set up the Cloud Connector, this access is going through that too. Phew!
+After authenticating with your trial user email address and password, you'll be presented with the resource you saw at the start of this exercise. But this time, you're accessing it through the SAP Cloud Platform, via the Connectivity service and a destination definition, instead of directly. Moreover, if you've set up the Cloud Connector, this access is going through that too. Phewf!
 
 
 ### 4. Explore the Products entityset
