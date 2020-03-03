@@ -22,6 +22,8 @@ The data source is an OData service in the ES5 system, a system to which you sho
 
 :point_right: Open up the [EPM_REF_APPS_SHOP_SRV](https://sapes5.sapdevcenter.com/sap/opu/odata/sap/EPM_REF_APPS_SHOP_SRV/?sap-client=002) OData service, taking care to specify client 002 in the URL (following the link here will do that for you).
 
+> If you find that you've forgotten your credentials for the ES5 system, you can visit the [ES5 account administration](https://register.sapdevcenter.com/SUPSignForms/?server=sapes5) page to get your password reset.
+
 You should see some XML returned, that looks similar to this:
 
 ![OData service document for EPM_REF_APPS_SHOP_SRV](servicedocument.png)
@@ -32,8 +34,6 @@ You should see some XML returned, that looks similar to this:
 :point_right: Go to your "CF Trial Subaccount Home" page, and select the "Destinations" menu item within the "Connectivity" item.
 
 :point_right: Select the "New Destination" option, and in the configuration specify values for the appropriate parameters. Some values will depend on whether you have successfully completed the previous exercise and set up the SAP Cloud Connector or not, so the entire value set is presented twice, covering both scenarios. Use the values for your scenario.
-
-> If you find that you've forgotten your credentials for the ES5 system, you can visit the [ES5 account administration](https://register.sapdevcenter.com/SUPSignForms/?server=sapes5) page to get your password reset.
 
 **With SAP Cloud Connector**
 
