@@ -116,7 +116,7 @@ In fact, the successful operation of the app relies on not one but three service
 | Choose Service Plan | Plan: `application` | Plan `lite` | Plan `lite` |
 | Specify Parameters  | Upload the `xs-security.json` file via the "Browse" button | (none) | (none) |
 | Assign Application  | (none) | (none) | (none) |
-| Confirm             | Specify `codejam-xsuaa` as the instance name | Specify `codejam-connectivity` as the instance name | Specify `codejam-destination` as the instance name |
+| Confirm             | Instance Name: `codejam-xsuaa` | Instance Name: `codejam-connectivity` | Instance Name: `codejam-destination` |
 
 > It's important that you use the instance names specified here, as they are referenced by name in the app's [`manifest.yml`](dest-test-app/manifest.yml) file.
 
