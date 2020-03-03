@@ -14,7 +14,20 @@ _Note: If you were unable to install Docker (as described in this CodeJam's [pre
 
 After completing these steps you'll have created a destination pointing to a specific resource in the ES5 system, and tested it out with a very simple app.
 
-### 1. Create a new destination definition
+### 1. Check the data source
+
+Before creating the destination, which is effectively a pointer to a data source, it's worth checking that data source manually and directly. First, so you can see for yourself what you're aiming to get to from within the SAP Cloud Platform, and second, so you know what you're looking for when you access that data source indirectly (through the destination).
+
+The data source is an OData service in the ES5 system, a system to which you should already have access according to the [services section of the prerequisites for this CodeJam](https://github.com/SAP-samples/cloud-workflow-codejam/blob/master/prerequisites.md#services).
+
+:point_right: Open up the [EPM_REF_APPS_SHOP_SRV](https://sapes5.sapdevcenter.com/sap/opu/odata/sap/EPM_REF_APPS_SHOP_SRV/?sap-client=002) OData service, taking care to specify client 002 in the URL (following the link here will do that for you).
+
+You should see some XML returned, that looks similar to this:
+
+![OData service document for EPM_REF_APPS_SHOP_SRV](servicedocument.png)
+
+
+### 2. Create a new destination definition
 
 :point_right: Go to your "CF Trial Subaccount Home" page, and select the "Destinations" menu item within the "Connectivity" item.
 
@@ -144,6 +157,9 @@ You've now created a destination for use with the Connectivity service in the SA
 You're now all set to be able to successfully consume the OData service at the endpoint you've defined in the destination from other services, in particular, the Workflow service.
 
 ## Questions
+
+1. When you went to look at the OData service EPM_REF_APPS_SHOP_SRV for the first time at the start of this exercise, what was the resource that was returned?
+<!-- the OData's service document -->
 
 1. What do you think the "Location ID" property is used for? How might we use it here, if we wanted to specify a value?
 
