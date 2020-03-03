@@ -79,53 +79,64 @@ _Note: Remember, we're only "pretending" that the ES5 system is on-prem; it is, 
 | -------------          | ----------------------- |
 | sap-client             | 002                     |
 
-### 2. Create and deploy a simple test app
 
-It is worth testing the new destination with a small bit of configuration that is normally used to define remote sources that are to be accessed by HTML5 apps. You will do that in this step, by creating the simplest app definition using the SAP Web IDE Full-Stack, and deploying it to the SAP Cloud Platform, and then testing the destination via that configuration.
+### 3. Deploy a simple app to test the destination connection
 
-:point_right: Go to the SAP Web IDE Full-Stack. If you don't have the URL bookmarked, go via the Services navigation menu item in the SAP Cloud Platform Cockpit, select the SAP Web IDE Full-Stack service, and use the "Go to Service" link.
+At this stage you have the destination definition set up. But will everything work? It's worth testing that new destination with a small app that just routes incoming requests via that destination to the data source (the OData service in ES5) using the Connectivity service.
 
-:point_right: Once in the SAP Web IDE Full-Stack, go to the Development perspective (via menu option Tools -> Development). There, use the context menu (i.e. right-click) on the "Workspace" folder to create a new folder called "destinationtest":
+You will do that in this step, by deploying the simplest app definition (and its corresponding manifest file), and then testing the destination via that app's routing. While you would normally deploy applications from your editor or IDE, you can actually deploy an application archive, along with its corresponding descriptor file (the "manifest") manually from within the SAP Cloud Platform Cockpit.
 
-![creating a new folder](newfolder.png)
+This simple app is basically the SAP [application router](https://blogs.sap.com/2019/06/13/sap-cloud-platform-backend-service-tutorial-24-understanding-app-router/) with configuration that tells it to route incoming requests to a target that's exposed via the destination that has been setup. For your reference, the entirety of this app and configuration is in the [dest-test-app/](dest-test-app/) directory, as follows:
 
-:point_right: Take the content of the [neo-app.json](neo-app.json) file from this repository (save the "Raw" version) and upload it, with the same name, to this new "destinationtest" folder, using the context menu "Import -> File or Project", so that you end up with something that looks like this:
+| File          | Description               |
+| ------------- | ------------------------- |
+| manifest.yml  | the descriptor file describing how the application is to be deployed, and upon which services it relies |
+| package.json  | the Node.js package description for the app, describing essentially what the app relies upon (the `@sap/approuter` package) and how to start it up |
+| xs-app.json   | The approuter configuration, in the form of a single route that uses the `shopinfo` destination |
+| .npmrc        | The Node.js package manager (npm) configuration to define which registry to use for `@sap`-namespaced packages |
 
-![neo-app.json in the new folder](neoapp.png)
+The three files `package.json`, `xs-app.json` and `.npmrc` have been bundled together into the archive file `app.zip` (also in the same `dest-test-app` directory). There's also an `xs-security.json` file which is a descriptor file for the `xsuaa` service upon which the app relies.
 
-Make sure the name of this file is `neo-app.json`.
+:point_right: Download the `[app.zip](dest-test-app/app.zip)` and `[manifest.yml](dest-test-app/manifest.yml)` files. Download the `xsuaa` service parameter file `[xs-security.json](dest-test-app/xs-security.json)` file too.
 
-:point_right: Now deploy this "app" (there's nothing there except for this routing information, but it suffices for what we need) to SAP Cloud Platform, by using the context menu path "Deploy -> Deploy to SAP Cloud Platform" on the "destinationtest" folder. In the dialog that appears, leave everything as it is, and select the "Deploy" button:
+In fact, the successful operation of the app relies on not one but three services, which you'll set up manually first, before deploying the app:
 
-![deployment dialog](deploymentdialog.png)
+- Authorization & Trust Management (`xsuaa`)
+- Connectivity (`connectivity`)
+- Destination (`destination`)
 
-You should just select "Close" in the subsequent "Successfully Deployed" dialog as there's no requirement to register this "app" to any SAP Fiori launchpad.
+:point_right: Go to your "CF Dev Space Home" and select the "Service Marketplace" menu item. From here you'll be setting up instances of these three services, using the same procedure each time:
 
-### 3. Use the app route info to test the destination
+1. Select the service from the Service Marketplace
+1. From the service's Overview page that appears, select the "Instances" menu item
+1. Use the "New Instance" button to create a new instance, and specify details for the steps in the resulting dialog each time, according to the following table
 
-You should be able to find the app via the SAP Cloud Platform Cockpit, in the "Applications -> HTML5 Applications" navigation menu item:
+|            | Authorization & Trust Management | Connectivity | Destination |
+| ---------- | -------------------------------- | ------------ | ----------- |
+| Choose Service Plan | Plan: `application` | Plan `lite` | Plan `lite` |
+| Specify Parameters  | Upload the `xs-security.json` file via the "Browse" button | (none) | (none) |
+| Assign Application  | (none) | (none) | (none) |
+| Confirm             | Specify `codejam-xsuaa` as the instance name | Specify `codejam-connectivity` as the instance name | Specify `codejam-destination` as the instance name |
 
-![HTML5 application entry](appentry.png)
+> It's important that you use the instance names specified here, as they are referenced by name in the app's `[manifest.yml](dest-test-app/manifest.yml)` file.
 
-:point_right: Select the app's link ("destinationtest") to see an overview of the app's details. You should see that it's started, and the "Required Destinations" have been successfully mapped.
+After doing this, you should have three service instances alongside your already existing workflow service instance; checking the "Service Instances" in your "CF Dev Space Home", you should see something like this:
 
-:point_right: In the "Active Version" box, there will be a hyperlink to the app itself, that looks something like this:
+![service instances](serviceinstances.png)
 
-```
-https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com
-```
 
-:point_right: Select this hyperlink; you should be presented with an "HTTP Status 404 - Not Found" error, as there's no default document at the root of the app. But you can still use the route mappings in the app's `neo-app.json` file - simply append `shopinfo` to the URL (first removing the `?hc_reset` query parameter) and you should be presented with some XML.
+Now the service instances are in place, it's time to deploy the app itself.
 
-The URL should look like this:
+Still in your "CF Dev Space Home", select the "Applications" menu item and use the "Deploy Application" button. For the "File Location", browse to and select the `app.zip` archive that you previously downloaded. Ensure that the "Use Manifest" checkbox is selected, then browse to and select the `manifest.yml` file that you also previously downloaded for the "Manifest Location". Then use the "Deploy" button.
 
-```
-https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopinfo
-```
+In a few moments, your app should be shown in the list as in the green "Started" state.
 
-That XML is the service document of the shop info OData service, coming all the way from the ES5 system, through the SAP Cloud Connector (if you've installed it and set it up), via the Connectivity service to your browser.
+:point_right: Select its name ("codejam-dest-test") and select the URL in the "Application Routes" section of the app's "Overview" page; the URL will contain a random string in the first part, to ensure that each of your apps deployed have unique hostnames:
 
-Great!
+![app route with random URL](approuteurl.png)
+
+After authenticating with your trial user email address and password, you'll be presented with the resource you saw at the start of this exercise. But this time, you're accessing it through the SAP Cloud Platform, via the Connectivity service and a destination definition, instead of directly. Moreover, if you've set up the Cloud Connector, this access is going through that too. Phew!
+
 
 ### 4. Explore the Products entityset
 
@@ -134,7 +145,7 @@ You'll be using data from the Products entityset in the OData service you've jus
 :point_right: Append `Products` to the end of the existing URL, so it looks like this:
 
 ```
-https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopinfo/Products
+https://codejam-dest-test-<randomstring>.cfapps.eu10.hana.ondemand.com/Products
 ```
 
 :point_right: Explore the data that is returned - you should see a list of products, with the sort of properties you'd expect from a product database, such as an ID, name, description, information about stock quantity, and so on.
@@ -142,7 +153,7 @@ https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopi
 If you prefer looking at JSON rather than XML, append the query parameter `$format=json` to the URL, so that it looks like this:
 
 ```
-https://destinationtest-<subaccountname>.dispatcher.hanatrial.ondemand.com/shopinfo/Products?$format=json
+https://codejam-dest-test-<randomstring>.cfapps.eu10.hana.ondemand.com/Products?$format=json
 ```
 
 _Note: It's at this point you might want to take advantage of the [recommendations](../../prerequisites.md#recommendations) to install formatters for JSON and XML in Chrome._
@@ -152,7 +163,7 @@ Notice that there are products with IDs such as "HT-1001" and "HT-1002" represen
 
 ## Summary
 
-You've now created a destination for use with the Connectivity service in the SAP Cloud Platform, and have successfully tested it, surfacing information from the remote ES5 system via a simple route mapping definition as part of a skeleton app. (You won't need this app any more, so you can delete it if you want to).
+You've now created a destination for use with the Connectivity service in the SAP Cloud Platform, and have successfully tested it, surfacing information from the remote ES5 system via a simple route mapping definition as part of an approuter-based app.
 
 You're now all set to be able to successfully consume the OData service at the endpoint you've defined in the destination from other services, in particular, the Workflow service.
 
@@ -161,8 +172,8 @@ You're now all set to be able to successfully consume the OData service at the e
 1. When you went to look at the OData service EPM_REF_APPS_SHOP_SRV for the first time at the start of this exercise, what was the resource that was returned?
 <!-- the OData's service document -->
 
+1. What causes the random section of the URL to be generated?
+<!-- the random-route parameter in the manifest -->
+
 1. What do you think the "Location ID" property is used for? How might we use it here, if we wanted to specify a value?
-
-1. What is going on with the "Required Destinations" mappings in the "destinationtest" app? What do you think it means?
-
-1. Do you know where the app artifacts are actually stored? In other words, to where in the SAP Cloud Platform has, for example, the `neo-app.json` file actually been deployed?
+<!-- for when multiple SCCs are connected to the same subaccount -->
