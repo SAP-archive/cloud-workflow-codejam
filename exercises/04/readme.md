@@ -127,7 +127,7 @@ After doing this, you should have three service instances alongside your already
 
 Now the service instances are in place, it's time to deploy the app itself.
 
-Still in your "CF Dev Space Home", select the "Applications" menu item and use the "Deploy Application" button. For the "File Location", browse to and select the `app.zip` archive that you previously downloaded. Ensure that the "Use Manifest" checkbox is selected, then browse to and select the `manifest.yml` file that you also previously downloaded for the "Manifest Location". Then use the "Deploy" button.
+:point_right: Still in your "CF Dev Space Home", select the "Applications" menu item and use the "Deploy Application" button. For the "File Location", browse to and select the `app.zip` archive that you previously downloaded. Ensure that the "Use Manifest" checkbox is selected, then browse to and select the `manifest.yml` file that you also previously downloaded for the "Manifest Location". Then use the "Deploy" button.
 
 In a few moments, your app should be shown in the list as in the green "Started" state.
 
