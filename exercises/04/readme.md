@@ -93,7 +93,7 @@ This simple app is basically the SAP [application router](https://blogs.sap.com/
 | manifest.yml  | the descriptor file describing how the application is to be deployed, and upon which services it relies |
 | package.json  | the Node.js package description for the app, describing essentially what the app relies upon (the `@sap/approuter` package) and how to start it up |
 | xs-app.json   | The approuter configuration, in the form of a single route that uses the `shopinfo` destination |
-| .npmrc        | The Node.js package manager (npm) configuration to define which registry to use for `@sap`-namespaced packages |
+| .npmrc        | Some local Node.js package manager (npm) configuration to define which registry to use for `@sap`-namespaced packages |
 
 The three files `package.json`, `xs-app.json` and `.npmrc` have been bundled together into the archive file `app.zip` (also in the same `dest-test-app` directory). There's also an `xs-security.json` file which is a descriptor file for the `xsuaa` service upon which the app relies.
 
