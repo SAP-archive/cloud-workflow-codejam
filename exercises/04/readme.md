@@ -82,7 +82,7 @@ _Note: Remember, we're only "pretending" that the ES5 system is on-prem; it is, 
 
 ### 3. Deploy a simple app to test the destination connection
 
-At this stage you have the destination definition set up. But will everything work? It's worth testing that new destination with a small app that just routes incoming requests via that destination to the data source (the OData service in ES5) using the Connectivity service.
+At this stage you have the destination definition set up. But will everything work when everything is wired up, including from the workflow definition you'll define later? It's worth testing that new destination with a small app that just routes incoming requests via that destination to the data source (the OData service in ES5) using the Connectivity service.
 
 You will do that in this step, by deploying the simplest app definition (and its corresponding manifest file), and then testing the destination via that app's routing. While you would normally deploy applications from your editor or IDE, you can actually deploy an application archive, along with its corresponding descriptor file (the "manifest") manually from within the SAP Cloud Platform Cockpit.
 
@@ -93,9 +93,9 @@ This simple app is basically the SAP [application router](https://blogs.sap.com/
 | manifest.yml  | the descriptor file describing how the application is to be deployed, and upon which services it relies |
 | package.json  | the Node.js package description for the app, describing essentially what the app relies upon (the `@sap/approuter` package) and how to start it up |
 | xs-app.json   | The approuter configuration, in the form of a single route that uses the `shopinfo` destination |
-| .npmrc        | The Node.js package manager (npm) configuration to define which registry to use for `@sap`-namespaced packages |
+| .npmrc        | Some local Node.js package manager (npm) configuration to define which registry to use for `@sap`-namespaced packages |
 
-The three files `package.json`, `xs-app.json` and `.npmrc` have been bundled together into the archive file `app.zip` (also in the same `dest-test-app` directory). There's also an `xs-security.json` file which is a descriptor file for the `xsuaa` service upon which the app relies.
+The three files `package.json`, `xs-app.json` and `.npmrc` have been bundled together into the archive file `app.zip` (also in the same `dest-test-app` directory). There's also an `xs-security.json` file which describes how the `xsuaa` service should be configured, a service upon which the app relies.
 
 :point_right: Download the [`app.zip`](dest-test-app/app.zip) and [`manifest.yml`](dest-test-app/manifest.yml) files. Download the `xsuaa` service parameter file [`xs-security.json`](dest-test-app/xs-security.json) file too.
 
@@ -127,7 +127,7 @@ After doing this, you should have three service instances alongside your already
 
 Now the service instances are in place, it's time to deploy the app itself.
 
-Still in your "CF Dev Space Home", select the "Applications" menu item and use the "Deploy Application" button. For the "File Location", browse to and select the `app.zip` archive that you previously downloaded. Ensure that the "Use Manifest" checkbox is selected, then browse to and select the `manifest.yml` file that you also previously downloaded for the "Manifest Location". Then use the "Deploy" button.
+:point_right: Still in your "CF Dev Space Home", select the "Applications" menu item and use the "Deploy Application" button. For the "File Location", browse to and select the `app.zip` archive that you previously downloaded. Ensure that the "Use Manifest" checkbox is selected, then browse to and select the `manifest.yml` file that you also previously downloaded for the "Manifest Location". Then use the "Deploy" button.
 
 In a few moments, your app should be shown in the list as in the green "Started" state.
 
