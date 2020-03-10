@@ -14,6 +14,7 @@ You will also need an editor, or an Interactive Development Environment (IDE) to
 Finally, you'll be playing different roles throughout this CodeJam, using your SAP Cloud Platform trial user. To that end, you'll need the appropriate authorizations:
 
 - Workflow Administrator
+- Workflow Context Viewer
 - Workflow Developer
 - Workflow Initiator
 - Workflow Participant
