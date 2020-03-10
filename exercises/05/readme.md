@@ -33,13 +33,6 @@ After completing these steps you'll understand the general flow of development, 
 | Description            | (leave blank)             |
 | Use HTML Application Repository checkbox | (leave unchecked) |
 
-**Workflow Details**
-
-| Property               | Value                   |
-| -------------          | ----------------------- |
-| Name                   | orderprocess            |
-| Description            | Simple CodeJam workflow |
-
 
 If you expand the resulting project structure you'll see that not much has been generated - merely an `mta.yaml` file that has very little in it right now. Go on, take a look inside the file ... you're curious, right?
 
@@ -92,7 +85,9 @@ resources:
     type: org.cloudfoundry.managed-service
 ```
 
-You can see that there's now a single module defined, with the name `OrderProcess`, which requires a Workflow service resource named `workflow_OrderFlow`, of type `org.cloudfoundry.managed-service`. The name of this resource is generated from the word "workflow" plus the name of the overall project "OrderFlow". But we already have a Workflow service instance called "workflow" so we need to adapt the references here.
+You can see that there's now a single module defined, with the name `OrderProcess`, which requires a Workflow service resource named `workflow_OrderFlow`, of type `org.cloudfoundry.managed-service`. The name of this resource is generated from the word "workflow" plus the name of the overall project "OrderFlow".
+
+But we already have a Workflow service instance called "workflow" so we need to adapt the references here.
 
 :point_right: Change the two references `workflow_OrderFlow` to `workflow`, i.e. both in the "requires" section of the module, and in the "name" section of the resource. Also change the "type" of the resource to `org.cloudfoundry.existing-service`. (You did something very similar to this in [exercise 02](../02#2-modify-the-mtayaml-file-to-reflect-the-existing-workflow-service-instance).)
 
@@ -133,7 +128,7 @@ This should complete in a few moments, and create a new directory `mta_archives/
 
 > You may have to reconfirm your desired Cloud Foundry (CF) endpoint at this stage - make sure you choose the same dev space as before.
 
-This deployment should also complete quite quickly. If you examine the contents of the `mta.yaml` file that you just edited, and also check the Applications and Service Instances sections of your "CF Dev Space Home" in the SAP Cloud Platform Cockpit, you'll see that this was a content deployment, rather than instantiation of any new CF service instances or applications. This makes sense, as it's a deployment of content (the workflow definition) to the Workflow service instance.
+This deployment should also complete quite quickly. If you examine the contents of the `mta.yaml` file that you just edited, and also check the Applications and Service Instances sections of your "CF Dev Space Home" in the SAP Cloud Platform Cockpit, you'll see that this was a content deployment, rather than instantiation of any new CF service instances or applications. This makes sense, as it's a deployment of the workflow definition to the Workflow service instance.
 
 
 ### 3. Examine the workflow definition and create an instance of it
@@ -185,7 +180,7 @@ Examining the completed instance this time, you should see this data in the Work
 
 ## Summary
 
-You've now gone through the process of bringing a workflow definition from your development environment (the SAP Web IDE Full-Stack) to the Workflow service on the SAP Cloud Platform, and using the administration apps to create and examine instances of it. You'll find that the "Monitor Workflows" app is a very useful tool.
+You've now gone through the process of bringing a workflow definition from your development environment (the SAP Web IDE Full-Stack) to the Workflow service on the SAP Cloud Platform CF environment, and using the administration apps to create and examine instances of it. You'll find that the "Monitor Workflows" app is a very useful tool.
 
 ## Questions
 
