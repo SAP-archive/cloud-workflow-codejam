@@ -4,7 +4,7 @@ In this exercise you'll create the simplest workflow definition possible, and de
 
 ## Steps
 
-After completing these steps you'll understand the general flow of development, deployment and usage of workflows on SAP Cloud Platform.
+After completing these steps you'll understand the general flow of development, deployment and usage of workflows on SAP Cloud Platform, specifically in the Cloud Foundry environment.
 
 ### 1. Create a new Workflow project in the SAP Web IDE Full-Stack
 
@@ -14,15 +14,24 @@ After completing these steps you'll understand the general flow of development, 
 
 | Property               | Value                   |
 | -------------          | ----------------------- |
-| Environment filter     | Neo                     |
-| Category filter        | Business Process Management |
-| Template selection     | Workflow Project            |
+| Environment filter     | Cloud Foundry           |
+| Category filter        | All Categories          |
+| Template selection     | Multi-Target Application |
 
 **Basic Information**
 
 | Property               | Value                   |
 | -------------          | ----------------------- |
 | Project Name           | OrderFlow               |
+
+**Template Customization**
+
+| Property               | Value                   |
+| -------------          | ----------------------- |
+| Application ID         | OrderFlow (i.e. leave as-is) |
+| Application Version    | 0.0.1 (i.e. leave as-is) |
+| Description            | (leave blank)             |
+| Use HTML Application Repository checkbox | (leave unchecked) |
 
 **Workflow Details**
 
@@ -31,13 +40,36 @@ After completing these steps you'll understand the general flow of development, 
 | Name                   | orderprocess            |
 | Description            | Simple CodeJam workflow |
 
-_Note: the names of the project, and the workflow definition within it, are deliberately different here, to highlight that they're not the same thing - you can have multiple workflow definitions in a single workflow project._
+
+If you expand the resulting project structure you'll see that not much has been generated - merely an `mta.yaml` file that has very little in it right now. Go on, take a look inside the file ... you're curious, right?
+
+> If you have "Show hidden files" turned on (via the "eye" icon) in your SAP Web IDE Development perspective, you'll also see a directory called `.che/` too, but this is related to the IDE itself rather than the workflow project specifically, so you can ignore it.
+
+The idea of a multi-target application is that it is made up from multiple parts - one or more modules, with dependencies on one or more resources. This workflow project will be no different.
+
+:point_right: Add a module now, a workflow module specifically, by using the context menu on the `OrderFlow` project name and choosing "New -> Workflow Module". Use the following selections:
+
+**Basic Information**
+
+| Property               | Value                   |
+| -------------          | ----------------------- |
+| Module Name            | OrderProcess            |
+
+**Workflow Details**
+
+| Property               | Value                   |
+| -------------          | ----------------------- |
+| Name                   | orderprocess            |
+| Description            | (leave blank)           |
+
+_Note: the names of the module, and the workflow definition within it, are deliberately different here, to highlight that they're not the same thing - you can have multiple workflow definitions in a single workflow module._
 
 You should end up with a very simple workflow definition, that looks like this:
 
 ![simple workflow definition](simpleworkflowdefinition.png)
 
-Observe that the workflow definition editor is graphical (it's the one you [enabled in Exercise 01](../01#2-find-and-enable-the-sap-web-ide-full-stack-service)), and the file that represents the definition is within a `workflows/` directory within the project.
+Observe that the workflow definition editor is graphical (it's the one you [enabled in Exercise 01](../01#4-set-up-the-sap-web-ide)), and the file that represents the definition is within a `workflows/` directory within the project.
+
 
 ### 2. Deploy the definition to the cloud
 
