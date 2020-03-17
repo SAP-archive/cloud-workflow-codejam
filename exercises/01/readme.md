@@ -72,11 +72,21 @@ Expand the "Services" menu item on the left and select the "Service Marketplace"
 :point_right: Using the "Instances" menu item on the left, create a new instance with the "lite" service plan by using the "New Instance" button and following the dialog flow, paying attention at each of the steps:
 
 - Step "Choose Service Plan": make sure you select the "lite" plan
-- Step "Specify Parameters (Optional)": leave everything as-is
+- Step "Specify Parameters (Optional)": specify the following in the text area:
+  ```json
+  {
+    "authorities": [
+      "WORKFLOW_DEFINITION_GET",
+      "WORKFLOW_INSTANCE_START"
+    ]
+  }
+  ```
 - Step "Assign Application (Optional)": leave everything as-is
 - Step "Confirm": specify `workflow` as the instance name, leave everything else as-is
 
 The instance name `workflow` is important as you'll refer to it later.
+
+> The authorities you specified in the "Specify Parameters (Optional)" step will be needed in a [later exercise](../06/), when you come to call the Workflow API.
 
 
 ### 3. Create a role and assign it to yourself
