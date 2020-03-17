@@ -16,7 +16,7 @@ This is the central place for discovery and consumption of APIs - see it as your
 
 The Workflow API is of course documented and available for exploration here in the API Hub.
 
-:point_right: [Search for](https://api.sap.com/search?searchterm=workflow%20API) the Workflow API - you should find a number of results. The one we're interested in for this CodeJam is the [Workflow API for Neo](https://api.sap.com/api/SAP_CP_Workflow/resource). You should see something like this:
+:point_right: [Search for](https://api.sap.com/search?searchterm=workflow API&tab=all) the Workflow API - you should find a number of results. The one we're interested in for this CodeJam is the [Workflow API for Cloud Foundry](https://api.sap.com/api/SAP_CP_Workflow_CF/resource). You should see something like this:
 
 ![Workflow API summary](workflowapisummary.png)
 
@@ -31,7 +31,8 @@ and so on.
 
 For each aspect there are a number of verb/noun combinations, in the form of HTTP methods (representing the verbs) and URL paths (representing the nouns). This verb/noun approach suggests that the Workflow API exhibits some qualities of the Representational State Transfer (REST) architectural style.
 
-:point_right: Explore each of the aspects, in particular "Workflow Instances" and "XSRF Handling". Try to identify which verb/noun combination in the "Workflow Instances" aspect would be appropriate to create a new instance of a workflow definition.
+:point_right: Explore each of the aspects, in particular "Workflow Instances". Try to identify which verb/noun combination in the "Workflow Instances" aspect would be appropriate to create a new instance of a workflow definition.
+
 
 ### 3. Configure an API Environment
 
