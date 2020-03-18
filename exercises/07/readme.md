@@ -2,10 +2,7 @@
 
 In the previous exercise you used the SAP API Business Hub to explore and use the Workflow API. With the confidence gained in those steps, it's now time to make similar calls, to create a new workflow instance, from a 3rd party API client - Postman.
 
-Postman is a very capable HTTP client with many features. In this exercise you'll use some of them:
-
-- Environments & Variables
-- Collections and the Collection Runner
+Postman is a very capable HTTP client with many features. In this exercise you'll use some of them, specifically environments and variables, and make use of the built-in support for OAuth 2.0.
 
 Using these features, you can achieve a semi-automated mechanism for creating new instances of your "orderprocess" workflow definition.
 
@@ -110,51 +107,30 @@ In this step you'll take a final look at the request before submitting it.
 }
 ```
 
-### 6. Run the requests manually
+### 6. Make the request
 
-Now it's time to put the requests to use.
+Now it's finally time to send the request to create a new workflow instance.
 
-:point_right: Before you do, look briefly at the context of your new environment "My CodeJam Environment" using the "eye" button in the top right, and notice that the "workflowapi" variable is set, but there isn't yet any mention of the "xsrftoken" variable:
+:point_right: Send the request with the "Send" button and examine the response.
 
-![environment details](envdetails.png)
-
-:point_right: Now run the "Get CSRF Token" request, using the "Send" button. Once the request completes, it looks as if there's no result. That's just because there's no body in the response, of course. Check in the "Headers" tab of the response, and you should see that a CSRF token has indeed been supplied. Note also that the status code is 200:
-
-![CSRF token returned](csrftokenreturned.png)
-
-:point_right: Take another look at the environment context like you did in the previous step - you should now see the "xsrftoken" variable, with the value set to the token just returned.
-
-:point_right: Now select the second request "Create new workflow instance". Before running it, take a peek at the "Headers" tab in the request detail, and confirm that the `{{xsrftoken}}` variable is indeed orange now rather than red, and that hovering over it shows the token value.
-
-:point_right: Run the second request with the "Send" button and examine the response. This time of course you should see something in the response body - similar to what you saw in the response body in Exercise 06 when you created a new workflow instance. Note too that the HTTP status code is, as expected, 201.
+If all goes well, you should see something in the response body - similar to what you saw in the response body in the previous exercise when you created a new workflow instance. Note too that the HTTP status code is, as expected, 201.
 
 ![instance created](instancecreated.png)
 
-Great!
+Great! This is only a very short step, but an important one - it shows that you've set everything up correctly to authenticate with OAuth "Client Credentials" flow.
 
-### 7. Run the request in a semi-automated manner
 
-You can also use a Postman feature to run requests sequentially in a semi-automated manner, using the Collection Runner.
+### 8. Check the new instance in the Fiori launchpad
 
-:point_right: Use the small arrow to the right of the collection name to reveal a blue "Run" button, and press it. A new Postman window opens up revealing the Collection Runner:
+As a final step in this exercise, you should check the newly created instance in your Fiori launchpad.
 
-![collection runner](collectionrunner.png)
-
-:point_right: Use the big blue button "Run Workflow CodeJam" at the bottom to run the requests in the collection. Examine the results that show that both requests have completed, the first with HTTP status code 200 and the second with HTTP status code 201:
-
-![collection run complete](runcomplete.png)
-
-### 8. Check the new instances in the Fiori launchpad
-
-As a final step in this exercise, you should check the newly created instances in your Fiori launchpad.
-
-:point_right: Open up your Fiori launchpad and select the "Monitor Workflows - Workflow Instances" app. Make sure that the filter in the master list includes the status "Completed". You should see the instances you have created via Postman - you can identify them by the fact that product with ID "HT-1003" (rather than "HT-1002" or "HT-1001") has been requested.
+:point_right: Open up your Fiori launchpad and select the "Monitor Workflows - Workflow Instances" app. Make sure that the filter in the master list includes the status "Completed". You should see the instance you have created via Postman - you can identify it by the fact that product with ID "HT-1003" (rather than "HT-1002" or "HT-1001") has been requested.
 
 Nice work!
 
 ## Summary
 
-You've now got a Postman environment set up, with a simple collection of two requests that work together, and that can be conveniently run together to create workflow instances.
+You've now got a Postman environment set up, with a simple request that can be conveniently run to create new workflow instances. Moreover, you have a better feel for how these requests are authenticated.
 
 ## Questions
 
@@ -162,6 +138,4 @@ You've now got a Postman environment set up, with a simple collection of two req
 
 1. What other HTTP client tools might you have in mind to use instead of (or in addition to) Postman?
 
-1. Do you really need to fetch a CSRF token each and every time?
-
-1. How do you think the authentication details at the collection level flow down to be used in the individual requests?
+1. How often do you think you'll need to fetch a new access token?
