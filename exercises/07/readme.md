@@ -4,18 +4,19 @@ In the previous exercise you used the SAP API Business Hub to explore and use th
 
 Postman is a very capable HTTP client with many features. In this exercise you'll use some of them:
 
+- Environments & Variables
 - Collections and the Collection Runner
-- Environments & variables
 
 Using these features, you can achieve a semi-automated mechanism for creating new instances of your "orderprocess" workflow definition.
 
 ## Steps
 
-After completing these steps you'll know how to instantiate new workflows from Postman (and, by inference, from other API clients and tools).
+After completing these steps you'll know how to instantiate new workflows from Postman (and, by inference, from other API clients and tools). You'll also have a closer feel to what's going on behind the scenes in the SAP API Business Hub with respect to authentication.
+
 
 ### 1. Open Postman and import the Workflow CodeJam collection
 
-The two API calls you made in a previous exercise have been encapsulated into a small Postman collection that you can import and use.
+The API call you made in a previous exercise has been encapsulated into a small Postman collection that you can import and use.
 
 :point_right: Launch Postman and get ready to import a collection using the "Import From Link" feature in this dialog box that you get when you select the "Import" button at the top left of the Postman UI:
 
@@ -29,32 +30,33 @@ Postman offers the facility to manage collections of settings that pertain to di
 
 Within environments you can use variables, and the environment-specific values for these are substituted at runtime.
 
-:point_right: Examine how these variables are used, by looking at the first of the two requests in the collection you imported in the previous step. Expand the hierarchy of the "Workflow CodeJam" collection and select the first request "Get CSRF Token".
+Environments are also separate by design from requests and collections, so that you can share the latter without compromising security by sharing values in the former.
+
+:point_right: Examine how these variables are used, by expanding the hierarchy of the "Workflow CodeJam" collection to reveal and select the POST request "Create new workflow instance", and looking at how the URL of that request is defined.
 
 You should see something like this:
 
-![first request detail](firstrequest.png)
+![use of variable in URL](varinrequest.png)
 
-:point_right: Notice the use of the `{{workflowapi}}` variable in the URL, and the fact also that currently, indicated in the top right of the Postman UI, there is "No Environment" set.
+:point_right: Notice the use of the `{{endpoints.workflow_rest_api}}` variable in the URL, and the fact also that currently, indicated in the top right of the Postman UI, there is "No Environment" set.
 
-:point_right: Use the "Manage Environments" button (the cog) in the top right to open up a dialog where you can add an environment, and then use the "Add" button and specify the following values in the "Add Environment" form that follows:
+So at this point the request in its skeleton form is ready but you need to supply a value for the root of the URL, and also Postman needs to know how -- or more specifically with what credentials -- to request an OAuth token. It's a good idea to configure this in an environment, which is sort of the equivalent of the API Hub environment you configured in the previous exercise.
 
-| Property               | Value                   |
-| -------------          | ----------------------- |
-| Environment Name       | My CodeJam Environment  |
-| Variable               | `workflowapi`           |
-| Initial Value          | \<the Workflow service API root\> |
-| Current Value          | (_this will take the value of what you specify for the "Initial Value" property_) |
+:point_right: First, use the "Manage Environments" button (the cog) in the top right to open up a dialog where you can add an environment. In the form that appears, specify "My CodeJam Environment" for the name.
 
-The "Workflow service API root" is the one that you looked at in Exercise 06 when you [configured an API environment](../06/readme.md#3-configure-an-api-environment), with both the "provideraccountname" and the "consumeraccountname" substituted with real values. For example, this would be the following for the trial account "p2001351149trial":
+:point_right: Next, add each of the four properties from the service key data we came across in the previous exercise, as variables in this new environment:
 
-```
-https://bpmworkflowruntimewfs-p2001351149trial.hanatrial.ondemand.com/workflow-service/rest
-```
+- `endpoints.workflow_rest_url`
+- `uaa.clientid`
+- `uaa.clientsecret`
+- `uaa.url`
 
-_Note: Remember to use your own trial account name here!_
+You should end up with something like this:
 
-:point_right: Ensure that the "Current Value" property also reflects what you entered into the "Initial Value" property and then complete the setup, ensuring everything is saved.
+![environment variables and values](envvarvals.png)
+
+> The property names in Postmane environments are arbitrary, but it makes sense to use names that mean something to us.
+
 
 ### 3. Select the new environment for use
 
@@ -154,6 +156,8 @@ Nice work!
 You've now got a Postman environment set up, with a simple collection of two requests that work together, and that can be conveniently run together to create workflow instances.
 
 ## Questions
+
+1. What's the difference between the "Initial Value" and "Current Value" columns in environment variable definitions?
 
 1. What other HTTP client tools might you have in mind to use instead of (or in addition to) Postman?
 
