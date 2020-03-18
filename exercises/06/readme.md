@@ -114,22 +114,6 @@ An API call is made for you, with your credentials, in the context of the enviro
 ]
 ```
 
-**Response headers**
-```
-X-Frame-Options: DENY
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload;
-Cache-Control: no-cache,  no-store,  max-age=0,  must-revalidate
-Server: SAP
-X-Content-Type-Options: nosniff, nosniff
-X-Xss-Protection: 1; mode=block
-Vary: Accept-Encoding
-Expires: 0
-Pragma: no-cache
-Date: Wed,  18 Mar 2020 08:50:32 GMT
-X-Vcap-Request-Id: 5157bffb-9853-4167-72be-9600814b7ecb
-Content-Type: application/json
-```
-
 You've just made your first API call - nice work!
 
 
@@ -137,36 +121,7 @@ You've just made your first API call - nice work!
 
 Now that you've tried out a simple API call, it's time to use the API to create a new instance of your `orderprocess` workflow definition.
 
-This time you'll be making two calls - the first to request a CSRF token, and the second to use that token and create an instance of the workflow definition. CSRF stands for [Cross Site Request Forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) and the token system is part of a mechanism designed to reduce such forgery based attacks. Basically, if you want to make an API call that has side effects in the remote system (e.g. the creation of a new workflow instance, in this case), then you will need to make sure that a valid CSRF token is supplied in that call. A valid token can be requested using the URL path that you see in the "XSRF Handling" API aspect.
-
-_Note: The acronyms CSRF and XSRF are used interchangeably._
-
-**Requesting a CSRF token**
-
-:point_right: Select the `GET /v1/xsrf-token` verb/noun combination from the "XSRF Handling" aspect of the API, and use the "Try out" link to be able to execute a call. You should see that the value defaulted into the `X-CSRF-Token` header is "Fetch", which is what we need (i.e. we are asking for a token). Use the "Execute" button to make the call.
-
-The response should also show an HTTP 200 status code, no response body, but in the headers, you should see that a token has been supplied:
-
-```
-X-CSRF-Token: 3E1B5D7DA9ADA90834B22961CA2FB50D
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-Date: Wed,  29 May 2019 08:27:47 GMT
-Content-Length: 0
-Expires: Thu,  01 Jan 1970 00:00:00 GMT
-Server: SAP
-X-Content-Type-Options: nosniff
-Cache-Control: private
-```
-
-:point_right: Make a note of this token (e.g. copy it somewhere) because you will need it in the next call.
-
-**Requesting the creation of a new workflow instance**
-
-Now that you have a valid CSRF token, you can make the call to create a new workflow instance.
-
 :point_right: Select the "Workflow Instances" aspect and thence the `POST /v1/workflow-instances` verb/noun combination. Select the "Try out" link to be able to set up and execute the call.
-
-:point_right: Paste the CSRF token that you received in the previous call into the input box for the "X-CSRF-Token" parameter.
 
 A payload is sent with this call, and you specify it in the "body" parameter here.
 
@@ -194,30 +149,20 @@ You should see a response with an HTTP status code of 201, and a response body &
 
 ```json
 {
-  "id": "a8127e85-81ec-11e9-a9f7-00163e8d2b7b",
+  "id": "1a1de979-68f7-11ea-bd44-eeee0a83b12d",
   "definitionId": "orderprocess",
   "definitionVersion": "1",
   "subject": "orderprocess",
   "status": "RUNNING",
   "businessKey": "",
-  "startedAt": "2019-05-29T08:35:04.679Z",
-  "startedBy": "P2001351149",
+  "startedAt": "2020-03-18T09:01:49.260Z",
+  "startedBy": "sb-clone-b34de1f8-03b2-46bb-bd3d-f00b7d2db0d2!b37882|workflow!b10150",
   "completedAt": null
 }
 ```
 
-**Response headers**
-
-```
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-Date: Wed,  29 May 2019 08:35:08 GMT
-Transfer-Encoding: chunked
-Content-Type: application/json
-Server: SAP
-X-Content-Type-Options: nosniff
-```
-
 Great!
+
 
 ### 6. Check the newly created instance in the Fiori launchpad
 
@@ -235,16 +180,17 @@ Here's an example of what you might see:
 
 ![instance details](instancedetails.png)
 
+
 ## Summary
 
 You've explored the Workflow API in the API Hub and successfully started a workflow instance via that API, supplying data that finds its way into the context of that instance. You've also managed to find evidence of that instance in the administration UI. Nice work!
 
 ## Questions
 
-1. What do the "provideraccountname" and "consumeraccountname" represent? What do you think "wfs" stands for?
-
 1. Why are there square brackets surrounding the response to the `GET /v1/workflow-definitions` API call?
 
 1. In the payload of the `POST` call to `/v1/workflow-instances`, can you explain all aspects of the data contained therein?
 
 1. What does HTTP response code 201 signify and how does it differ from 200?
+
+1. Did you notice anything interesting about the instance created via the API, when compared to the ones you created via the Fiori monitor app?
