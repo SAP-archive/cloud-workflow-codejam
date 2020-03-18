@@ -81,28 +81,22 @@ The Cloud Foundry (CF) Workflow APIs are protected with OAuth 2.0, and the API H
 
 :point_right: Use the "Request Token" button which will make the OAuth 2.0 call to request an access token, which, if all goes well, will be shown to you and subsequently be available via the "MyToken" name you gave it.
 
+> If you're curious to see what actually happened in this request, you can use Postman's console (View -> Show Postman Console) to inspect the HTTP traffic for this access token request call.
+
 Back in the Authorization tab, you can now select the token using the "Available Tokens" selection, so that the "Access Token" parameter is filled in, something like this:
 
 ![access token](accesstoken.png)
 
 
-### 5. Examine the rest of the requests' details
+### 5. Examine the rest of the request's details
 
-In this step you'll take a look at the details of each of the two requests, to understand how they work together.
+In this step you'll take a final look at the request before submitting it.
 
-:point_right: First, in the "GET CSRF Token" request, look at the "Headers" tab. You should see that the header "X-CSRF-Token" is supplied, with the value "Fetch", just like you used in Exercise 06.
+:point_right: While still in the Authorization tab, use the "Preview Request" button to update the request details with the authorization data (you don't have to do this, it will be generated automatically when you send the request, this is just a way of seeing it before the request is submitted).
 
-:point_right: Now, look in the "Tests" tab and you should see some JavaScript that looks like this:
+:point_right: Notice that when you do this, the number of headers shown in the Headers tab goes up by one. Switch to that tab now, and look at the Temporary Headers, where you should see an Authorization header with the access token as the value, preceded with the word "Bearer". This is Postman using the access token (that you retrieved just before) to authenticate the actual API call.
 
-```javascript
-postman.setEnvironmentVariable("xsrftoken", postman.getResponseHeader("X-CSRF-Token"));
-```
-
-Test scripts are run after a request is executed - here, the value of the token received in the response to the request is saved in another environment variable "xsrftoken".
-
-:point_right: Now select the second request "Create new workflow instance", and look in the "Headers" tab. You'll see the "Content-Type" header supplied, but also the "X-CSRF-Token" header where the value is set to `{{xsrftoken}}`. When the request is run, the current value of that variable - set when the "Get CSRF Token" request is executed - will be substituted.
-
-:point_right: Look at the "Body" tab and you should see something that looks familiar - a request body similar to the one you specified in Exercise 06 when you [created a new workflow instance](../06/readme.md#5-create-a-new-workflow-instance-via-the-api):
+:point_right: Now look at the "Body" tab and you should see something that looks familiar - a request body similar to the one you specified in Exercise 06 when you [created a new workflow instance](../06/readme.md#5-create-a-new-workflow-instance-via-the-api):
 
 ```json
 {
