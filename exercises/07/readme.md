@@ -120,7 +120,7 @@ If all goes well, you should see something in the response body - similar to wha
 Great! This is only a very short step, but an important one - it shows that you've set everything up correctly to authenticate with OAuth "Client Credentials" flow.
 
 
-### 8. Check the new instance in the Fiori launchpad
+### 7. Check the new instance in the Fiori launchpad
 
 As a final step in this exercise, you should check the newly created instance in your Fiori launchpad.
 
