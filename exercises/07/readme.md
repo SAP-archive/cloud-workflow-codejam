@@ -83,7 +83,7 @@ The Cloud Foundry (CF) Workflow APIs are protected with OAuth 2.0, and the API H
 
 > If you're curious to see what actually happened in this request, you can use Postman's console (View -> Show Postman Console) to inspect the HTTP traffic for this access token request call.
 
-Back in the Authorization tab, you can now select the token using the "Available Tokens" selection, so that the "Access Token" parameter is filled in, something like this:
+:point_right: Back in the Authorization tab, now select the token using the "Available Tokens" selection, so that the "Access Token" parameter is filled in, something like this:
 
 ![access token](accesstoken.png)
 
