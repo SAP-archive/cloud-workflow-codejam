@@ -8,7 +8,7 @@ After completing these steps you'll have a workflow definition with a service ta
 
 ### 1. Open up the workflow definition in the SAP Web IDE Full-Stack
 
-:point_right: Open up the SAP Web IDE Full-Stack that you enabled and used in [Exercise 05](../05). Once the IDE has started up, open the `orderprocess.workflow` workflow definition that should currently sport only a start event and an end event.
+:point_right: Open up the SAP Web IDE Full-Stack that you enabled in [Exercise 01](../01) and used in [Exercise 05](../05). Once the IDE has started up, open the `orderprocess.workflow` workflow definition that should currently sport only a start event and an end event.
 
 ### 2. Add a Service Task
 
@@ -27,38 +27,35 @@ You may notice a warning triangle decorating the Service Task in your workflow -
 | Property              | Value              |
 | --------------        | ------------------ |
 | Destination           | `shopinfo`         |
-| Choose a Service from | \<leave as "Others"\> |
+| Choose a Service from | (leave as "Others") |
 | Path                  | `Products('${context.request.Id}')?sap-client=002` |
 | HTTP Method           | GET                |
 | Response Variable     | `${context.productInfo}` |
 | Principal Propagation | (leave unchecked)  |
 
-_Note: The "shopinfo" value is the name of the destination you created in [Exercise 04](../04)._
+> The "shopinfo" value is the name of the destination you created in [Exercise 04](../04).
 
-_Note: The "sap-client=002" query parameter is needed here despite the additional property setting in the destination definition as currently the Workflow service does not support that property._
+> The "sap-client=002" query parameter is needed here in the "Path" despite the additional property setting in the destination definition as currently the Workflow service does not support that property.
 
 :point_right: Save the changes.
 
+
 ### 3. Deploy the workflow definition
 
-Now it's time to redeploy to the Workflow service, so that this addition of a Service Task is live.
+Now it's time to redeploy to the Workflow service, so that this addition of a Service Task is live. This is done following the same build-deploy procedure you've used already, in [Exercise 05](../05).
 
-:point_right: Use the context menu on the `orderprocess.workflow` file and select "Deploy -> Deploy to SAP Cloud Platform Workflow". Check in the console to see the detailed message which includes which version the definition now has.
+:point_right: Use the context menu on the "OrderFlow" project and choose "Build -> Build with Cloud MTA Tool (recommended)". Use the console to follow the build progress through to completion.
 
-You should see a message like this (the version number may be different):
+:point_right: Now use the context menu on the updated `OrderFlow_0.0.1.mtar` file within the `mta_archives/` directory of the project, and choose "Deploy -> Deploy to SAP Cloud Platform". You can also follow the progress of this step in the console, and it should complete in a relatively short amount of time.
 
-```
-(Deployment) Deployment for Workflow with name = orderprocess and id = orderprocess is successful.
-Latest Version for the same workflow is = 2
-```
+> If you're curious to see some sort of acknowledgement that something has been updated, you can switch to the "Monitor Workflow - Workflow Definitions" Fiori app on your Fiori launchpad, and check that the version number for your "orderprocess" workflow definition has been incremented.
 
-_Note: To open the console in the SAP Web IDE Full-Stack, use menu path "View -> Console"._
 
 ### 4. Create a new instance of the workflow definition
 
-Now we have the Service Task in the workflow definition, let's try it out, using Postman and the [semi-automated method from Exercise 07](../07/readme.md#7-run-the-request-in-a-semi-automated-manner).
+Now we have the Service Task in the workflow definition, let's try it out.
 
-:point_right: Switch to the Postman Collection Runner and re-run the Workflow CodeJam collection, which should run the "GET CSRF Token" and "Create new workflow instance" requests in sequence.
+:point_right: Switch back over to Postman and send another "Creat new workflow instance" request (with the blue "Send" button). This should result in another successful 201 status code, showing the details of the freshly minted workflow instance.
 
 :point_right: Now start the "Monitor Workflows - Workflow Instances" app in your Fiori launchpad site, ensuring that the filter is set to show instances in "Completed" status. Find the instance that's just been created, and examine the Workflow Context, which should look something like this:
 
@@ -92,7 +89,7 @@ Now we have the Service Task in the workflow definition, let's try it out, using
 }
 ```
 
-_Note: Some of the properties have been omitted to keep the display concise._
+> Some of the properties have been omitted to keep the display concise.
 
 Notice that the context now contains extra data, in the `productInfo` property. This is what was retrieved in the Service Task.
 
