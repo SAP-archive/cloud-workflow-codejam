@@ -55,29 +55,36 @@ You should end up with something like this:
 
 ![environment variables and values](envvarvals.png)
 
-> The property names in Postmane environments are arbitrary, but it makes sense to use names that mean something to us.
+> The property names in Postman environments are arbitrary, but it makes sense to use names that mean something to us.
 
 
 ### 3. Select the new environment for use
 
 Once you've finished adding this new environment, you should select it for use.
 
-:point_right: Select the new environment from the drop-down selection that you saw earlier (it was set to "No Environment" at that time). Then notice that the `{{workflowapi}}` variable in the URL has turned from red, indicating the variable wasn't defined, to a slightly more orange color, and when you hover over it the value is displayed:
+:point_right: Select the new environment from the drop-down selection that you saw earlier (it was set to "No Environment" at that time). Then notice that the `{{endpoints.workflow_rest_url}}` variable in the request URL has turned from red, indicating the variable wasn't defined, to a slightly more orange color, and when you hover over it the value is displayed:
 
 ![value of workflowapi variable](workflowapivalue.png)
 
 
-### 4. Add authentication details to the collection
+### 4. Set up authentication for the request
 
-The "Workflow CodeJam" collection of two requests you imported earlier in this exercise has no authentication details associated with it. In this step, you can add your own authentication details to the collection, which will then be inherited by each request contained within it.
+The Cloud Foundry (CF) Workflow APIs are protected with OAuth 2.0, and the API Hub handles that for us, specifically using the "Client Credentials" flow. In order to make the call in Postman, we need to take the variable values we specified in our environment and use them in Postman's OAuth 2.0 configuration for retrieving an access token, which is what's requested and used in such a flow.
 
-:point_right: Use the context menu (right-click) on the "Workflow CodeJam" collection, or the three dots next to the name, and select "Edit", as shown:
+:point_right: Switch to the "Authorization" tab of the request and, for the type, select "OAuth 2.0". This should give you the possibility of setting things up for requesting and using OAuth 2.0 access tokens as employed in the OAuth flow we want to use:
 
-![selecting to edit the collection](editcollection.png)
+![OAuth 2.0 authorization type settings](oauthtype.png)
 
-:point_right: In the "Edit Collection" dialog, switch to the "Authorization" tab and select "Basic Auth" as the type, adding your trial account username and password before selecting the "Update" button at the bottom to save everything.
+:point_right: Now use the "Get New Access Token" button to specify details for, and request, an access token. In the dialog box that appears, give a name such as "MyToken", select "Client Credentials" for the grant type, "Send as Basic Auth header" for the client authentication, and specify the values for "Access Token URL", "Client ID" and "Client Secret" using the environment variables you defined earlier. Make sure to add `/oauth/token` as a suffix to the access token URL:
 
-![auth details](authdetails.png)
+![request token](requesttoken.png)
+
+:point_right: Use the "Request Token" button which will make the OAuth 2.0 call to request an access token, which, if all goes well, will be shown to you and subsequently be available via the "MyToken" name you gave it.
+
+Back in the Authorization tab, you can now select the token using the "Available Tokens" selection, so that the "Access Token" parameter is filled in, something like this:
+
+![access token](accesstoken.png)
+
 
 ### 5. Examine the rest of the requests' details
 
