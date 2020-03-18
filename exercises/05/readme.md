@@ -4,7 +4,7 @@ In this exercise you'll create the simplest workflow definition possible, and de
 
 ## Steps
 
-After completing these steps you'll understand the general flow of development, deployment and usage of workflows on SAP Cloud Platform.
+After completing these steps you'll understand the general flow of development, deployment and usage of workflows on SAP Cloud Platform, specifically in the Cloud Foundry environment.
 
 ### 1. Create a new Workflow project in the SAP Web IDE Full-Stack
 
@@ -14,9 +14,9 @@ After completing these steps you'll understand the general flow of development, 
 
 | Property               | Value                   |
 | -------------          | ----------------------- |
-| Environment filter     | Neo                     |
-| Category filter        | Business Process Management |
-| Template selection     | Workflow Project            |
+| Environment filter     | Cloud Foundry           |
+| Category filter        | All Categories          |
+| Template selection     | Multi-Target Application |
 
 **Basic Information**
 
@@ -24,30 +24,112 @@ After completing these steps you'll understand the general flow of development, 
 | -------------          | ----------------------- |
 | Project Name           | OrderFlow               |
 
+**Template Customization**
+
+| Property               | Value                   |
+| -------------          | ----------------------- |
+| Application ID         | OrderFlow (i.e. leave as-is) |
+| Application Version    | 0.0.1 (i.e. leave as-is) |
+| Description            | (leave blank)             |
+| Use HTML Application Repository checkbox | (leave unchecked) |
+
+
+If you expand the resulting project structure you'll see that not much has been generated - merely an `mta.yaml` file that has very little in it right now. Go on, take a look inside the file ... you're curious, right?
+
+> If you have "Show hidden files" turned on (via the "eye" icon) in your SAP Web IDE Development perspective, you'll also see a directory called `.che/` too, but this is related to the IDE itself rather than the workflow project specifically, so you can ignore it.
+
+The idea of a multi-target application is that it is made up from multiple parts - one or more modules, with dependencies on one or more resources. This workflow project will be no different.
+
+:point_right: Add a module now, a workflow module specifically, by using the context menu on the `OrderFlow` project name and choosing "New -> Workflow Module". Use the following selections:
+
+**Basic Information**
+
+| Property               | Value                   |
+| -------------          | ----------------------- |
+| Module Name            | OrderProcess            |
+
 **Workflow Details**
 
 | Property               | Value                   |
 | -------------          | ----------------------- |
 | Name                   | orderprocess            |
-| Description            | Simple CodeJam workflow |
+| Description            | (leave blank)           |
 
-_Note: the names of the project, and the workflow definition within it, are deliberately different here, to highlight that they're not the same thing - you can have multiple workflow definitions in a single workflow project._
+_Note: the names of the module, and the workflow definition within it, are deliberately different here, to highlight that they're not the same thing - you can have multiple workflow definitions in a single workflow module._
 
 You should end up with a very simple workflow definition, that looks like this:
 
 ![simple workflow definition](simpleworkflowdefinition.png)
 
-Observe that the workflow definition editor is graphical (it's the one you [enabled in Exercise 01](../01#2-find-and-enable-the-sap-web-ide-full-stack-service)), and the file that represents the definition is within a `workflows/` directory within the project.
+Observe that the workflow definition editor is graphical (it's the one you [enabled in Exercise 01](../01#4-set-up-the-sap-web-ide)), and the file that represents the definition is within a `workflows/` directory within the project.
+
+In the last part of this step, we need to turn our attention to what's been added to the `mta.yaml` file as a result of adding this workflow module. Open it in the Code Editor and take a look - it should look something like this:
+
+```yaml
+ID: OrderFlow
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: OrderProcess
+    type: com.sap.application.content
+    path: OrderProcess
+    requires:
+      - name: workflow_OrderFlow
+        parameters:
+          content-target: true
+resources:
+  - name: workflow_OrderFlow
+    parameters:
+      service-plan: standard
+      service: workflow
+    type: org.cloudfoundry.managed-service
+```
+
+You can see that there's now a single module defined, with the name `OrderProcess`, which requires a Workflow service resource named `workflow_OrderFlow`, of type `org.cloudfoundry.managed-service`. The name of this resource is generated from the word "workflow" plus the name of the overall project "OrderFlow".
+
+But we already have a Workflow service instance called "workflow" so we need to adapt the references here.
+
+:point_right: Change the two references `workflow_OrderFlow` to `workflow`, i.e. both in the "requires" section of the module, and in the "name" section of the resource. Also change the "type" of the resource to `org.cloudfoundry.existing-service`. (You did something very similar to this in [exercise 02](../02#2-modify-the-mtayaml-file-to-reflect-the-existing-workflow-service-instance).)
+
+The result should look like this:
+
+```yaml
+ID: OrderFlow
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: OrderProcess
+    type: com.sap.application.content
+    path: OrderProcess
+    requires:
+      - name: workflow
+        parameters:
+          content-target: true
+resources:
+  - name: workflow
+    parameters:
+      service-plan: standard
+      service: workflow
+    type: org.cloudfoundry.existing-service
+```
+
+Don't forget to save your changes!
+
 
 ### 2. Deploy the definition to the cloud
 
-While this workflow definition doesn't do very much, we can still carry out an initial exploration with the apps we made available in the Fiori launchpad in [Exercise 02](../02). So in this step we'll deploy the definition to SAP Cloud Platform to be able to do that.
+While this workflow definition doesn't do very much, we can still carry out an initial exploration with the apps we made available in the Fiori launchpad in [Exercise 02](../02). So in this step we'll build and deploy the workflow definition to SAP Cloud Platform to be able to do that.
 
-:point_right: Locate the definition file `orderprocess.workflow` and use the context menu "Deploy -> Deploy to SAP Cloud Platform Workflow". You should see a message confirming that the deployment was successful.
+:point_right: Use the context menu on the "OrderFlow" project item and choose "Build -> Build with Cloud MTA Build Tool (recommended)".
 
-That's it!
+This should complete in a few moments, and create a new directory `mta_archives/` within the project structure, containing an `.mtar` archive file ready to be deployed.
 
-_Note: here you only deployed a workflow definition; more involved workflow projects also include forms and other UI elements - these are deployed separately, as you will see in a later exercise._
+:point_right: Deploy that file, it will most likely be called `OrderFlow_0.0.1.mtar`, using the context menu on the file name and choosing "Deploy -> Deploy to SAP Cloud Platform".
+
+> You may have to reconfirm your desired Cloud Foundry (CF) endpoint at this stage - make sure you choose the same dev space as before.
+
+This deployment should also complete quite quickly. If you examine the contents of the `mta.yaml` file that you just edited, and also check the Applications and Service Instances sections of your "CF Dev Space Home" in the SAP Cloud Platform Cockpit, you'll see that this was a content deployment, rather than instantiation of any new CF service instances or applications. This makes sense, as it's a deployment of the workflow definition to the Workflow service instance.
+
 
 ### 3. Examine the workflow definition and create an instance of it
 
@@ -98,7 +180,7 @@ Examining the completed instance this time, you should see this data in the Work
 
 ## Summary
 
-You've now gone through the process of bringing a workflow definition from your development environment (the SAP Web IDE Full-Stack) to the Workflow service on the SAP Cloud Platform, and using the administration apps to create and examine instances of it. You'll find that the "Monitor Workflows" app is a very useful tool.
+You've now gone through the process of bringing a workflow definition from your development environment (the SAP Web IDE Full-Stack) to the Workflow service on the SAP Cloud Platform CF environment, and using the administration apps to create and examine instances of it. You'll find that the "Monitor Workflows" app is a very useful tool.
 
 ## Questions
 

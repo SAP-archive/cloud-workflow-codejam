@@ -1,80 +1,217 @@
-# Exercise 02 - Creating an SAP Fiori launchpad site
+# Exercise 02 - Deploying the Workflow tools
 
-In this exercise you'll create a Fiori launchpad site with the My Inbox app, using the Portal service, where you can build websites from templates. One of the templates is for Fiori launchpads.
-
-This Fiori launchpad site will then be the place where you monitor and interact with your workflow definitions and instances in subsequent exercises.
+In this exercise you'll create an initial project from a sample application within the SAP Web IDE. The definitions in this project, once deployed to your Cloud Foundry (CF) environment, will cause the creation of the other platform related services mentioned at the start of the [previous exercise](../01/), and provide you with a Fiori launchpad (FLP) site running via the Portal service, with Workflow related apps. These are some of the key tools you'll be using throughout the CodeJam.
 
 ## Steps
 
-After completing these steps you'll have a Fiori launchpad with a number of tiles for invoking workflow related apps.
+After completing these steps you'll have a Fiori launchpad with an app for viewing and processing Workflow items ("My Inbox") and a pair of apps for managing workflow definitions and instances.
 
-### 1. Create a new site via the Portal service
+### 1. Create a new project in SAP Web IDE
 
-:point_right: Open the Portal service (use the URL that you made a note of in the previous exercise) and select "Create New Site", giving it a name (such as "Cloud Platform Workflow CodeJam") and specifying the "SAP Fiori Launchpad" template.
+There is a sample application project that has everything required to set things up from a platform perspective to be able to interact with the Workflow service in your CF environment.
 
-![Creating a new site](createnewsite.png)
+:point_right: In the SAP Web IDE go to the Editor perspective and use the menu path "File -> New -> Project From Sample Application". Find and select the sample application "Workflow Applications on SAP Fiori Launchpad for Cloud Foundry (Trial)", checking and confirming the license agreement:
 
-Once you go into the site's configuration area, known as the "Fiori Configuration Cockpit", you should see that there are already four apps pre-configured and available (look in the "Apps" item within "Content Management" in the navigation menu). Note the icon next to each app, denoting that it's been shared from another SAP Cloud Platform subaccount (one providing general Workflow services).
+![sample application selection](sampleappselection.png)
 
-![Workflow related apps available](workflowapps.png)
+This results in a new project entry in your workspace, called `sample.workflowtiles.mta.trial`.
 
-### 2. Publish and open the site
+The name of this project is somewhat of a mouthful, but it provides some useful contextual information as to what it is:
 
-:point_right: In the top right of the Fiori Configuration Cockpit use the "Publish Site" icon to publish the site and open it up, via the "Publish and Open" button in the dialog popup.
+- "sample": it's a sample application
+- "workflowtiles": it provides the FLP with tiles for Workflow activities
+- "mta": it's a "multi target application" (see documentation on the [Cloud Foundry MTA Examples](https://github.com/SAP-samples/cf-mta-examples) for more info)
+- "trial": related to trial cloud platform activities
 
-The site should appear, and while it will look fairly empty, it's clear that it's a Fiori launchpad site:
 
-![empty Fiori launchpad site](emptylaunchpad.png)
+### 2. Modify the `mta.yaml` file to reflect the existing workflow service instance
 
-_Note: What you see, as we transition to the Fiori 3 design, may look slightly different to what's shown in these screenshots._
+The `mta.yaml` file within the project contains the definitions of the modules that will be deployed, and the resources upon which these modules rely. One resource upon which the two modules in this project rely is, unsurprisingly, an instance of the Workflow service. You've created one already, so in this step you'll make sure that it's properly referenced in this file.
 
-### 3. Add the workflow app icons
+:point_right: Open the `mta.yaml` file, and make sure the "MTA Editor" view is selected at the bottom (this presents a graphical representation of the YAML contents, which can be accessed via the "Code Editor" view):
 
-:point_right: Using the icons at the top, locate the "App Finder" and select and pin all four of the apps to the default "My Home" group:
+![MTA editor](mtaeditor.png)
 
-![pin apps to "My Home" group](pinapps.png)
+The MTA Editor presents the contents of the file in three sections - "Modules", "Resources" and "Basic Information". As you can see, there are two modules, and each of them rely upon various resources:
 
-When you return from the menu, you should see those apps available via the appropriate tiles:
+| Module (type) | Requires (type) |
+| ------ | -------- |
+| `workflowtilesApprouter (approuter.node.js) ` | `workflowtiles_html5_repo_runtime (html5-apps-repo)`, `portal_resources_workflowtiles (portal)`, `uaa_workflowtiles (xsuaa)`, `workflow_workflowtiles (workflow)` |
+| `workflowtilesFLP (com.sap.portal.content) ` | `portal_resources_workflowtiles (portal)`, `uaa_workflowtiles (xsuaa)`, `workflow_workflowtiles (workflow)` |
 
-![app tiles](apptiles.png)
+:point_right: Switch between the "Modules" and "Resources" sections to understand these relationships.
 
-Feel free to explore these apps and try them out. Unless you've looked at the Workflow service before today, there will be no data yet - no inbox items, no workflow definitions and no workflow instances. That will change in the coming exercises!
+The `workflowtilesApprouter` module is the "handle" of a standard application which presents a Portal site. The `workflowtilesFLP` module, when deployed, will cause application and tile definitions to be defined in the FLP site.
 
-### 4. Specify an alias for the site
+Both modules require a resource called `workflow_workflowtiles` which is basically an instance of the Workflow service.
 
-Note that the URL for the launchpad site contains a `siteId` query parameter something like this:
+:point_right: Switch from the "MTA Editor" to the "Code Editor" to see the raw YAML, and search for the string `workflow_workflowtiles`. You should find three occurrences, marked here with arrows:
+
+```yaml
+ID: sample.workflowtiles.mta.trial
+_schema-version: '2.1'
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+  - name: workflowtilesApprouter
+    type: approuter.nodejs
+    path: workflowtilesApprouter
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: workflowtiles_html5_repo_runtime
+      - name: portal_resources_workflowtiles
+      - name: uaa_workflowtiles
+      - name: workflow_workflowtiles         -- refers to ---+
+  - name: workflowtilesFLP                                   |
+    type: com.sap.portal.content                             |
+    path: workflowtilesFLP                                   |
+    parameters:                                              |
+      stack: cflinuxfs3                                      |
+      memory: 128M                                           |
+      buildpack: 'https://github.com/cloudfoundry/nodejs-buildpack/releases/[...]
+    requires:                                                |
+      - name: portal_resources_workflowtiles                 |
+      - name: uaa_workflowtiles                              |
+      - name: workflow_workflowtiles         -- refers to ---+
+resources:                                                   |
+  - name: workflowtiles_html5_repo_runtime                   |
+    parameters:                                              |
+      service-plan: app-runtime                              |
+      service: html5-apps-repo                               |
+    type: org.cloudfoundry.managed-service                   |
+  - name: portal_resources_workflowtiles                     |
+    parameters:                                              |
+      service-plan: standard                                 |
+      service: portal                                        |
+    type: org.cloudfoundry.managed-service                   |
+  - name: uaa_workflowtiles                                  |
+    parameters:                                              |
+      path: ./xs-security.json                               |
+      service-plan: application                              |
+      service: xsuaa                                         |
+    type: org.cloudfoundry.managed-service                   |
+  - name: workflow_workflowtiles             <---------------+
+    parameters:
+      service-plan: lite
+      service: workflow
+    type: org.cloudfoundry.managed-service
+```
+
+The first two references are in the modules' `requires` sections, referring to the third reference, which is the name of the item in the `resources` section.
+
+As you've already created an instance of the Workflow service in the previous exercise, with the name "workflow", you must modify the references.
+
+:point_right: First, change each of the three occurrences of `workflow_workflowtiles` to `workflow`.
+
+:point_right: Now, modify the "type" of the `workflow` resource; the instance already exists, so the type should be `org.cloudfoundry.existing-service` rather than `org.cloudfoundry.managed-service`. Make this modification - it should be on the very last line that you see here in this YAML.
+
+As a result of the modifications, each instance of `workflow_workflowtiles` should have been changed, and the last section of the YAML should now look like this:
+
+```yaml
+  - name: workflow
+    parameters:
+      service-plan: lite
+      service: workflow
+    type: org.cloudfoundry.existing-service
+```
+
+
+### 3. Examine the rest of the content within the project
+
+Expanding the entirety of the project structure will reveal something like this:
+
+![project contents](projectcontents.png)
+
+It's worth taking a few moments to [stare](https://langram.org/2017/02/19/the-beauty-of-recursion-and-list-machinery/#initialrecognition) at some of the content in this project, to understand some details of what we're about to deploy.
+
+The `workflowtilesApprouter` directory contains definitions which will bring about an application in your CF space that allows you to reach the FLP site with the Workflow related tiles. Notice the reference to `/cp.portal` as the starting resource in the `xs-app.json` configuration file.
+
+The `workflowtilesFLP` directory is a Node.js app that will cause a deployment of artifacts to the portal FLP site. The `package.json` file describes the dependency on a portal "deployer" service that is invoked. The `portal-site/` directory, in particular via the `CommonDataModel.json` file, contains details of what those artifacts are. Indeed, the SAP Web IDE has a built-in "Launchpad Editor" that will be invoked when you select the file for editing:
+
+![Launchpad Editor](launchpadeditor.png)
+
+
+### 4. Build the MTA archive ready for deployment
+
+While the project contents are fascinating, they aren't going to do you much good just sitting there in the IDE. So now it's time to compile them into an archive which can be deployed to your CF space. For this, you will invoke a "build" command.
+
+> The previous incarnation of the software that performed the build was a Java-based program, which is now deprecated, superseded by a Node.js based alternative called [mbt](https://www.npmjs.com/package/mbt) - the Multi-Target Application Build Tool. Both tools are still available from the context menu in the SAP Web IDE; the deprecated tool is marked as such and will disappear in time.
+
+:point_right: Use the context menu on the project node in the Files explorer of the SAP Web IDE (i.e. the `sample.workflowtiles.mta.trial` name) and select "Build -> Build with Cloud MTA Build Tool (recommended)". This will start the build process which you can monitor in the console (use the main menu option "View -> Console" to see this, or toggle the console icon in the far right column of the IDE).
+
+Towards the end of the process you'll see log records in the console that look like this:
 
 ```
-https://flpportal-p2001351149trial.dispatcher.hanatrial.ondemand.com/sites?siteId=dec57e57-d4f2-4d25-a4b6-1170fed55d53
+(Executor) [2020-02-26 13:35:27]  INFO generating the MTA archive...
+(Executor) [2020-02-26 13:35:27]  INFO the MTA archive generated at: /projects/sample.workflowtiles.mta.trial/mta_archives/sample.workflowtiles.mta.trial_0.0.1.mtar
+(Executor) [2020-02-26 13:35:27]  INFO cleaning temporary files...
+(Executor)   adding: mta_archives/sample.workflowtiles.mta.trial_0.0.1.mtar (deflated 0%)
+(mtaBuildTask) Build of "sample.workflowtiles.mta.trial" completed.
 ```
 
-This makes for a slightly less memorable URL, but it's possible to assign an alias for the site and that can be used instead.
+You can see that an archive has been generated in a new `mta_archives/` directory. This is what is to be deployed in the next step.
 
-:point_right: Go back to the site's Fiori Configuration Cockpit. If you closed the tab already, you can always reach it again via the site's menu (use the user icon to get to the menu), selecting "Manage Site" (the spanner icon).
+### 5. Deploy the MTA archive to Cloud Foundry
 
-:point_right: Select the "Settings" item in the navigation menu, and go into edit mode with the "Edit" button in the bottom right. In the "General" section, specify an alias as appropriate, like this (not forgetting to save after you're done!):
+At this stage you're ready to deploy the project contents, in the form of the archive that has just been built, to your CF environment.
 
-![specifying an alias for the site](sitealias.png)
+:point_right: Use the context menu on the archive file `sample.workflowtiles.mta.trial_0.0.1.mtar` and select "Deploy -> Deploy to SAP Cloud Platform" to start the deployment. At the prompt, enter or confirm the CF environment details that denote your CF organization and space.
 
-Note that the icon that you previously used in the top right to publish and open the site is now decorated with an asterisk, denoting changes have been made and need to be published.
-
-:point_right: Select the icon to (re)publish and open the site again; you can also select the alias (which is now a hyperlink) from the General section where you added it earlier in this step.
+After a few minutes the deployment will complete, and you should see a log message in the console like this, towards the end:
 
 ```
-https://flpportal-p2001351149trial.dispatcher.hanatrial.ondemand.com/sites/workflowcodejam#Shell-home
+Application "workflowtilesApprouter" started
+and available at "p2001351149trial-dev-workflowtilesapprouter.cfapps.eu10.hana.ondemand.com"
 ```
 
-That's better!
+This is the URL of the `workflowApprouter` module that has been deployed, and will be specific to your SAP Cloud Platform trial user ID. You can use this URL to get to the FLP site, but instead, let's take another, slightly harder but more interesting route.
+
+
+### 6. Find the FLP site URL and get to the Workflow tiles
+
+In the final step in this exercise, you should get to the Workflow tiles in the Fiori launchpad that's been created in the Portal service, an instance of which has been created during the course of the deployment.
+
+:point_right: Back in the SAP Cloud Platform Cockpit, go to the "Spaces" view in your trial subaccount (you visited this view in [the previous exercise](../01/)) and notice that the quota has now changed again:
+
+![quota changed](quotachanged.png)
+
+This reflects the applications and service instances that now exist due to the deployment.
+
+:point_right: Select the "dev" space and you should be brought initially to the list of applications (your "CF Dev Space Home"). There you should see the `workflowtilesApprouter` and `workflowtilesFLP` applications you saw referenced in the `mta.yaml` file earlier.
+
+> The `workflowtilesFLP` application will most likely be in the "Stopped" state, reflecting the completion of the "deployer" service execution.
+
+:point_right: Now select the "Service Instances" menu item, whereupon you will be shown not only the `workflow` service instance that you created explicitly in the previous exercise, but also instances of the `portal`, `xsuaa` and `html5-apps-repo` services. Notice how there are entries in the "Referencing Applications" column, reflecting the links between the modules (applications) and the resources (service instances) described in the `mta.yaml` file:
+
+![service instances](serviceinstances.png)
+
+:point_right: From here, select one of the `workflowtilesApprouter` links in the "Referencing Applications" column to quickly jump to the details of that application; it will take you initially to the "Service Bindings" section:
+
+![service bindings for workflowtilesApprouter](servicebindings.png)
+
+:point_right: From there select the "Overview" menu item to see general information about the `workflowtilesApprouter` application, which includes the "Application Routes" section. There's a single route URL shown for this application, and yes, you guessed it, it's the one shown in the deployment log earlier:
+
+![application overview](applicationoverview.png)
+
+Select the route URL and, after the standard authentication challenge screen, which you must complete using your SAP Cloud Platform trial email address and password, you'll see what you've been waiting for this whole time - a lovely Fiori launchpad site with the "My Inbox" and "Monitor Workflows" tiles:
+
+![FLP site](flpsite.png)
+
 
 ## Summary
 
-You've now set up an SAP Fiori launchpad site, and can invoke the workflow related apps. Note that an individual wouldn't normally have access to all the apps - there's a mixture of end user, power user and workflow developer / administrator apps here:
+Not only do you have an instance of the main workflow service now, but also access to your own FLP site with the "My Inbox" app for managing workflow related task items, and a pair of apps for managing workflow definitions and instances. But you also have some insight into how MTAs work and what the relationship is between modules and resources defined in MTA descriptor files.
 
-- End user: My Inbox - All Tasks
-- Power user: My Inbox - Expert View
-- Developer / administrator: Monitor Workflows - Workflow Definitions & Workflow Instances
+Good work!
+
 
 ## Questions
 
-1. We've seen the phrases "workflow definition" and "workflow instance" a few times now. Do you know what they mean and what they signify?
+1. Why is the `workflowtilesFLP` app not listed in the "Referencing Applications" column for the instance of the `html5-apps-repo` service?
 
+1. What do you think the difference between a "workflow instance" and a "workflow definition" is?
+
+1. Can you find out what the ID of the "Monitor Workflow" app is, that is accessed through the two "Monitor Workflow" tiles?

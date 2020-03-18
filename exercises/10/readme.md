@@ -22,13 +22,14 @@ The answer to this question is "no", because it's not there. It's [available in 
 
 In the following steps we'll use a Script Task to access this information.
 
+
 ### 2. Add a Script Task to the workflow definition
 
 :point_right: Add a Script Task to the workflow definition via the "Tasks" menu in the graphical workflow editor in the SAP Web IDE Full-Stack, as shown. Place the task as the third task item in the flow, to be executed after the "Approval Decision" task:
 
 ![add Script Task](addscripttask.png)
 
-_Note: Don't forget that you can use the arrangement buttons to tidy up the definition diagram like you did in [Exercise 09](../09#2-add-a-user-task-to-the-definition)._
+> Don't forget that you can use the arrangement buttons to tidy up the definition diagram like you did in [Exercise 09](../09#2-add-a-user-task-to-the-definition).
 
 The main purpose of this Script Task is to prepare a message that can eventually be sent to the requestor (the sending of the message will be left as an activity to be completed after the CodeJam). So name this Script Task appropriately.
 
@@ -81,9 +82,8 @@ $.context.product = product;
 $.context.usertaskinfo = $.usertasks.usertask1.last;
 ```
 
-:point_right: Save and redeploy the workflow definition, and create a new instance using Postman as you've done before.
+:point_right: Save the workflow definition (you've saved the Script Task file but you've also made changes to the definition itself, remember) and then follow the usual "build/deploy" flow. Once the deployment is complete, create a new instance using Postman as you've done before.
 
-_Note: Script Tasks are represented via separate JavaScript files but these are not separately deployable - they are a fundamental part of the workflow definition._
 
 ### 3. Process the User Task and check the context
 
@@ -113,7 +113,7 @@ $.context.message = taskinfo.subject
   + ".";
 ```
 
-:point_right: Save the file, and redeploy the workflow definition.
+:point_right: Save the file, and build and redeploy as usual.
 
 Now we're ready for one last instantiation of this workflow definition.
 

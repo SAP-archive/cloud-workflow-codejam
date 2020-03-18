@@ -6,15 +6,17 @@ In this exercise you'll enhance the workflow definition by adding a User Task to
 
 After completing these steps you'll have a User Task in your workflow definition that presents information from the workflow instance context, and asks for a decision.
 
+
 ### 1. Open up the workflow definition in the SAP Web IDE Full-Stack
 
-:point_right: Open up the SAP Web IDE Full-Stack that you enabled and used in [Exercise 05](../05). Once the IDE has started up, open the `orderprocess.workflow` workflow definition that should show your definition with the Service Task between the start and end events.
+:point_right: Switch back to your SAP Web IDE Full-Stack session, and open the `orderprocess.workflow` workflow definition that should show your definition with the Service Task between the start and end events.
+
 
 ### 2. Add a User Task to the definition
 
-:point_right: In a similar way to how you added a Service Task in [Exercise 08](../08/),  use the Tasks menu in the graphical workflow editor to add a User Task, and place it after the Service Task, and before the end event.
+:point_right: In a similar way to how you added a Service Task in [the previous exercise](../08/),  use the Tasks menu in the graphical workflow editor to add a User Task, and place it after the Service Task, and before the end event.
 
-_Note: You can make use of the "Arrange Vertically" and "Arrange Horizontally" buttons in the editor to tidy up the graphical flow after adding items to the definition._
+> You can make use of the "Arrange Vertically" and "Arrange Horizontally" buttons in the editor to tidy up the graphical flow after adding items to the definition.
 
 ![arrangement buttons](arrangementbuttons.png)
 
@@ -31,13 +33,12 @@ Now it's time to specify the User Task settings.
 | Priority     | (keep at "Medium" or change if you wish) |
 | Subject      | `Request for ${context.productInfo.d.Name}` |
 | Description  | `Please review this request for ${context.request.Quantity} items.` |
-| Users        | \<your SAP Cloud Platform trial account username\> |
+| Users        | \<the email address associated with your SAP Cloud Platform trial account \> |
 | Group        | (leave blank)  |
 | Configure Due Date | (leave unchecked) |
 
-_Note: The user assignment is case sensitive, so it's important that you specify your username with a capital letter at the beginning, for example `P2001351149` not `p2001351149`._
+> Within the context of the trial account you are using (with only a single user - you - available), it makes sense to specify yourself as a recipient of the user task items. In other situations this could be a calculated value, or the "Group" property could be used instead.
 
-_Note: Within the context of the trial account you are using (with only a single user - you - available), it makes sense to specify yourself as a recipient of the user task items. In other situations this could be a calculated value, or the "Group" property could be used instead._
 
 ### 3. Create a new workflow instance and check the User Task
 
@@ -45,11 +46,11 @@ Even though you've only configured the minimum, you can still see the raw result
 
 :point_right: In the "User Interface" tab of the "User Task Properties", the properties "HTML5 App Name" and "SAPUI5 Component" are required. These relate to the default "Type" that is pre-selected ("SAPUI5 Component"). Specify the dummy value "x" for each of them.
 
-_Note: This is the place where you'd normally specify details of a custom UI5 component that is to be used to represent the details of the user task in the My Inbox app. Building a custom UI5 component for this is beyond the scope of these CodeJam excercises, but we can take advantage of the settings required by providing dummy values for both the properties. The result will be the ability to deploy the modified workflow definition (because the validity of the component details is only an issue at runtime), and a half-empty but understandable user task entry in the My Inbox app, which will be fine for us for now._
+> This is the place where you'd normally specify details of a custom UI5 component that is to be used to represent the details of the user task in the My Inbox app. Building a custom UI5 component for this is beyond the scope of these CodeJam excercises, but we can take advantage of the settings required by providing dummy values for both the properties. The result will be the ability to deploy the modified workflow definition (because the validity of the component details is only an issue at runtime), and a half-empty but understandable user task entry in the My Inbox app, which will be fine for us for now.
 
 ![user interface details](uidetails.png)
 
-:point_right: Save the workflow definition, and then deploy it again as you have done before (using the context menu on the `orderprocess.workflow` file).
+:point_right: Save the workflow definition, and then follow the same "build/deploy" process you used in the [previous exercise](../08) - build at the project level, deploy at the `.mtar` file level.
 
 :point_right: Now create a new instance using the Collection Runner in Postman, as you have [done before in Exercise 08](../08#4-create-a-new-instance-of-the-workflow-definition).
 
@@ -63,7 +64,7 @@ _Note: This is the place where you'd normally specify details of a custom UI5 co
 
 You should see that the user task is there, with the correct name ("Approval Decision"),  subject ("Request for ...") and description ("Please review this request ..."). But there is not much else, and no action buttons for you to select to mark your decision.
 
-_Note: The "Show Log" and "Claim" buttons are not decision related, they are generic features available in all user tasks._
+> The "Show Log" and "Claim" buttons are not decision related, they are generic features available in all user tasks.
 
 Because this is only a half-baked user task, you won't be able to complete it here, you'll have to terminate the instance as an administrator, in the "Monitor Workflow - Workflow Instances" app.
 
@@ -94,32 +95,31 @@ In this step you'll add a form to be used in the User Task you created earlier i
 | Name         | `RequestDecision` |
 | ID           | `requestdecision` |
 | Revision     | `1`               |
+| Type         | (leave as "Task Form) |
 
-_Note: This form will be created as a file inside your workflow project directory structure, specifically within the `forms/` directory._
+> This form will be created as a file inside your workflow project directory structure, specifically within the `forms/` directory.
 
 At this point you're presented with a simple form designer, which will allow you to create a form with sections, read-only fields, input fields and decision buttons.
 
-:point_right: Create a series of sections and fields as shown in the screenshot below, taking care to specify the context path values exactly. For all fields except for the "Your comments" field, use the field properties on the right hand side to set the "Mode" to "Display-Only".
+:point_right: Create a series of sections and fields as shown in the screenshot below, taking care to specify the context path values exactly (pay attention to upper/lower case details). For all fields except for the "Your comments" field, use the field properties on the right hand side to set the "Mode" to "Display-Only".
 
 ![form fields](formfields.png)
 
-:point_right: In the properties for the "Your comments" field, specify a "Medium" height (to produce a text area for input when the field is rendered).
+:point_right: In the properties for the "Your comments" field, specify "Text Area" for the "UI Control" property (to produce a space large enough for input when the field is rendered).
 
 :point_right: Switch to the "Decisions" tab and add two decision rows as shown:
 
 ![form decisions](formdecisions.png)
 
-After this is done and saved, the form must be deployed separately to the SAP Cloud Platform. It makes sense to be able to manage the lifecycle of forms and workflow definitions separately.
 
-:point_right: After saving the form, use the context menu "Deploy -> Deploy to SAP Cloud Platform Workflow" on the form file `RequestDecision.form`.
+:point_right: Ensure everything is saved, and follow the same "build/deploy" flow as before to get these changes and additions to the workflow runtime in your CF workflow instance.
 
-:point_right: Because you've made a change to the workflow definition too (specifying a form rather than an SAPUI5 Component for the User Interface), save the definition and redeploy that to the SAP Cloud Platform Workflow too.
 
 ### 5. Try the form out
 
 It's time to try out the form that you've just created.
 
-:point_right: As you did [earlier](#3-create-a-new-workflow-instance-and-check-the-user-task), create a new workflow instance using the Collection Runner in Postman.
+:point_right: As you did [earlier in this exercise](#3-create-a-new-workflow-instance-and-check-the-user-task), create a new workflow instance using Postman.
 
 :point_right: Next, go to the My Inbox app in your Fiori launchpad site, and there should be a user task waiting for you. This time, unlike the previous user task, you can see the detail, because of the form. This is what it should look like:
 
@@ -139,4 +139,4 @@ You now have a user task in your simple workflow definition, and have used a for
 
 1. When you terminated the instance in Step 3, what status did it end up in?
 
-1. Where are the comments and decision (approval or rejection) stored when the task is completed?
+1. Where are the comments stored when the task is completed?

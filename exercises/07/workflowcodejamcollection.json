@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "24c15a72-170c-4eb0-a4e9-690c2071099b",
+		"_postman_id": "06807570-ba1c-499f-9fc9-098091bee7a9",
 		"name": "Workflow CodeJam",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,63 +9,43 @@
 			"name": "Create new \"orderprocess\" workflow instance",
 			"item": [
 				{
-					"name": "Get CSRF Token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c4146d0d-5db9-4bad-87d6-44a50bda0093",
-								"exec": [
-									"postman.setEnvironmentVariable(\"xsrftoken\", postman.getResponseHeader(\"X-CSRF-Token\"));",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-CSRF-Token",
-								"value": "Fetch"
-							}
-						],
-						"url": {
-							"raw": "{{workflowapi}}/v1/xsrf-token",
-							"host": [
-								"{{workflowapi}}"
-							],
-							"path": [
-								"v1",
-								"xsrf-token"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create new workflow instance",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "X-CSRF-Token",
-								"value": "{{xsrftoken}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"definitionId\" : \"orderprocess\",\n\t\"context\": {\n\t\t\"request\": {\n\t\t\t\"Id\": \"HT-1003\",\n\t\t\t\"Quantity\": 25\n\t\t}\n\t}\n}"
+							"raw": "{\n    \"definitionId\": \"orderprocess\",\n    \"context\": {\n        \"request\": {\n            \"Id\": \"HT-1003\",\n            \"Quantity\": 25\n        }\n    }\n}"
 						},
 						"url": {
-							"raw": "{{workflowapi}}/v1/workflow-instances",
+							"raw": "{{endpoints.workflow_rest_url}}/v1/workflow-instances",
 							"host": [
-								"{{workflowapi}}"
+								"{{endpoints.workflow_rest_url}}"
 							],
 							"path": [
 								"v1",
@@ -76,7 +56,7 @@
 					"response": []
 				}
 			],
-			"description": "Create a new instance of the \"approveuser\" workflow.",
+			"description": "Create a new instance of the \"orderprocess\" workflow.",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -98,7 +78,9 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

@@ -16,7 +16,7 @@ This is the central place for discovery and consumption of APIs - see it as your
 
 The Workflow API is of course documented and available for exploration here in the API Hub.
 
-:point_right: [Search for](https://api.sap.com/search?searchterm=workflow%20API) the Workflow API - you should find a number of results. The one we're interested in for this CodeJam is the [Workflow API for Neo](https://api.sap.com/api/SAP_CP_Workflow/resource). You should see something like this:
+:point_right: [Search for](https://api.sap.com/search?searchterm=workflow+API&tab=all) the Workflow API - you should find a number of results. The one we're interested in for this CodeJam is the [Workflow API for Cloud Foundry](https://api.sap.com/api/SAP_CP_Workflow_CF/resource). You should see something like this:
 
 ![Workflow API summary](workflowapisummary.png)
 
@@ -31,31 +31,53 @@ and so on.
 
 For each aspect there are a number of verb/noun combinations, in the form of HTTP methods (representing the verbs) and URL paths (representing the nouns). This verb/noun approach suggests that the Workflow API exhibits some qualities of the Representational State Transfer (REST) architectural style.
 
-:point_right: Explore each of the aspects, in particular "Workflow Instances" and "XSRF Handling". Try to identify which verb/noun combination in the "Workflow Instances" aspect would be appropriate to create a new instance of a workflow definition.
+:point_right: Explore each of the aspects, in particular "Workflow Instances". Try to identify which verb/noun combination in the "Workflow Instances" aspect would be appropriate to create a new instance of a workflow definition.
+
 
 ### 3. Configure an API Environment
 
-In the API Hub you can not only explore but also try out APIs. For this, there's a generic sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your trial account setup. In this step you'll do just that, defining an API environment that reflects your SAP Cloud Platform trial account and the Workflow service you have enabled there.
+In the API Hub you can not only explore but also try out APIs. For this, there's a generic sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your Cloud Foundry (CF) trial account setup. In this step you'll do just that, defining an API environment using credentials relating to the workflow service instance you've set up there.
 
-:point_right: At the top of the Workflow API details, select the "Configure Environments" link to get to a dialog where you can create a new environment. You should see something like this:
+When you configure an environment, you need to supply endpoint and credential information, so the API Hub can facilitate making API calls for you. This information is available in the details of your workflow service instance, so you'll go there first to get that information, then return to the API Hub to specify it during the configuration.
+
+:point_right: Open up a new browser tab and go to your "CF Dev Space Home". Find the workflow service instance (use the "Service Instances" within "Services" in the left hand navigation) and select it (make sure you select the instance name "workflow", in the "Name" column, and not the service name "workflow", which is in the "Service" column).
+
+:point_right: Now select the "Service Keys" navigation item which will reveal that there's a service key "OrderProcess-workflow-credentials" that's been created for you. It should look something like this:
+
+![service key details](servicekey.png)
+
+:point_right: Make a note of the following properties, the names of which reflect their "full paths" within the JSON structure:
+
+- `endpoints.workflow_rest_url`
+- `uaa.clientid`
+- `uaa.clientsecret`
+- `uaa.url`
+
+:point_right: Now switch back to the API Hub tab and select the "Configure Environments" link to get to a dialog where you can create a new environment. You should see something like this:
 
 ![environment configuration](environmentconfiguration.png)
 
 You should be defaulted to the "Create New Environment" mode.
 
-:point_right: Specify the following values, noting that the Starting URL selection needs to be based on the fact that you are using your trial account in the Neo environment:
+:point_right: Specify the following values, noting that the Starting URL selection needs to be based on the fact that you are using your trial account in the EU10 region, and indeed should reflect the value of the `endpoints.workflow_rest_url` property:
 
 | Property       | Value                   |
 | -------------- | ----------------------- |
-| Starting URL   | ` https://bpmworkflowruntime{provideraccountname}-{consumeraccountname}.hanatrial.ondemand.com/workflow-service/rest` |
+| Starting URL   | the value of `endpoints.workflow_rest_url` |
 | Display Name for Environments | MyCodeJamEnv |
-| provideraccountname           | wfs          |
-| consumeraccountname           | \<your trial account, e.g. p2001351149trial\> |
-| Authentication Type           | Basic Authentication |
-| Username                      | \<your trial account username, e.g. p2001351149\> |
-| Password                      | \<your trial account password\> |
+| OAuth 2.0 Client Id | the value of `uaa.clientid` |
+| OAuth 2.0 Secret    | the value of `uaa.clientsecret` |
+| consumersubdomain   | the most significant hostname part of the fully qualified domain name value of `uaa.url` |
+| landscapehost    | the rest of the fully qualified domain name value of `uaa.url`, excluding the 'authentication' part |
 | Apply this environment to all APIs in this package that are not yet configured | _checked_ |
 | Save this environment for future sessions | _selected_ |
+
+Regarding the values for the properties "consumersubdomain" and "landscapehost", these are parts that contribute towards the generated value for "Token URL". Here's an example:
+
+- the value of `uaa.url` is `https://p2001351149trial.authentication.eu10.hana.ondemand.com`
+- the value of "consumersubdomain" should be `p2001351149trial`
+- the value of "landscapehost" should be `eu10.hana.ondemand.com`
+- the resulting "Token URL" should be `https://p2001351149trial.authentication.eu10.hana.ondemand.com/oauth/token`
 
 Don't forget to save the settings when you're done.
 
@@ -85,61 +107,21 @@ An API call is made for you, with your credentials, in the context of the enviro
     "id": "orderprocess",
     "version": "1",
     "name": "orderprocess",
-    "createdBy": "P2001351149",
-    "createdAt": "2019-05-28T11:24:30.589Z",
+    "createdBy": "sb-clone-b34de1f8-f00b7d2db0d2!b37882|workflow!b1015",
+    "createdAt": "2020-03-18T06:54:15.744Z",
     "jobs": []
   }
 ]
 ```
 
-**Response headers**
-```
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-Date: Wed,  29 May 2019 08:11:55 GMT
-Transfer-Encoding: chunked
-Expires: Thu,  01 Jan 1970 00:00:00 GMT
-Content-Type: application/json
-Server: SAP
-X-Content-Type-Options: nosniff
-Cache-Control: private
-```
-
 You've just made your first API call - nice work!
+
 
 ### 5. Create a new workflow instance via the API
 
 Now that you've tried out a simple API call, it's time to use the API to create a new instance of your `orderprocess` workflow definition.
 
-This time you'll be making two calls - the first to request a CSRF token, and the second to use that token and create an instance of the workflow definition. CSRF stands for [Cross Site Request Forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) and the token system is part of a mechanism designed to reduce such forgery based attacks. Basically, if you want to make an API call that has side effects in the remote system (e.g. the creation of a new workflow instance, in this case), then you will need to make sure that a valid CSRF token is supplied in that call. A valid token can be requested using the URL path that you see in the "XSRF Handling" API aspect.
-
-_Note: The acronyms CSRF and XSRF are used interchangeably._
-
-**Requesting a CSRF token**
-
-:point_right: Select the `GET /v1/xsrf-token` verb/noun combination from the "XSRF Handling" aspect of the API, and use the "Try out" link to be able to execute a call. You should see that the value defaulted into the `X-CSRF-Token` header is "Fetch", which is what we need (i.e. we are asking for a token). Use the "Execute" button to make the call.
-
-The response should also show an HTTP 200 status code, no response body, but in the headers, you should see that a token has been supplied:
-
-```
-X-CSRF-Token: 3E1B5D7DA9ADA90834B22961CA2FB50D
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-Date: Wed,  29 May 2019 08:27:47 GMT
-Content-Length: 0
-Expires: Thu,  01 Jan 1970 00:00:00 GMT
-Server: SAP
-X-Content-Type-Options: nosniff
-Cache-Control: private
-```
-
-:point_right: Make a note of this token (e.g. copy it somewhere) because you will need it in the next call.
-
-**Requesting the creation of a new workflow instance**
-
-Now that you have a valid CSRF token, you can make the call to create a new workflow instance.
-
 :point_right: Select the "Workflow Instances" aspect and thence the `POST /v1/workflow-instances` verb/noun combination. Select the "Try out" link to be able to set up and execute the call.
-
-:point_right: Paste the CSRF token that you received in the previous call into the input box for the "X-CSRF-Token" parameter.
 
 A payload is sent with this call, and you specify it in the "body" parameter here.
 
@@ -167,30 +149,20 @@ You should see a response with an HTTP status code of 201, and a response body &
 
 ```json
 {
-  "id": "a8127e85-81ec-11e9-a9f7-00163e8d2b7b",
+  "id": "1a1de979-68f7-11ea-bd44-eeee0a83b12d",
   "definitionId": "orderprocess",
   "definitionVersion": "1",
   "subject": "orderprocess",
   "status": "RUNNING",
   "businessKey": "",
-  "startedAt": "2019-05-29T08:35:04.679Z",
-  "startedBy": "P2001351149",
+  "startedAt": "2020-03-18T09:01:49.260Z",
+  "startedBy": "sb-clone-b34de1f8-03b2-46bb-bd3d-f00b7d2db0d2!b37882|workflow!b10150",
   "completedAt": null
 }
 ```
 
-**Response headers**
-
-```
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-Date: Wed,  29 May 2019 08:35:08 GMT
-Transfer-Encoding: chunked
-Content-Type: application/json
-Server: SAP
-X-Content-Type-Options: nosniff
-```
-
 Great!
+
 
 ### 6. Check the newly created instance in the Fiori launchpad
 
@@ -208,16 +180,17 @@ Here's an example of what you might see:
 
 ![instance details](instancedetails.png)
 
+
 ## Summary
 
 You've explored the Workflow API in the API Hub and successfully started a workflow instance via that API, supplying data that finds its way into the context of that instance. You've also managed to find evidence of that instance in the administration UI. Nice work!
 
 ## Questions
 
-1. What do the "provideraccountname" and "consumeraccountname" represent? What do you think "wfs" stands for?
-
 1. Why are there square brackets surrounding the response to the `GET /v1/workflow-definitions` API call?
 
 1. In the payload of the `POST` call to `/v1/workflow-instances`, can you explain all aspects of the data contained therein?
 
 1. What does HTTP response code 201 signify and how does it differ from 200?
+
+1. Did you notice anything interesting about the instance created via the API, when compared to the ones you created via the Fiori monitor app?
