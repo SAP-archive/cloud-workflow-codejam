@@ -36,27 +36,48 @@ For each aspect there are a number of verb/noun combinations, in the form of HTT
 
 ### 3. Configure an API Environment
 
-In the API Hub you can not only explore but also try out APIs. For this, there's a generic sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your trial account setup. In this step you'll do just that, defining an API environment that reflects your SAP Cloud Platform trial account and the Workflow service you have enabled there.
+In the API Hub you can not only explore but also try out APIs. For this, there's a generic sandbox environment provided, but it's better and more convenient to set up an API environment that reflects your Cloud Foundry (CF) trial account setup. In this step you'll do just that, defining an API environment using credentials relating to the workflow service instance you've set up there.
 
-:point_right: At the top of the Workflow API details, select the "Configure Environments" link to get to a dialog where you can create a new environment. You should see something like this:
+When you configure an environment, you need to supply endpoint and credential information, so the API Hub can facilitate making API calls for you. This information is available in the details of your workflow service instance, so you'll go there first to get that information, then return to the API Hub to specify it during the configuration.
+
+:point_right: Open up a new browser tab and go to your "CF Dev Space Home". Find the workflow service instance (use the "Service Instances" within "Services" in the left hand navigation) and select it (make sure you select the instance name "workflow", in the "Name" column, and not the service name "workflow", which is in the "Service" column).
+
+:point_right: Now select the "Service Keys" navigation item which will reveal that there's a service key "OrderProcess-workflow-credentials" that's been created for you. It should look something like this:
+
+![service key details](servicekey.png)
+
+:point_right: Make a note of the following properties, the names of which reflect their "full paths" within the JSON structure:
+
+- `endpoints.workflow_rest_url`
+- `uaa.clientid`
+- `uaa.clientsecret`
+- `uaa.url`
+
+:point_right: Now switch back to the API Hub tab and select the "Configure Environments" link to get to a dialog where you can create a new environment. You should see something like this:
 
 ![environment configuration](environmentconfiguration.png)
 
 You should be defaulted to the "Create New Environment" mode.
 
-:point_right: Specify the following values, noting that the Starting URL selection needs to be based on the fact that you are using your trial account in the Neo environment:
+:point_right: Specify the following values, noting that the Starting URL selection needs to be based on the fact that you are using your trial account in the EU10 region, and indeed should reflect the value of the `endpoints.workflow_rest_url` property:
 
 | Property       | Value                   |
 | -------------- | ----------------------- |
-| Starting URL   | ` https://bpmworkflowruntime{provideraccountname}-{consumeraccountname}.hanatrial.ondemand.com/workflow-service/rest` |
+| Starting URL   | the value of `endpoints.workflow_rest_url` |
 | Display Name for Environments | MyCodeJamEnv |
-| provideraccountname           | wfs          |
-| consumeraccountname           | \<your trial account, e.g. p2001351149trial\> |
-| Authentication Type           | Basic Authentication |
-| Username                      | \<your trial account username, e.g. p2001351149\> |
-| Password                      | \<your trial account password\> |
+| OAuth 2.0 Client Id | the value of `uaa.clientid` |
+| OAuth 2.0 Secret    | the value of `uaa.clientsecret` |
+| consumersubdomain   | the most significant hostname part of the fully qualified domain name value of `uaa.url` |
+| landscapehost    | the rest of the fully qualified domain name value of `uaa.url`, excluding the 'authentication' part |
 | Apply this environment to all APIs in this package that are not yet configured | _checked_ |
 | Save this environment for future sessions | _selected_ |
+
+Regarding the values for the properties "consumersubdomain" and "landscapehost", these are parts that contribute towards the generated value for "Token URL". Here's an example:
+
+- the value of `uaa.url` is `https://p2001351149trial.authentication.eu10.hana.ondemand.com`
+- the value of "consumersubdomain" should be `p2001351149trial`
+- the value of "landscapehost" should be `eu10.hana.ondemand.com`
+- the resulting "Token URL" should be `https://p2001351149trial.authentication.eu10.hana.ondemand.com/oauth/token`
 
 Don't forget to save the settings when you're done.
 
@@ -86,8 +107,8 @@ An API call is made for you, with your credentials, in the context of the enviro
     "id": "orderprocess",
     "version": "1",
     "name": "orderprocess",
-    "createdBy": "P2001351149",
-    "createdAt": "2019-05-28T11:24:30.589Z",
+    "createdBy": "sb-clone-b34de1f8-f00b7d2db0d2!b37882|workflow!b1015",
+    "createdAt": "2020-03-18T06:54:15.744Z",
     "jobs": []
   }
 ]
@@ -95,17 +116,22 @@ An API call is made for you, with your credentials, in the context of the enviro
 
 **Response headers**
 ```
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-Date: Wed,  29 May 2019 08:11:55 GMT
-Transfer-Encoding: chunked
-Expires: Thu,  01 Jan 1970 00:00:00 GMT
-Content-Type: application/json
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload;
+Cache-Control: no-cache,  no-store,  max-age=0,  must-revalidate
 Server: SAP
-X-Content-Type-Options: nosniff
-Cache-Control: private
+X-Content-Type-Options: nosniff, nosniff
+X-Xss-Protection: 1; mode=block
+Vary: Accept-Encoding
+Expires: 0
+Pragma: no-cache
+Date: Wed,  18 Mar 2020 08:50:32 GMT
+X-Vcap-Request-Id: 5157bffb-9853-4167-72be-9600814b7ecb
+Content-Type: application/json
 ```
 
 You've just made your first API call - nice work!
+
 
 ### 5. Create a new workflow instance via the API
 
