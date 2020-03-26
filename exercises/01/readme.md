@@ -9,7 +9,7 @@ From a service perspective, you'll be using a number of services from the start:
 - HTML5 Application Repository: where the core Workflow-related apps are stored and served from
 - Authorization & Trust Management: to manage application authorizations and trust to identity providers
 
-You will also need an editor, or an Interactive Development Environment (IDE) to create and maintain your workflow definitions. For that you will be using the SAP Web IDE.
+You will also need an editor, or an Integrated Development Environment (IDE) to create and maintain your workflow definitions. For that you will be using the SAP Web IDE.
 
 Finally, you'll be playing different roles throughout this CodeJam, using your SAP Cloud Platform trial user. To that end, you'll need the appropriate authorizations:
 
