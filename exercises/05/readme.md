@@ -91,6 +91,8 @@ But we already have a Workflow service instance called "workflow" so we need to 
 
 :point_right: Change the two references `workflow_OrderFlow` to `workflow`, i.e. both in the "requires" section of the module, and in the "name" section of the resource. Also change the "type" of the resource to `org.cloudfoundry.existing-service`. (You did something very similar to this in [exercise 02](../02#2-modify-the-mtayaml-file-to-reflect-the-existing-workflow-service-instance).)
 
+:point_right: Change the service-plan of workflow resource from `standard` to `lite`
+
 The result should look like this:
 
 ```yaml
@@ -108,7 +110,7 @@ modules:
 resources:
   - name: workflow
     parameters:
-      service-plan: standard
+      service-plan: lite
       service: workflow
     type: org.cloudfoundry.existing-service
 ```
