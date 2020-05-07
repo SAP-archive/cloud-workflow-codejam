@@ -120,7 +120,7 @@ In fact, the successful operation of the app relies on not one but three service
 
 > It's important that you use the instance names specified here, as they are referenced by name in the app's [`manifest.yml`](dest-test-app/manifest.yml) file.
 
-After doing this, you should have three service instances alongside your already existing workflow service instance; checking the "Service Instances" in your "CF Dev Space Home", you should see something like this:
+After doing this, you should have three service instances alongside your already existing workflow related instances; checking the "Service Instances" in your "CF Dev Space Home", you should see something like this:
 
 ![service instances](serviceinstances.png)
 
