@@ -115,7 +115,7 @@ At this stage you have a new role collection; now you need to assign it to yours
 
 ![trust configuration overview](trustconfigoverview.png)
 
-:point_right: Select the "SAP ID Service" link and in the following screen, enter the email address associated with the trial account you're using, and select the "Show Assignments" button. Then use the "Assign Role Collection" button to select and assign the new "workflow" role collection you just created.
+:point_right: Select the "Default identity provider" link and in the following screen, enter the email address associated with the trial account you're using, and select the "Show Assignments" button. Then use the "Assign Role Collection" button to select and assign the new "workflow" role collection you just created.
 
 ![workflow role collection assigned](collectionassigned.png)
 
