@@ -2,7 +2,7 @@
 
 The scenario upon which this CodeJam is based includes access to an on-prem SAP system, for which the SAP Cloud Connector is required.
 
-_Note: The SAP system we'll be using is not actually on-prem, it's the [public SAP NetWeaver Gateway Demo system](https://blogs.sap.com/2017/06/16/netweaver-gateway-demo-es5-now-in-beta/), known by its System ID "ES5". But for the purposes of understanding and configuring the SAP Cloud Connector, we will treat it as if it's on-prem._
+_Note: The SAP system we'll be using is not actually on-prem, it's the [public SAP NetWeaver Gateway Demo system](https://blogs.sap.com/2017/06/16/netweaver-gateway-demo-es5-now-in-beta/), known by its System ID "ES5". But for the purposes of understanding and configuring the SAP Cloud Connector, we will treat it as if it is._
 
 In this exercise you'll set up SAP Cloud Connector, to provide the connection between an on-prem SAP system (ES5) and your subaccount on the SAP Cloud Platform, enabling services and apps running in that subaccount to access specific system endpoints in ES5.
 
@@ -22,7 +22,7 @@ After completing these steps you'll have an SAP Cloud Connector system running i
 
 The `container-scc/` directory will contain the build instructions for the Docker image that the container will be based upon, and the appropriate software to run the SAP Cloud Connector within it.
 
-:point_right: Go to the [cloud section of the SAP Development Tools website](https://tools.hana.ondemand.com/#cloud) and download the latest Cloud Connector component, placing it into the `sapdownloads/` directory. Regardless of your local machine's operating system, you will need to download for Linux, as that is what the container will be running. At the time of writing the version is 2.12.0.1 - make sure you download the ZIP file for Linux as indicated:
+:point_right: Go to the [cloud section of the SAP Development Tools website](https://tools.hana.ondemand.com/#cloud) and download the latest Cloud Connector component, placing it into the `sapdownloads/` directory. Regardless of your local machine's operating system, you will need to download for Linux, as that is what the container will be running. At the time of writing the version is 2.12.0.1 - make sure you download the ZIP file for Linux as indicated, taking the latest version:
 
 ![SAP Cloud Connector download](sccdownload.png)
 
@@ -30,9 +30,9 @@ The `container-scc/` directory will contain the build instructions for the Docke
 
 ![SAP JVM download](jvmdownload.png)
 
-_Note: the screenshots here are for illustration purposes - the version numbers of the SAP Cloud Connector and SAP JVM components may be different to the ones you see here._
+_Note: the screenshots here are for illustration purposes - the version numbers of the SAP Cloud Connector and SAP JVM components will most likely be different to the ones you see here._
 
-:point_right: Finally in this step, create a new file in the `container-scc/` directory called `Dockerfile` (noting the capitalization and lack of extension).
+:point_right: Finally in this step, create a new file called `Dockerfile` in the `container-scc/` directory (noting the capitalization and lack of extension on this file name).
 
 :point_right: Into this file, copy the contents of the [`Dockerfile`](Dockerfile) in this repository.
 
@@ -79,12 +79,8 @@ The output will look something like this (you may have fewer entries), showing t
 ```
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 scc                 latest              acb6d16f23da        9 seconds ago       863MB
-cap                 latest              35042912625f        2 weeks ago         365MB
-debiancap           latest              a8fd0c3eb330        2 weeks ago         293MB
-node                10                  64c810caf95a        8 weeks ago         899MB
-node                lts                 64c810caf95a        8 weeks ago         899MB
 centos              7                   9f38484d220f        2 months ago        202MB
-debian              latest              a0bd3e1c8f9e        3 months ago        101MB
+[...]
 ```
 
 ### 3. Instantiate a container
@@ -121,7 +117,7 @@ c8e4073f42a4   scc     "/bin/sh -c '/opt/sa…"   About an hour ago   Up 9 secon
 
 ### 4. Connect to perform initial setup of the SAP Cloud Connector
 
-In this step you will log on to the SAP Cloud Connector in your browser, and use the administration interface to perform some initial setup.
+In this step you will log on to the SAP Cloud Connector in your browser, and use the administration interface to perform some initial setup, in particular, connecting it to the SAP Cloud Platform.
 
 :point_right: Open your browser and go to the SAP Cloud Connector administration UI at [https://localhost:8443](https://localhost:8443). Remember that this is only possible because, with the `-p 8443:8443` parameter earlier, you specified that port 8443 in the container (which is where SAP Cloud Connector is *actually* running and listening) should be exposed to your machine, the container's host (where Docker is running), also on port 8443.
 
@@ -135,7 +131,7 @@ Next, you're asked to specify an initial subaccount that you want the SAP Cloud 
 
 - "Region": select the entry that reflects the Cloud Foundry API endpoint URL that is related to the organization connected to your trial subaccount. In other words, you can search by entering `cf.eu10` in the selection search box to find and select "Europe (Frankfurt) - AWS" which corresponds to `cf.eu10.hana.ondemand.com`
 
-- "Subaccount": this should be the ID of your trial subaccount, from your "CF Trial Subaccount Home" page, as shown in this screenshot
+- "Subaccount": this should be the ID of your trial subaccount, from your "CF Trial Subaccount Home" page, as shown in this screenshot, where `0a25...` is the ID:
 
   ![subaccount ID](subaccountid.png)
 
