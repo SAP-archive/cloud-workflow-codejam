@@ -172,6 +172,10 @@ The dialog summary should look something like this:
 
 :point_right: Select the "Finish" button to create the system mapping.
 
+:point_right: (Optional) To validate connection to your backend SAP system, select the "Check Availability" (calendar with magnifier) icon under "Actions" and make sure "Check Result" comes back "Reachable" as shown below:
+
+![reachable validation](reachablevalidation.png)
+
 ### 6. Expose a set of resources in the backend system
 
 While you've established a mapping of a virtual host (that is visible at the SAP Cloud Platform level) to an internal (on-prem) host, there are still no resources available on that host that can be accessed. You must specify these explicitly, and you'll do that now in this step.
