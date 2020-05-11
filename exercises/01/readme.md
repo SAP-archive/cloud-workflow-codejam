@@ -13,7 +13,7 @@ You will also need an editor, or an Integrated Development Environment (IDE) to 
 
 Finally, you'll be playing different roles throughout this CodeJam, using your SAP Cloud Platform trial user. To that end, you'll need the appropriate authorizations:
 
-- Workflow Administrator
+- Workflow Admin
 - Workflow Context Viewer
 - Workflow Developer
 - Workflow Initiator
@@ -48,7 +48,7 @@ Note the "Environment" shown in the subaccount detail shows "Cloud Foundry".
 
 While you're looking at the list of spaces here, notice the menu item "Security" on the left. Expand it to see "Administrators", "Role Collections" and "Trust Configuration" within it. You'll be using these menu items later to set up roles for yourself, so familiarize yourself with where they in the breadcrumb trail at the top:
 
-**Home [Europe (Rot) - Cloud Foundry - Trial] / \<your trial global account\> / \<your trial subaccount\>**
+**Home / \<your trial global account\> / \<your trial subaccount\>**
 
 This trail leads you to the CF specific view of your subaccount.
 
@@ -111,11 +111,13 @@ When you're done, the collection should look like this:
 
 At this stage you have a new role collection; now you need to assign it to yourself.
 
-:point_right: Go back to where you started this step from, and select the "Trust Configuration" item from within the "Security" menu item, where you should see an existing entry for the default identity provider (the SAP ID service):
+:point_right: Go back to where you started this step from, and select the "Trust Configuration" item from within the "Security" menu item, where you should see an existing entry for the default active identity provider (the SAP ID service):
 
 ![trust configuration overview](trustconfigoverview.png)
 
-:point_right: Select the "Default identity provider" link and in the following screen, enter the email address associated with the trial account you're using, and select the "Show Assignments" button. Then use the "Assign Role Collection" button to select and assign the new "workflow" role collection you just created.
+> It may be that the name of the provider is different, it could be displayed as "sap.default" too.
+
+:point_right: Select the default active identity provider link and in the following screen, enter the email address associated with the trial account you're using, and select the "Show Assignments" button. Then use the "Assign Role Collection" button to select and assign the new "workflow" role collection you just created.
 
 ![workflow role collection assigned](collectionassigned.png)
 
@@ -126,7 +128,7 @@ At this stage you're all set with the main Workflow service and have access to u
 
 Now it's time to set up the IDE you'll be using, which in this case is the SAP Web IDE. You'll configure it to use a special "Workflow Editor" extension, and also specify your CF details to connect to.
 
-:point_right: Jump back to the landing page by clicking on the "SAP Cloud Platform Cockpit" link right at the top of the page, then use the "Launch SAP Web IDE" button you saw earlier, to start the IDE, which should present itself to you like this:
+:point_right: Jump back to the landing page by clicking on the "SAP Cloud Platform Cockpit" link right at the top of the page, then use the "SAP Web IDE" button you saw earlier, to start the IDE, which should present itself to you like this:
 
 ![SAP Web IDE](sapwebide.png)
 
