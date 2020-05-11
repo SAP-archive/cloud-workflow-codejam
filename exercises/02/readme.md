@@ -28,7 +28,7 @@ The name of this project is somewhat of a mouthful, but it provides some useful 
 
 The `mta.yaml` file within the project contains the definitions of the modules that will be deployed, and the resources upon which these modules rely. One resource upon which the two modules in this project rely is, unsurprisingly, an instance of the Workflow service. You've created one already, so in this step you'll make sure that it's properly referenced in this file.
 
-:point_right: Open the `mta.yaml` file, and make sure the "MTA Editor" view is selected at the bottom (this presents a graphical representation of the YAML contents, which can be accessed via the "Code Editor" view):
+:point_right: Open the `mta.yaml` file, and make sure the "MTA Editor" view is selected at the bottom (this presents a graphical representation of the YAML contents):
 
 ![MTA editor](mtaeditor.png)
 
@@ -36,14 +36,14 @@ The MTA Editor presents the contents of the file in three sections - "Modules", 
 
 | Module (type) | Requires (type) |
 | ------ | -------- |
-| `workflowtilesApprouter (approuter.node.js) ` | `workflowtiles_html5_repo_runtime (html5-apps-repo)`, `portal_resources_workflowtiles (portal)`, `uaa_workflowtiles (xsuaa)`, `workflow_workflowtiles (workflow)` |
+| `workflowtilesApprouter (approuter.nodejs) ` | `workflowtiles_html5_repo_runtime (html5-apps-repo)`, `portal_resources_workflowtiles (portal)`, `uaa_workflowtiles (xsuaa)`, `workflow_workflowtiles (workflow)` |
 | `workflowtilesFLP (com.sap.portal.content) ` | `portal_resources_workflowtiles (portal)`, `uaa_workflowtiles (xsuaa)`, `workflow_workflowtiles (workflow)` |
 
 :point_right: Switch between the "Modules" and "Resources" sections to understand these relationships.
 
 The `workflowtilesApprouter` module is the "handle" of a standard application which presents a Portal site. The `workflowtilesFLP` module, when deployed, will cause application and tile definitions to be defined in the FLP site.
 
-Both modules require a resource called `workflow_workflowtiles` which is basically an instance of the Workflow service.
+Both modules require a resource called `workflow_workflowtiles` which is basically an instance of the Workflow service, with the name as shown. But we've already got an instance of the Workflow service, so let's make a modification to reflect that now. By doing this directly and manually, we'll start to get a feel for the contents of an `mta.yaml` file and how things relate.
 
 :point_right: Switch from the "MTA Editor" to the "Code Editor" to see the raw YAML, and search for the string `workflow_workflowtiles`. You should find three occurrences, marked here with arrows:
 
@@ -71,7 +71,7 @@ modules:
     parameters:                                              |
       stack: cflinuxfs3                                      |
       memory: 128M                                           |
-      buildpack: 'https://github.com/cloudfoundry/nodejs-buildpack/releases/[...]
+      buildpack: 'https://github.com/cloudfoundry[...]       |
     requires:                                                |
       - name: portal_resources_workflowtiles                 |
       - name: uaa_workflowtiles                              |
@@ -100,9 +100,9 @@ resources:                                                   |
     type: org.cloudfoundry.managed-service
 ```
 
-The first two references are in the modules' `requires` sections, referring to the third reference, which is the name of the item in the `resources` section.
+The first two references are in the modules' `requires` sections, referring to the third reference, which is the name of the item in the `resources` section. In other words, both the `workflowtilesApprouter` module and the `workflowTilesFLP` module refer to (i.e. require) the `workflow_workflowtiles` resource.
 
-As you've already created an instance of the Workflow service in the previous exercise, with the name "workflow", you must modify the references.
+As you've already created an instance of the Workflow service in the previous exercise, with the name "workflow", you must modify the references here in this `mta.yaml` file.
 
 :point_right: First, change each of the three occurrences of `workflow_workflowtiles` to `workflow`.
 
@@ -127,7 +127,7 @@ Expanding the entirety of the project structure will reveal something like this:
 
 It's worth taking a few moments to [stare](https://langram.org/2017/02/19/the-beauty-of-recursion-and-list-machinery/#initialrecognition) at some of the content in this project, to understand some details of what we're about to deploy.
 
-The `workflowtilesApprouter` directory contains definitions which will bring about an application in your CF space that allows you to reach the FLP site with the Workflow related tiles. Notice the reference to `/cp.portal` as the starting resource in the `xs-app.json` configuration file.
+The `workflowtilesApprouter/` directory contains definitions which will bring about an application in your CF space that allows you to reach the FLP site with the Workflow related tiles. Notice the reference to `/cp.portal` as the starting resource in the `xs-app.json` configuration file.
 
 The `workflowtilesFLP` directory is a Node.js app that will cause a deployment of artifacts to the portal FLP site. The `package.json` file describes the dependency on a portal "deployer" service that is invoked. The `portal-site/` directory, in particular via the `CommonDataModel.json` file, contains details of what those artifacts are. Indeed, the SAP Web IDE has a built-in "Launchpad Editor" that will be invoked when you select the file for editing:
 
@@ -152,7 +152,7 @@ Towards the end of the process you'll see log records in the console that look l
 (mtaBuildTask) Build of "sample.workflowtiles.mta.trial" completed.
 ```
 
-You can see that an archive has been generated in a new `mta_archives/` directory. This is what is to be deployed in the next step.
+You can see that an archive file, with an `mtar` extension, has been generated in a new `mta_archives/` directory. This is what is to be deployed in the next step.
 
 ### 5. Deploy the MTA archive to Cloud Foundry
 
@@ -160,14 +160,14 @@ At this stage you're ready to deploy the project contents, in the form of the ar
 
 :point_right: Use the context menu on the archive file `sample.workflowtiles.mta.trial_0.0.1.mtar` and select "Deploy -> Deploy to SAP Cloud Platform" to start the deployment. At the prompt, enter or confirm the CF environment details that denote your CF organization and space.
 
-After a few minutes the deployment will complete, and you should see a log message in the console like this, towards the end:
+After a short time the deployment will complete, and you should see a log message in the console like this, towards the end:
 
 ```
 Application "workflowtilesApprouter" started
 and available at "p2001351149trial-dev-workflowtilesapprouter.cfapps.eu10.hana.ondemand.com"
 ```
 
-This is the URL of the `workflowApprouter` module that has been deployed, and will be specific to your SAP Cloud Platform trial user ID. You can use this URL to get to the FLP site, but instead, let's take another, slightly harder but more interesting route.
+This is the URL of the `workflowApprouter` module that has been deployed, and will be specific to your SAP Cloud Platform trial user ID. You can use this URL to get to the FLP site, but instead, let's take another, slightly more long winded but definitely more interesting route.
 
 
 ### 6. Find the FLP site URL and get to the Workflow tiles
@@ -184,7 +184,7 @@ This reflects the applications and service instances that now exist due to the d
 
 > The `workflowtilesFLP` application will most likely be in the "Stopped" state, reflecting the completion of the "deployer" service execution.
 
-:point_right: Now select the "Service Instances" menu item, whereupon you will be shown not only the `workflow` service instance that you created explicitly in the previous exercise, but also instances of the `portal`, `xsuaa` and `html5-apps-repo` services. Notice how there are entries in the "Referencing Applications" column, reflecting the links between the modules (applications) and the resources (service instances) described in the `mta.yaml` file:
+:point_right: Now select the "Service Instances" menu item (a subitem within "Services"), whereupon you will be shown not only the `workflow` service instance that you created explicitly in the previous exercise, but also instances of the `portal`, `xsuaa` and `html5-apps-repo` services. Notice how there are entries in the "Referencing Applications" column, reflecting the links between the modules (applications) and the resources (service instances) described in the `mta.yaml` file:
 
 ![service instances](serviceinstances.png)
 
@@ -196,7 +196,7 @@ This reflects the applications and service instances that now exist due to the d
 
 ![application overview](applicationoverview.png)
 
-Select the route URL and, after the standard authentication challenge screen, which you must complete using your SAP Cloud Platform trial email address and password, you'll see what you've been waiting for this whole time - a lovely Fiori launchpad site with the "My Inbox" and "Monitor Workflows" tiles:
+Select the route URL and, if required, after the standard authentication challenge screen which you must complete using your SAP Cloud Platform trial email address and password, you'll see what you've been waiting for this whole time - a lovely Fiori launchpad site with the "My Inbox" and "Monitor Workflows" tiles:
 
 ![FLP site](flpsite.png)
 
