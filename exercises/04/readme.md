@@ -105,13 +105,13 @@ In fact, the successful operation of the app relies on not one but three service
 - Connectivity (`connectivity`)
 - Destination (`destination`)
 
-:point_right: Go to your "CF Dev Space Home" and select the "Service Marketplace" menu item. From here you'll be setting up instances of these three services, using the same procedure each time:
+:point_right: Go to your "CF Dev Space Home" and select the "Service Marketplace" menu item (within the "Services" item). From here you'll be setting up instances of these three services, using the same procedure each time:
 
 1. Select the service from the Service Marketplace
 1. From the service's Overview page that appears, select the "Instances" menu item
 1. Use the "New Instance" button to create a new instance, and specify details for the steps in the resulting dialog each time, according to the following table
 
-|            | Authorization & Trust Management | Connectivity | Destination |
+| Service:   | Authorization & Trust Management | Connectivity | Destination |
 | ---------- | -------------------------------- | ------------ | ----------- |
 | Choose Service Plan | Plan: `application` | Plan `lite` | Plan `lite` |
 | Specify Parameters  | Upload the `xs-security.json` file via the "Browse" button | (none) | (none) |
