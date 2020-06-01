@@ -99,7 +99,7 @@ Now you have a Workflow service instance in your space, it's time to assign work
 
 :point_right: Add a new role collection with the "New Role Collection" button, giving it the name `workflow`. Select it from the list when it appears, to add roles to it.
 
-:point_right: In the role collection overview that appears when you select the role collection, use the "Add Role" multiple times to add the five roles mentioned at the start of this exercise. Make sure you specify the correct Application Identifier each time - it will begin "workflow" and be joined to an identifier with a "!" symbol, something like this:
+:point_right: In the role collection overview that appears when you select the role collection, use the "Add Role" multiple times to add the six roles mentioned at the start of this exercise. Make sure you specify the correct Application Identifier each time - it will begin "workflow" and be joined to an identifier with a "!" symbol, something like this:
 
 `workflow!b10150`
 
